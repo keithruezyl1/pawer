@@ -75,7 +75,15 @@ export async function runVerify(env: VerifyEnv, fetchImpl: typeof fetch = fetch,
       const url = `https://api.maptiler.com/maps/streets-v2/static/123.8996,10.3322,15/100x100.webp?key=${encodeURIComponent(env.MAPTILER_KEY)}`;
       const res = await fetchImpl(url, { headers: { "User-Agent": MAPS_UA } });
       const type = res.headers.get("content-type") ?? "";
-      report("MAPTILER_KEY", res.ok && type.startsWith("image/"), res.ok ? `static image fetched (${type}) with UA "${MAPS_UA.split(" ")[0]}"` : `HTTP ${res.status} ${(await res.text()).slice(0, 200)}`);
+      if (res.ok && type.startsWith("image/")) {
+        report("MAPTILER_KEY", true, `static image fetched (${type}) with UA "${MAPS_UA.split(" ")[0]}"`);
+      } else {
+        // The static endpoint answers failures with a PNG. style.json answers with a JSON reason.
+        const why = await fetchImpl(`https://api.maptiler.com/maps/streets-v2/style.json?key=${encodeURIComponent(env.MAPTILER_KEY)}`, { headers: { "User-Agent": MAPS_UA } });
+        const whyBody = (await why.text()).replace(/[^ -~]/g, "").slice(0, 300);
+        const noUa = await fetchImpl(`https://api.maptiler.com/maps/streets-v2/style.json?key=${encodeURIComponent(env.MAPTILER_KEY)}`);
+        report("MAPTILER_KEY", false, `static → HTTP ${res.status}; style.json with our UA → HTTP ${why.status} ${whyBody}; style.json with default UA → HTTP ${noUa.status}`);
+      }
     } catch (e) {
       report("MAPTILER_KEY", false, (e as Error).message);
     }
