@@ -17,7 +17,7 @@ import { runIngest, type IngestDeps } from "./run";
 import { buildTopicMessage, getAccessToken, sendTopicMessages, type ServiceAccount } from "./fcm";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
-const UA = "PAWER ingest (+https://github.com/keithruezyl1/pawer) — polls one public RSS feed every 30 minutes";
+const UA = "PAWER-ingest/0.1 (+https://github.com/keithruezyl1/pawer; polls one public RSS feed every 30 minutes)";
 
 const abs = (p: string) => resolve(ROOT, p);
 const readJson = <T>(p: string): T | null => (existsSync(abs(p)) ? (JSON.parse(readFileSync(abs(p), "utf8")) as T) : null);
