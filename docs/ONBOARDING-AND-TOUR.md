@@ -199,9 +199,9 @@ The button must be replaced by instructions, never shown and then failing.
 
 ## 4. Map rendering
 
-### 4.1 Pre-rendered static images — the key never ships
+### 4.1 Pre-rendered images, composited from raster tiles — the key never ships
 
-MapTiler is used at **build time**, not run time.
+MapTiler is used at **build time**, not run time. **The images are composited by the pipeline from MapTiler raster tiles** (~10 tiles per barangay, free plan) rather than fetched from the Static Maps API, which turned out to be paid-only (BRD D-26). The result is the same one finished WebP per barangay.
 
 ```
 pipeline (GitHub Actions)                     app
@@ -223,12 +223,15 @@ pipeline (GitHub Actions)                     app
 | Offline | Works once cached |
 | Regeneration | Only when styling changes or a barangay is added |
 
-Static image request shape (illustrative — exact parameters to confirm against MapTiler's current API):
+Tile request shape, one per 256 px tile covering the 640×400 view at zoom 15:
 
 ```
-https://api.maptiler.com/maps/{style}/static/{lon},{lat},{zoom}/{w}x{h}.webp
-    ?key={MAPTILER_KEY}&markers={lon},{lat}
+https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key={MAPTILER_KEY}
 ```
+
+The pipeline pastes the tiles onto a canvas, draws the pin at the centroid, adds the required `© MapTiler © OpenStreetMap contributors` line, and encodes WebP.
+
+**Review before publish (C3).** The `maps` workflow renders *every* candidate into a downloadable contact sheet (`map-review` artifact); only centroids marked `verified: true` are rendered into the published set.
 
 ### 4.2 Image spec
 

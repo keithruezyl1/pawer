@@ -1,9 +1,9 @@
-# Pre-renders one static locator image per barangay with MapTiler and commits them to
-# assets/maps/. Runs only when centroids change or on demand — never on the ingest schedule.
-# The MapTiler key exists only here; the app fetches finished images from Pages
-# (ONBOARDING-AND-TOUR.md §4, ARCHITECTURE.md §12).
-#
-# Secret consumed by name: MAPTILER_KEY
+# Composites one locator image per barangay from MapTiler RASTER tiles (free plan) — BRD D-26.
+#   review:  every candidate centroid → workflow artifact "map-review" (index.html contact sheet)
+#            so a person can check each pin before flipping verified:true (rule C3)
+#   publish: verified centroids only → assets/maps/, committed, served by Pages
+# Runs on centroid/renderer changes and on demand — never on the ingest schedule.
+# Secret consumed by name: MAPTILER_KEY (restricted to the "PAWER-maps" User-Agent).
 
 name: maps
 
@@ -32,13 +32,24 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci --no-audit --no-fund
-      - name: Render maps
+
+      - name: Render review set (all candidates)
+        run: npx tsx pipeline/src/maps/cli.ts --review
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: map-review
+          path: review/maps
+          retention-days: 14
+
+      - name: Render published set (verified only)
         run: npx tsx pipeline/src/maps/cli.ts
         env:
           MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
-      - name: Commit rendered maps
+      - name: Commit published maps
         run: |
           git config user.name "pawer-maps[bot]"
           git config user.email "pawer-maps@users.noreply.github.com"
           git add assets/maps
-          if git diff --cached --quiet; then echo "no map changes"; else git commit -m "maps: re-render $(date -u +%F)" && git push; fi
+          if git diff --cached --quiet; then echo "no published map changes"; else git commit -m "maps: render $(date -u +%F)" && git push; fi

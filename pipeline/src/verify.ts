@@ -8,6 +8,7 @@
  */
 import { buildJwt, getAccessToken, type ServiceAccount } from "./fcm";
 import { MAPS_UA } from "./maps/ua";
+import { lonLatToWorldPx, tileUrl, TILE } from "./maps/render";
 
 export interface CheckResult { ok: boolean; problems: string[] }
 
@@ -67,22 +68,20 @@ export async function runVerify(env: VerifyEnv, fetchImpl: typeof fetch = fetch,
     }
   }
 
-  // --- MapTiler ---
+  // --- MapTiler --- (a raster tile: the free plan includes tiles; the Static Maps API is paid — D-26)
   if (!env.MAPTILER_KEY) {
     report("MAPTILER_KEY", false, "missing, or saved with an empty value");
   } else {
     try {
-      const url = `https://api.maptiler.com/maps/streets-v2/static/123.8996,10.3322,15/100x100.webp?key=${encodeURIComponent(env.MAPTILER_KEY)}`;
-      const res = await fetchImpl(url, { headers: { "User-Agent": MAPS_UA } });
+      const p = lonLatToWorldPx(123.8996, 10.3322, 15);
+      const t = { z: 15, x: Math.floor(p.x / TILE), y: Math.floor(p.y / TILE) };
+      const res = await fetchImpl(tileUrl(t, env.MAPTILER_KEY), { headers: { "User-Agent": MAPS_UA } });
       const type = res.headers.get("content-type") ?? "";
       if (res.ok && type.startsWith("image/")) {
-        report("MAPTILER_KEY", true, `static image fetched (${type}) with UA "${MAPS_UA.split(" ")[0]}"`);
+        report("MAPTILER_KEY", true, `raster tile ${t.z}/${t.x}/${t.y} fetched (${type}) with UA "${MAPS_UA.split(" ")[0]}"`);
       } else {
-        // The static endpoint answers failures with a PNG. style.json answers with a JSON reason.
-        const why = await fetchImpl(`https://api.maptiler.com/maps/streets-v2/style.json?key=${encodeURIComponent(env.MAPTILER_KEY)}`, { headers: { "User-Agent": MAPS_UA } });
-        const whyBody = (await why.text()).replace(/[^ -~]/g, "").slice(0, 300);
-        const noUa = await fetchImpl(`https://api.maptiler.com/maps/streets-v2/style.json?key=${encodeURIComponent(env.MAPTILER_KEY)}`);
-        report("MAPTILER_KEY", false, `static → HTTP ${res.status}; style.json with our UA → HTTP ${why.status} ${whyBody}; style.json with default UA → HTTP ${noUa.status}`);
+        const noUa = await fetchImpl(tileUrl(t, env.MAPTILER_KEY));
+        report("MAPTILER_KEY", false, `tile → HTTP ${res.status} (${type}); without our UA → HTTP ${noUa.status}`);
       }
     } catch (e) {
       report("MAPTILER_KEY", false, (e as Error).message);
