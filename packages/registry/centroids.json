@@ -1,0 +1,1996 @@
+{
+  "schema_version": 1,
+  "note": "verified:false entries are candidates only — review the rendered map before flipping (rule C3)",
+  "centroids": [
+    {
+      "slug": "cebu-city.adlaon",
+      "lat": 10.4366494,
+      "lon": 123.8678423,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Barangay ng Adlaon, Adlaon, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:54:52.958Z"
+    },
+    {
+      "slug": "cebu-city.agsungot",
+      "lat": 10.4350722,
+      "lon": 123.9099095,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Agsungot Barangay Hall, Mabini-Cebu City Road, Binaliw, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:54:54.088Z"
+    },
+    {
+      "slug": "cebu-city.apas",
+      "lat": 10.337229,
+      "lon": 123.9048401,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Apas Barangay Hall, Generoso Street, Lower Panabang, Apas, Cebu City, Central Visayas, 6666, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:54:55.211Z"
+    },
+    {
+      "slug": "cebu-city.babag",
+      "lat": 10.3740527,
+      "lon": 123.8497387,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Babag, Bonbon-Sudlon Road, Tugop, Babag Ⅱ, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:54:56.330Z"
+    },
+    {
+      "slug": "cebu-city.bacayan",
+      "lat": 10.3872467,
+      "lon": 123.9217458,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bacayan Barangay Health Station, Bacayan, Cebu City, Central Visayas, 6001, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:54:57.461Z"
+    },
+    {
+      "slug": "cebu-city.banilad",
+      "lat": 10.3447352,
+      "lon": 123.8990887,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Barangay LS 99.5, Marco Polo Drive, Marco Polo Plaza, Apas, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:45:51.485Z"
+    },
+    {
+      "slug": "cebu-city.basak-pardo",
+      "lat": 10.2897235,
+      "lon": 123.8652708,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Basak Pardo Barangay Hall, Jumalon Street, Aguila Village, Basak Pardo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:54:59.707Z"
+    },
+    {
+      "slug": "cebu-city.basak-san-nicolas",
+      "lat": 10.2861217,
+      "lon": 123.870423,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Basak San Nicolas Barangay Hall, L. Gabuya Street, Bamboo, Basak San Nicolas, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:00.831Z"
+    },
+    {
+      "slug": "cebu-city.binaliw",
+      "lat": 10.4227158,
+      "lon": 123.9158564,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Binaliw, Binaliw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:01.970Z"
+    },
+    {
+      "slug": "cebu-city.bonbon",
+      "lat": 10.3679526,
+      "lon": 123.8320676,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bonbon Barangay Hall, Bonbon-Sudlon Road, Camarin, Bonbon, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:03.098Z"
+    },
+    {
+      "slug": "cebu-city.budla-an",
+      "lat": 10.3786435,
+      "lon": 123.8860209,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Budla-an Barangay Hall, Busay-Budlaan Road, Kang-maya, Busay, Budla-an, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:04.225Z"
+    },
+    {
+      "slug": "cebu-city.buhisan",
+      "lat": 10.3044898,
+      "lon": 123.858698,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Buhisan Barangay Hall, Buhisan Road, Buhisan, To-ong, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:05.352Z"
+    },
+    {
+      "slug": "cebu-city.bulacao",
+      "lat": 10.2754542,
+      "lon": 123.8513529,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay X, Natalio Bacalso Avenue, Lower Acacia, Bulacao, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:06.480Z"
+    },
+    {
+      "slug": "cebu-city.buot-taup-pardo",
+      "lat": 10.3479831,
+      "lon": 123.8082352,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Buot-Taup Barangay Hall, Buot-Taup, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:46:04.095Z"
+    },
+    {
+      "slug": "cebu-city.busay",
+      "lat": 10.3546222,
+      "lon": 123.8867634,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Barangay Busay Vehicular Accident Toll Board, Cebu-Balamban Transcentral Highway, Plaza Ville, Busay, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:08.737Z"
+    },
+    {
+      "slug": "cebu-city.calamba",
+      "lat": 10.2966232,
+      "lon": 123.8923398,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pahina Central Barangay Disaster Risk Reduction and Management Committee, Panganiban Street, Saremaa, Pahina Central, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:09.859Z"
+    },
+    {
+      "slug": "cebu-city.cambinocot",
+      "lat": 10.463147,
+      "lon": 123.8974805,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cambinocot, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:00:59.171Z"
+    },
+    {
+      "slug": "cebu-city.camputhaw",
+      "lat": 10.3242559,
+      "lon": 123.8985336,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lahug Barangay Hall, Gorordo Avenue, Purok 4, Camputhaw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:12.108Z"
+    },
+    {
+      "slug": "cebu-city.capitol-site",
+      "lat": 10.3245834,
+      "lon": 123.8903267,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Capitol Site, Villalon Drive, Green Valley, Capitol Site, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:13.229Z"
+    },
+    {
+      "slug": "cebu-city.carreta",
+      "lat": 10.3080029,
+      "lon": 123.908659,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Carreta Barangay Hall, General Maxilom Avenue Extension, Lorega, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:14.349Z"
+    },
+    {
+      "slug": "cebu-city.central",
+      "lat": 10.2969205,
+      "lon": 123.892158,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Barangay Pahina Central Sports Center, Panganiban Street, Saremaa, Pahina Central, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:15.476Z"
+    },
+    {
+      "slug": "cebu-city.cogon-pardo",
+      "lat": 10.2773977,
+      "lon": 123.8621163,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cogon Pardo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:01:02.854Z"
+    },
+    {
+      "slug": "cebu-city.cogon-ramos",
+      "lat": 10.3056778,
+      "lon": 123.8999546,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Zapatera Barangay Hall, Dionisio Jakosalem Street, Zapatera, Camputhaw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:46:19.626Z"
+    },
+    {
+      "slug": "cebu-city.day-as",
+      "lat": 10.3017786,
+      "lon": 123.9020716,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Day-as Barangay Hall, Imus Avenue, Day-as, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:18.850Z"
+    },
+    {
+      "slug": "cebu-city.duljo",
+      "lat": 10.2917827,
+      "lon": 123.8847655,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Pambarangay ng Duljo, Spolarium Street, Tabo-an, Sawang Calero, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:19.984Z"
+    },
+    {
+      "slug": "cebu-city.ermita",
+      "lat": 10.2919457,
+      "lon": 123.9010039,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cebu City Association of Barangay Council, M.C. Briones Street, Ermita, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:21.106Z"
+    },
+    {
+      "slug": "cebu-city.guadalupe",
+      "lat": 10.3228558,
+      "lon": 123.8841959,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Guadalupe Barangay Hall, Vicente Rama Avenue, Banawa, Guadalupe, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:22.229Z"
+    },
+    {
+      "slug": "cebu-city.guba",
+      "lat": 10.4289446,
+      "lon": 123.8887978,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Guba Barangay Hall, A.M. Arcilla, Payahan, Guba, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:23.350Z"
+    },
+    {
+      "slug": "cebu-city.hippodromo",
+      "lat": 10.314099,
+      "lon": 123.9069736,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sangguniang Pambarangay ng Hippodromo, San Pedro Calungsod Street, Magpalacir, Hipodromo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:24.471Z"
+    },
+    {
+      "slug": "cebu-city.inayawan",
+      "lat": 10.2699343,
+      "lon": 123.8561846,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Barangay ng Inayawan, F. Jaca Street, Silayon, Inayawan, Cebu City, Central Visayas, 6045, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:25.593Z"
+    },
+    {
+      "slug": "cebu-city.kalubihan",
+      "lat": 10.2919457,
+      "lon": 123.9010039,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cebu City Association of Barangay Council, M.C. Briones Street, Ermita, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:46:33.014Z"
+    },
+    {
+      "slug": "cebu-city.kalunasan",
+      "lat": 10.3291584,
+      "lon": 123.8868801,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Kalunasan Barangay Hall, Villalon Drive, OPRRA, Capitol Site, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:27.843Z"
+    },
+    {
+      "slug": "cebu-city.kamagayan",
+      "lat": 10.3007331,
+      "lon": 123.9010507,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Kamagayan Barangay Hall, Dionisio Jakosalem Street, Kamagayan, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:28.976Z"
+    },
+    {
+      "slug": "cebu-city.kasambagan",
+      "lat": 10.3243891,
+      "lon": 123.9107718,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Kasambagan Barangay Hall, President Quezon Street, Villa Aurora, Kasambagan, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:30.106Z"
+    },
+    {
+      "slug": "cebu-city.kinasang-an-pardo",
+      "lat": 10.28223,
+      "lon": 123.8589215,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Kinasang-an Pardo, Kinasang-an Pardo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:31.232Z"
+    },
+    {
+      "slug": "cebu-city.labangon",
+      "lat": 10.299633,
+      "lon": 123.8792752,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Labangon Barangay Hall, Katipunan Street, Labangon, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:32.354Z"
+    },
+    {
+      "slug": "cebu-city.lahug",
+      "lat": 10.3242559,
+      "lon": 123.8985336,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lahug Barangay Hall, Gorordo Avenue, Purok 4, Camputhaw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:33.475Z"
+    },
+    {
+      "slug": "cebu-city.lorega",
+      "lat": 10.306677,
+      "lon": 123.9040035,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lorega San Miguel Barangay Hall, Lorega Street, Lorega, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:34.599Z"
+    },
+    {
+      "slug": "cebu-city.lusaran",
+      "lat": 10.4909567,
+      "lon": 123.8905926,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lusaran, Cebu, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:01:06.064Z"
+    },
+    {
+      "slug": "cebu-city.luz",
+      "lat": 10.3236765,
+      "lon": 123.9062547,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bo. Luz Barangay Hall, Archbishop Reyes Avenue, Luz, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:36.842Z"
+    },
+    {
+      "slug": "cebu-city.mabini",
+      "lat": 10.4527632,
+      "lon": 123.9188738,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Mabini, Mabini, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:37.967Z"
+    },
+    {
+      "slug": "cebu-city.mabolo",
+      "lat": 10.313735,
+      "lon": 123.9140668,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mabolo Barangay Hall, M.J. Cuenco Avenue, Lorega, Mabolo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:39.086Z"
+    },
+    {
+      "slug": "cebu-city.malubog",
+      "lat": 10.3788703,
+      "lon": 123.8678033,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Malubog, Cebu-Balamban Transcentral Highway, Tiguib, Busay, Malubog, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:40.210Z"
+    },
+    {
+      "slug": "cebu-city.mambaling",
+      "lat": 10.2921574,
+      "lon": 123.8764304,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mambaling Barangay Hall, San Bernardino Street, Maria Gochan Subdivision, Mambaling, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:41.333Z"
+    },
+    {
+      "slug": "cebu-city.pahina-central",
+      "lat": 10.2969205,
+      "lon": 123.892158,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Barangay Pahina Central Sports Center, Panganiban Street, Saremaa, Pahina Central, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:42.457Z"
+    },
+    {
+      "slug": "cebu-city.pahina-san-nicolas",
+      "lat": 10.2966691,
+      "lon": 123.8923455,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pahina Central Health Center, Panganiban Street, Saremaa, Pahina San Nicolas, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:55:43.584Z"
+    },
+    {
+      "slug": "cebu-city.pamutan",
+      "lat": 10.3377068,
+      "lon": 123.841267,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Pambarangay ng Pamutan, Pamutan-Mambao Road, Bocawe, Pamutan, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:44.716Z"
+    },
+    {
+      "slug": "cebu-city.pardo",
+      "lat": 10.2887555,
+      "lon": 123.8596717,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Quiot Pardo Barangay Hall, E. Corro Street, Bayanihan, Quiot Pardo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:45.845Z"
+    },
+    {
+      "slug": "cebu-city.pari-an",
+      "lat": 10.2991288,
+      "lon": 123.9031379,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pari-an Barangay Hall, Sikatuna Street, Pari-an, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:46.980Z"
+    },
+    {
+      "slug": "cebu-city.paril",
+      "lat": 10.4748329,
+      "lon": 123.915866,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Paril, Paril, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:48.114Z"
+    },
+    {
+      "slug": "cebu-city.pasil",
+      "lat": 10.2900372,
+      "lon": 123.8944752,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Pasil, L. Flores Street, Tabo-an, Pasil, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:49.234Z"
+    },
+    {
+      "slug": "cebu-city.pit-os",
+      "lat": 10.3964811,
+      "lon": 123.9217432,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Pit-os, Bacayan - Pit-os Road, Andrew's Village, Pit-os, Cebu City, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:50.366Z"
+    },
+    {
+      "slug": "cebu-city.pulangbato",
+      "lat": 10.397906,
+      "lon": 123.906261,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pulangbato Barangay Hall, Pit-os Road, Pulangbato, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:51.488Z"
+    },
+    {
+      "slug": "cebu-city.pung-ol-sibugay",
+      "lat": 10.3894248,
+      "lon": 123.854015,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pung-ol Sibugay Barangay Hall, Cebu-Balamban Transcentral Highway, Tugop, Babag Ⅱ, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:52.950Z"
+    },
+    {
+      "slug": "cebu-city.punta-princesa",
+      "lat": 10.2952253,
+      "lon": 123.871828,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Punta Princesa, Tres de Abril Street, Tres de Abril Village, Punta Princesa, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:54.071Z"
+    },
+    {
+      "slug": "cebu-city.quiot-pardo",
+      "lat": 10.2887555,
+      "lon": 123.8596717,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Quiot Pardo Barangay Hall, E. Corro Street, Bayanihan, Quiot Pardo, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:55.193Z"
+    },
+    {
+      "slug": "cebu-city.sambag-i",
+      "lat": 10.2992539,
+      "lon": 123.8935153,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sambag 1 Barangay Hall, J. Alcantara Street, Kabulihan, Sambag I, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:56.324Z"
+    },
+    {
+      "slug": "cebu-city.sambag-ii",
+      "lat": 10.3058273,
+      "lon": 123.8912229,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sambag II, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "relation",
+      "fetched_at": "2026-09-03T03:01:10.563Z"
+    },
+    {
+      "slug": "cebu-city.san-antonio",
+      "lat": 10.302775,
+      "lon": 123.8993508,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Antonio Barangay Hall, R. R. Landon Street, San Antonio, Calamba, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:58.570Z"
+    },
+    {
+      "slug": "cebu-city.san-jose",
+      "lat": 10.3789946,
+      "lon": 123.9165062,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay San Jose, San Jose, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:55:59.704Z"
+    },
+    {
+      "slug": "cebu-city.san-nicolas-central",
+      "lat": 10.2951556,
+      "lon": 123.8911158,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Nicolas Proper Barangay Hall, B. Aranas Street, Tabo-an, San Nicolas Proper, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:47:26.962Z"
+    },
+    {
+      "slug": "cebu-city.san-roque",
+      "lat": 10.2951377,
+      "lon": 123.9077292,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Roque Barangay Hall, C. Arellano Boulevard, San Roque, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:01.954Z"
+    },
+    {
+      "slug": "cebu-city.santa-cruz",
+      "lat": 10.3059151,
+      "lon": 123.8960853,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Santa Cruz Barangay Hall, A. Villanueva Street, Santa Cruz, Camputhaw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:03.081Z"
+    },
+    {
+      "slug": "cebu-city.sapangdaku",
+      "lat": 10.3351055,
+      "lon": 123.8726737,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sapangdaku Barangay Hall, Sapangdaku, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:04.202Z"
+    },
+    {
+      "slug": "cebu-city.sawang-calero",
+      "lat": 10.2922807,
+      "lon": 123.8911592,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Sawang Calero, Tupas Street, Tabo-an, Sawang Calero, Duljo Fatima, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:05.324Z"
+    },
+    {
+      "slug": "cebu-city.sinsin",
+      "lat": 10.3449134,
+      "lon": 123.7808991,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Sinsin, Udlom-Sinsin Road, Proper, Udlom, Sin-sin, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:06.457Z"
+    },
+    {
+      "slug": "cebu-city.sirao",
+      "lat": 10.4141258,
+      "lon": 123.8722133,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sirao, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:01:13.511Z"
+    },
+    {
+      "slug": "cebu-city.suba-poblacion",
+      "lat": 10.2989471,
+      "lon": 123.8815757,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Labangon Barangay Hall, Katipunan Street, Admeral, San Nicolas Proper, Labangon, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:47:40.528Z"
+    },
+    {
+      "slug": "cebu-city.sudlon-i",
+      "lat": 10.3624132,
+      "lon": 123.7870029,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sudlon I Barangay Hall, Udlom-Sinsin Road, Udlom, Sudlon I, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:56:09.835Z"
+    },
+    {
+      "slug": "cebu-city.sudlon-ii",
+      "lat": 10.3753734,
+      "lon": 123.787469,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sudlon II Barangay Hall, Sudlon Road, Sudlon II, Cebu City, Central Visayas, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:10.966Z"
+    },
+    {
+      "slug": "cebu-city.t-padilla",
+      "lat": 10.3080029,
+      "lon": 123.908659,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Carreta Barangay Hall, General Maxilom Avenue Extension, Lorega, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:47:45.514Z"
+    },
+    {
+      "slug": "cebu-city.tabunan",
+      "lat": 10.4411632,
+      "lon": 123.8208699,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tabunan Barangay Hall, Tabunan, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:13.216Z"
+    },
+    {
+      "slug": "cebu-city.tagbao",
+      "lat": 10.4430251,
+      "lon": 123.8407788,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tagbao Barangay Hall, Guban Bukid, Adlaon, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:56:14.337Z"
+    },
+    {
+      "slug": "cebu-city.talamban",
+      "lat": 10.3698378,
+      "lon": 123.9183884,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Talamban, Governor M. Cuenco Avenue, Tigbao, Talamban, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:15.459Z"
+    },
+    {
+      "slug": "cebu-city.taptap",
+      "lat": 10.4313506,
+      "lon": 123.8490673,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Taptap Barangay Hall, Cebu-Balamban Transcentral Highway, Taptap, Cebu City, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:56:16.583Z"
+    },
+    {
+      "slug": "cebu-city.tejero",
+      "lat": 10.3016119,
+      "lon": 123.9086126,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tejero Barangay Hall, T. Padilla Street, Tejero, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:17.709Z"
+    },
+    {
+      "slug": "cebu-city.tinago",
+      "lat": 10.2970097,
+      "lon": 123.9087757,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tinago Barangay Hall, C. Arellano Boulevard, Tinago, Carreta, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:18.962Z"
+    },
+    {
+      "slug": "cebu-city.tisa",
+      "lat": 10.3011822,
+      "lon": 123.8695897,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tisa Barangay Hall, Francisco Llamas Street, Villa Isidra Village, Tisa, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:20.088Z"
+    },
+    {
+      "slug": "cebu-city.to-ong-pardo",
+      "lat": 10.3044898,
+      "lon": 123.858698,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Buhisan Barangay Hall, Buhisan Road, Buhisan, To-ong, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:21.222Z"
+    },
+    {
+      "slug": "cebu-city.zapatera",
+      "lat": 10.3056778,
+      "lon": 123.8999546,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Zapatera Barangay Hall, Dionisio Jakosalem Street, Zapatera, Camputhaw, Cebu City, Central Visayas, 6000, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:22.341Z"
+    },
+    {
+      "slug": "consolacion.cansaga",
+      "lat": 10.3776446,
+      "lon": 123.9615371,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cansaga Barangay Hall, Cebu North Road, San Antonio de Padua, Poblacion Oriental, Cansaga, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:24.582Z"
+    },
+    {
+      "slug": "consolacion.casili",
+      "lat": 10.3740246,
+      "lon": 123.9480125,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Casili Barangay Hall, Eagle Street, Katugasan, Bato Casili, Casili, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:25.705Z"
+    },
+    {
+      "slug": "consolacion.danglag",
+      "lat": 10.4194149,
+      "lon": 123.9446089,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Garing Barangay Hall, Sunflower Street, Villa Jovita Subdivision, Tolotolo, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:48:06.367Z"
+    },
+    {
+      "slug": "consolacion.garing",
+      "lat": 10.4194149,
+      "lon": 123.9446089,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Garing Barangay Hall, Sunflower Street, Villa Jovita Subdivision, Tolotolo, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:27.948Z"
+    },
+    {
+      "slug": "consolacion.jugan",
+      "lat": 10.3785695,
+      "lon": 123.9719567,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jugan Barangay Hall, Librado Vacunador Street, Upper Jugan, Jugan, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:29.068Z"
+    },
+    {
+      "slug": "consolacion.lamac",
+      "lat": 10.3875909,
+      "lon": 123.9680328,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lamac Barangay Hall, New Orleans Street, Lamac, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:30.192Z"
+    },
+    {
+      "slug": "consolacion.lanipga",
+      "lat": 10.4578794,
+      "lon": 123.9328152,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lanipga Barangay Hall, Mabini-Cebu City Road, Binaliw, Consolacion, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:31.312Z"
+    },
+    {
+      "slug": "consolacion.nangka",
+      "lat": 10.3708662,
+      "lon": 123.9590464,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Nangka Barangay Hall, Nangka Purok 1 - Purok 6 Access Road, Purok Singko, Poblacion Oriental, Nangka, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:32.435Z"
+    },
+    {
+      "slug": "consolacion.panas",
+      "lat": 10.4464366,
+      "lon": 123.930807,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Panas Barangay Hall, Mabini-Cebu City Road, Binaliw, Consolacion, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:33.557Z"
+    },
+    {
+      "slug": "consolacion.panoypoy",
+      "lat": 10.4181982,
+      "lon": 123.9290047,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Panoypoy Barangay Hall, Consolacion, Panoypoy, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:34.680Z"
+    },
+    {
+      "slug": "consolacion.pitogo",
+      "lat": 10.3825612,
+      "lon": 123.9712567,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pitogo Barangay Hall, Cebu North Road, Villa Monilar, Pitogo, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:35.813Z"
+    },
+    {
+      "slug": "consolacion.poblacion-occidental",
+      "lat": 10.3734065,
+      "lon": 123.9535741,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Poblacion Occidental Barangay Hall, Pandayan Street, Katugasan, Poblacion Occidental, Casili, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:36.937Z"
+    },
+    {
+      "slug": "consolacion.poblacion-oriental",
+      "lat": 10.3708662,
+      "lon": 123.9590464,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Nangka Barangay Hall, Nangka Purok 1 - Purok 6 Access Road, Purok Singko, Poblacion Oriental, Nangka, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:38.473Z"
+    },
+    {
+      "slug": "consolacion.polog",
+      "lat": 10.4080204,
+      "lon": 123.9419739,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Polog Barangay Hall, Sunflower Street, Villa Jovita Subdivision, Tolotolo, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:39.598Z"
+    },
+    {
+      "slug": "consolacion.pulpogan",
+      "lat": 10.3856243,
+      "lon": 123.9566846,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pulpogan Barangay Hall, M. Pepito Street, Andres Bonifacio, Poblacion Oriental, Pulpogan, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:40.718Z"
+    },
+    {
+      "slug": "consolacion.sacsac",
+      "lat": 10.3974883,
+      "lon": 123.9279104,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Sacsac, Sacsac, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:41.840Z"
+    },
+    {
+      "slug": "consolacion.tayud",
+      "lat": 10.3623975,
+      "lon": 123.9824992,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Tayud, Cansaga - Tayud Road, Pagutlan, Tagaytay, Tayud, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:42.961Z"
+    },
+    {
+      "slug": "consolacion.tilhaong",
+      "lat": 10.3986558,
+      "lon": 123.9632205,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tilhaong Barangay Hall, New Orleans Street, Tagaytay, Tilhaong, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:44.084Z"
+    },
+    {
+      "slug": "consolacion.tolotolo",
+      "lat": 10.3923167,
+      "lon": 123.942445,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tolotolo Barangay Hall, Columbus Street, Cassava, Tolotolo, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:45.205Z"
+    },
+    {
+      "slug": "consolacion.tugbongan",
+      "lat": 10.3629101,
+      "lon": 123.9663098,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tugbongan Barangay Hall, Tomas P. Go Road, Tugbongan, Consolacion, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:46.327Z"
+    },
+    {
+      "slug": "liloan.cabadiangan",
+      "lat": 10.4552451,
+      "lon": 123.9759591,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Cabadiangan, Compostela, Cabadiangan, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:47.448Z"
+    },
+    {
+      "slug": "liloan.calero",
+      "lat": 10.3633215,
+      "lon": 123.9989024,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Calero Barangay Hall, Kapaz Road, Camote, Upper Looc, Calero, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:48.580Z"
+    },
+    {
+      "slug": "liloan.catarman",
+      "lat": 10.3868583,
+      "lon": 124.0110262,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Catarman Barangay Hall, Catarman, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:49.705Z"
+    },
+    {
+      "slug": "liloan.cotcot",
+      "lat": 10.4278285,
+      "lon": 124.0017076,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cotcot Barangay Hall, Cebu North Road, Cotcot, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:50.826Z"
+    },
+    {
+      "slug": "liloan.jubay",
+      "lat": 10.4153822,
+      "lon": 123.9970341,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jubay Barangay Hall, Cebu North Road, Jubay, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:51.952Z"
+    },
+    {
+      "slug": "liloan.lataban",
+      "lat": 10.4355308,
+      "lon": 123.9568346,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Roque Barangay Hall, Bajac Road, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:48:50.132Z"
+    },
+    {
+      "slug": "liloan.mulao",
+      "lat": 10.4650908,
+      "lon": 123.9515439,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mulao Barangay Hall, Guimbal Road, Tubigan, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:55.374Z"
+    },
+    {
+      "slug": "liloan.poblacion",
+      "lat": 10.4153822,
+      "lon": 123.9970341,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jubay Barangay Hall, Cebu North Road, Jubay, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:48:53.472Z"
+    },
+    {
+      "slug": "liloan.san-roque",
+      "lat": 10.4355308,
+      "lon": 123.9568346,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Roque Barangay Hall, Bajac Road, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:56:59.078Z"
+    },
+    {
+      "slug": "liloan.san-vicente",
+      "lat": 10.39899,
+      "lon": 123.973385,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Vicente Barangay Hall, Honeysuckle, Primavera Hills, San Vicente, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:00.517Z"
+    },
+    {
+      "slug": "liloan.santa-cruz",
+      "lat": 10.412652,
+      "lon": 123.9637222,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Santa Cruz Barangay Hall, Lilo-an, Santa Cruz, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:01.951Z"
+    },
+    {
+      "slug": "liloan.tabla",
+      "lat": 10.4496126,
+      "lon": 123.9399566,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tabla Barangay Hall, Bajac Road, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:03.431Z"
+    },
+    {
+      "slug": "liloan.tayud",
+      "lat": 10.3820328,
+      "lon": 123.9964593,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tayud Barangay Hall, S. A. Lauron Avenue, Carlosville Subdivision, Tayud, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:04.554Z"
+    },
+    {
+      "slug": "liloan.yati",
+      "lat": 10.3889079,
+      "lon": 123.9816195,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Yati Barangay Hall, Cebu North Road, Orchids, Yati, Lilo-an, Cebu, Central Visayas, 6002, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:05.673Z"
+    },
+    {
+      "slug": "mandaue-city.jagobiao",
+      "lat": 10.3797615,
+      "lon": 123.9372847,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jagobiao Creek, Bato Casili, Casili, Mandaue, Cebu, Central Visayas, 6001, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T03:02:10.768Z"
+    },
+    {
+      "slug": "minglanilla.cadulawan",
+      "lat": 10.2563558,
+      "lon": 123.7876887,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cadulawan Barangay Hall, Tres de Mayo Street, Poblacion Ward Ⅳ, Cadulawan, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:37.612Z"
+    },
+    {
+      "slug": "minglanilla.calajo-an",
+      "lat": 10.2460687,
+      "lon": 123.7962783,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Poblacion Ward Ⅲ, Villordon Street, Poblacion Ward Ⅲ, Calajo-an, Minglanilla, Cebu, Central Visayas, 6064, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:38.738Z"
+    },
+    {
+      "slug": "minglanilla.camp-7",
+      "lat": 10.3225163,
+      "lon": 123.7731101,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Camp 7 Barangay Hall, Toledo - Tabunok Road, Cadulawan, Ylaya, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:39.862Z"
+    },
+    {
+      "slug": "minglanilla.camp-8",
+      "lat": 10.3108913,
+      "lon": 123.7549502,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Camp 8 Barangay Hall, Toledo - Tabunok Road, Cadulawan, Ylaya, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:40.986Z"
+    },
+    {
+      "slug": "minglanilla.cuanos",
+      "lat": 10.2862705,
+      "lon": 123.7938452,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cuanos Barangay Hall, Tubod-Cuanos Road, Linao, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:42.110Z"
+    },
+    {
+      "slug": "minglanilla.guindaruhan",
+      "lat": 10.2611822,
+      "lon": 123.7635357,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Guindaruhan, Minglanilla, Guindaruhan, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:43.231Z"
+    },
+    {
+      "slug": "minglanilla.linao",
+      "lat": 10.2546151,
+      "lon": 123.8098492,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Linao-Lipata, Natalio Bacalso Avenue, Lipata, Linao, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:44.355Z"
+    },
+    {
+      "slug": "minglanilla.manduang",
+      "lat": 10.2786069,
+      "lon": 123.785698,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Manduang Barangay Hall, Manduang Road, Campo, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:45.476Z"
+    },
+    {
+      "slug": "minglanilla.pakigne",
+      "lat": 10.2636715,
+      "lon": 123.7989183,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tubod Barangay Hall, Upper Pakigne Road, Sangi, Poblacion Ward Ⅰ, Pakigne, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:46.599Z"
+    },
+    {
+      "slug": "minglanilla.poblacion-ward-i",
+      "lat": 10.2445027,
+      "lon": 123.7980347,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Poblacion Ward 1, Caballero Street, Poblacion Ward Ⅰ, Calajo-an, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:50:14.041Z"
+    },
+    {
+      "slug": "minglanilla.poblacion-ward-ii",
+      "lat": 10.24302,
+      "lon": 123.7939647,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Poblacion Ward II Barangay Hall, Ward 2-Tulay Road, Poblacion Ward Ⅱ, Tulay, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:49.471Z"
+    },
+    {
+      "slug": "minglanilla.poblacion-ward-iii",
+      "lat": 10.2460687,
+      "lon": 123.7962783,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bahay Pamahalaan ng Barangay Poblacion Ward Ⅲ, Villordon Street, Poblacion Ward Ⅲ, Calajo-an, Minglanilla, Cebu, Central Visayas, 6064, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:50:18.482Z"
+    },
+    {
+      "slug": "minglanilla.poblacion-ward-iv",
+      "lat": 10.2547374,
+      "lon": 123.7920427,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Vito Barangay Hall, Vito-Cadulawan Road, Teves, Poblacion Ward Ⅳ, Vito, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:50:20.642Z"
+    },
+    {
+      "slug": "minglanilla.tubod",
+      "lat": 10.2636715,
+      "lon": 123.7989183,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tubod Barangay Hall, Upper Pakigne Road, Sangi, Poblacion Ward Ⅰ, Pakigne, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:53.571Z"
+    },
+    {
+      "slug": "minglanilla.tulay",
+      "lat": 10.2387088,
+      "lon": 123.7912664,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tulay Barangay Hall, A. Apostol Street, Springwoods Country Homes Subdivision, Poblacion Ward Ⅱ, Tulay, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:54.691Z"
+    },
+    {
+      "slug": "minglanilla.tunghaan",
+      "lat": 10.2454922,
+      "lon": 123.7808167,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tunghaan Barangay Hall, Abuno-Upper Tunghaan Road, Velmiro Heights Subdivision, Tunghaan, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:55.817Z"
+    },
+    {
+      "slug": "minglanilla.tungkil",
+      "lat": 10.2447373,
+      "lon": 123.8136418,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tungkil Barangay Hall, Tungkil Road, Corona Del Mar, Tungkil, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:56.939Z"
+    },
+    {
+      "slug": "minglanilla.tungkop",
+      "lat": 10.2329588,
+      "lon": 123.7850807,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tungkop Barangay Hall, Tungkop Road, Tungkop, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:58.072Z"
+    },
+    {
+      "slug": "minglanilla.vito",
+      "lat": 10.2547374,
+      "lon": 123.7920427,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Vito Barangay Hall, Vito-Cadulawan Road, Teves, Poblacion Ward Ⅳ, Vito, Minglanilla, Cebu, Central Visayas, 6046, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:57:59.200Z"
+    },
+    {
+      "slug": "naga.bairan",
+      "lat": 10.1977072,
+      "lon": 123.7196796,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bairan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:09.187Z"
+    },
+    {
+      "slug": "naga.balirong",
+      "lat": 10.2567041,
+      "lon": 123.7107728,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Balirong, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:12.664Z"
+    },
+    {
+      "slug": "naga.cabungahan",
+      "lat": 10.2136387,
+      "lon": 123.7202845,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cabungahan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:15.948Z"
+    },
+    {
+      "slug": "naga.cantao-an",
+      "lat": 10.2450741,
+      "lon": 123.7524586,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cantao-an, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:19.750Z"
+    },
+    {
+      "slug": "naga.central-poblacion",
+      "lat": 10.2074679,
+      "lon": 123.7572468,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Central Poblacion, Tangke, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:23.086Z"
+    },
+    {
+      "slug": "naga.cogon",
+      "lat": 10.2686376,
+      "lon": 123.7399857,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cogon, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:27.782Z"
+    },
+    {
+      "slug": "naga.colon",
+      "lat": 10.2198901,
+      "lon": 123.7614917,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Colon, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:30.894Z"
+    },
+    {
+      "slug": "naga.east-poblacion",
+      "lat": 10.2098713,
+      "lon": 123.7594282,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "East Poblacion, Tangke, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:33.984Z"
+    },
+    {
+      "slug": "naga.inayagan",
+      "lat": 10.2364477,
+      "lon": 123.7745232,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Inayagan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:37.786Z"
+    },
+    {
+      "slug": "naga.inoburan",
+      "lat": 10.1889096,
+      "lon": 123.7397385,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Inoburan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:40.619Z"
+    },
+    {
+      "slug": "naga.jaguimit",
+      "lat": 10.22919,
+      "lon": 123.7090698,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jaguimit, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:45.190Z"
+    },
+    {
+      "slug": "naga.lanas",
+      "lat": 10.2724432,
+      "lon": 123.7170102,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lanas, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:49.291Z"
+    },
+    {
+      "slug": "naga.langtad",
+      "lat": 10.183638,
+      "lon": 123.7327873,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Langtad, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:53.089Z"
+    },
+    {
+      "slug": "naga.lutac",
+      "lat": 10.2489206,
+      "lon": 123.7258696,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lutac, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:56.245Z"
+    },
+    {
+      "slug": "naga.mainit",
+      "lat": 10.2169377,
+      "lon": 123.731356,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mainit, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:03:59.780Z"
+    },
+    {
+      "slug": "naga.mayana",
+      "lat": 10.2887962,
+      "lon": 123.6948871,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mayana, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:03.215Z"
+    },
+    {
+      "slug": "naga.north-poblacion",
+      "lat": 10.21241,
+      "lon": 123.7587881,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "North Poblacion, Tangke, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:09.349Z"
+    },
+    {
+      "slug": "naga.pangdan",
+      "lat": 10.2326268,
+      "lon": 123.7273142,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pangdan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:13.247Z"
+    },
+    {
+      "slug": "naga.patag",
+      "lat": 10.2302425,
+      "lon": 123.6993109,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Patag, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:16.418Z"
+    },
+    {
+      "slug": "naga.south-poblacion",
+      "lat": 10.2034781,
+      "lon": 123.7552411,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "South Poblacion, Na-alad, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:20.303Z"
+    },
+    {
+      "slug": "naga.tagjaguimit",
+      "lat": 10.2657624,
+      "lon": 123.6811305,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tagjaguimit, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:23.803Z"
+    },
+    {
+      "slug": "naga.tangke",
+      "lat": 10.2161148,
+      "lon": 123.7535324,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tangke, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:27.995Z"
+    },
+    {
+      "slug": "naga.tinaan",
+      "lat": 10.1935558,
+      "lon": 123.745126,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tinaan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:33.431Z"
+    },
+    {
+      "slug": "naga.tuyan",
+      "lat": 10.228245,
+      "lon": 123.7672784,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tuyan, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:36.411Z"
+    },
+    {
+      "slug": "naga.uling",
+      "lat": 10.2801918,
+      "lon": 123.7115157,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Uling, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:40.295Z"
+    },
+    {
+      "slug": "naga.west-poblacion",
+      "lat": 10.2110903,
+      "lon": 123.7535576,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "West Poblacion, Tangke, Naga, Cebu, Central Visayas, 6037, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:46.000Z"
+    },
+    {
+      "slug": "san-fernando.balud",
+      "lat": 10.1481283,
+      "lon": 123.6948432,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Balud Barangay Hall, Cebu South Road, South Poblacion, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:32.172Z"
+    },
+    {
+      "slug": "san-fernando.balungag",
+      "lat": 10.1933463,
+      "lon": 123.6463944,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Balungag, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:49.064Z"
+    },
+    {
+      "slug": "san-fernando.basak",
+      "lat": 10.1784681,
+      "lon": 123.6655921,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Basak Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:34.440Z"
+    },
+    {
+      "slug": "san-fernando.bugho",
+      "lat": 10.2248376,
+      "lon": 123.6713245,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bugho Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:35.566Z"
+    },
+    {
+      "slug": "san-fernando.cabatbatan",
+      "lat": 10.2164174,
+      "lon": 123.6857514,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Cabatbatan, San Fernando, Cebu, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:04:52.651Z"
+    },
+    {
+      "slug": "san-fernando.greenhills",
+      "lat": 10.1386148,
+      "lon": 123.6753102,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Greenhills Barangay Hall, Natalio Bacalso Avenue, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:37.820Z"
+    },
+    {
+      "slug": "san-fernando.ilaya",
+      "lat": 10.1764023,
+      "lon": 123.7215328,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pitalo Barangay Hall, Natalio Bacalso Avenue, Pitalo, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:51:37.790Z"
+    },
+    {
+      "slug": "san-fernando.liburon",
+      "lat": 10.1839418,
+      "lon": 123.6489185,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Liburon Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:41.197Z"
+    },
+    {
+      "slug": "san-fernando.magsico",
+      "lat": 10.1839418,
+      "lon": 123.6489185,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Liburon Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:51:43.115Z"
+    },
+    {
+      "slug": "san-fernando.panadtaran",
+      "lat": 10.1597533,
+      "lon": 123.7047895,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "South Poblacion Barangay Hall, Natalio Bacalso Avenue, South Poblacion, Pitalo, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:51:44.454Z"
+    },
+    {
+      "slug": "san-fernando.pitalo",
+      "lat": 10.1764023,
+      "lon": 123.7215328,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pitalo Barangay Hall, Natalio Bacalso Avenue, Pitalo, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:44.570Z"
+    },
+    {
+      "slug": "san-fernando.poblacion-north",
+      "lat": 10.1633376,
+      "lon": 123.70836,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Poblacion North Barangay Health Station, 5th Street, North Poblacion, San Isidro, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:45.692Z"
+    },
+    {
+      "slug": "san-fernando.poblacion-south",
+      "lat": 10.161789,
+      "lon": 123.707284,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Poblacion South Barangay Health Station, 11th Street, South Poblacion, San Isidro, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:46.819Z"
+    },
+    {
+      "slug": "san-fernando.san-isidro",
+      "lat": 10.1713565,
+      "lon": 123.7156744,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Isidro Barangay Health Station, Natalio Bacalso Avenue, North Poblacion, San Isidro, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T02:58:47.948Z"
+    },
+    {
+      "slug": "san-fernando.sangat",
+      "lat": 10.1335631,
+      "lon": 123.6876462,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Sangat Barangay Hall, Natalio Bacalso Avenue, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:49.069Z"
+    },
+    {
+      "slug": "san-fernando.tabionan",
+      "lat": 10.1930556,
+      "lon": 123.6700661,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tabionan Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:50.194Z"
+    },
+    {
+      "slug": "san-fernando.tananas",
+      "lat": 10.1828649,
+      "lon": 123.6987651,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tañañas Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:51:56.870Z"
+    },
+    {
+      "slug": "san-fernando.tinubdan",
+      "lat": 10.1761114,
+      "lon": 123.6837962,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tinubdan Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:52.461Z"
+    },
+    {
+      "slug": "san-fernando.tonggo",
+      "lat": 10.1642214,
+      "lon": 123.6849246,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tonggo Barangay Hall, San Fernando-Pinamungajan Road, San Fernando, Cebu, Central Visayas, 6018, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:58:53.585Z"
+    },
+    {
+      "slug": "san-fernando.tubod",
+      "lat": 10.2137668,
+      "lon": 123.6510917,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tubod, San Fernando, Cebu, Central Visayas, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:02.247Z"
+    },
+    {
+      "slug": "talisay-city.biasong",
+      "lat": 10.2374589,
+      "lon": 123.8287524,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Biasong, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:05.572Z"
+    },
+    {
+      "slug": "talisay-city.bulacao",
+      "lat": 10.2710678,
+      "lon": 123.8451143,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulacao, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:09.842Z"
+    },
+    {
+      "slug": "talisay-city.cansojong",
+      "lat": 10.2557527,
+      "lon": 123.8606442,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Barangay ng San Roque, Vicente H. Garces Street, Laray, San Roque, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:52:10.121Z"
+    },
+    {
+      "slug": "talisay-city.dumlog",
+      "lat": 10.2450076,
+      "lon": 123.8395501,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Dumlog, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:19.634Z"
+    },
+    {
+      "slug": "talisay-city.jaclupan",
+      "lat": 10.3008606,
+      "lon": 123.8176734,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jaclupan Barangay Hall, Toledo - Tabunok Road, Camp 4, Iba, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:59:02.568Z"
+    },
+    {
+      "slug": "talisay-city.lagtang",
+      "lat": 10.2669491,
+      "lon": 123.8335173,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lagtang, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:23.425Z"
+    },
+    {
+      "slug": "talisay-city.lawaan-i",
+      "lat": 10.258248,
+      "lon": 123.8230524,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lawaan I, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:26.273Z"
+    },
+    {
+      "slug": "talisay-city.lawaan-ii",
+      "lat": 10.253557,
+      "lon": 123.832139,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lawaan II, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:29.546Z"
+    },
+    {
+      "slug": "talisay-city.lawaan-iii",
+      "lat": 10.2653932,
+      "lon": 123.8315307,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Lawaan III, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:32.297Z"
+    },
+    {
+      "slug": "talisay-city.linao",
+      "lat": 10.2623108,
+      "lon": 123.8181609,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Linao, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:35.393Z"
+    },
+    {
+      "slug": "talisay-city.maghaway",
+      "lat": 10.3008606,
+      "lon": 123.8176734,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Jaclupan Barangay Hall, Toledo - Tabunok Road, Camp 4, Iba, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:52:25.267Z"
+    },
+    {
+      "slug": "talisay-city.manipis",
+      "lat": 10.3212828,
+      "lon": 123.7861982,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Manipis, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:38.458Z"
+    },
+    {
+      "slug": "talisay-city.mohon",
+      "lat": 10.2493722,
+      "lon": 123.8271516,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Mohon, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:41.947Z"
+    },
+    {
+      "slug": "talisay-city.poblacion",
+      "lat": 10.2446342,
+      "lon": 123.8464893,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Poblacion, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:44.885Z"
+    },
+    {
+      "slug": "talisay-city.pooc",
+      "lat": 10.2383782,
+      "lon": 123.8244385,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Pooc, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:48.767Z"
+    },
+    {
+      "slug": "talisay-city.san-isidro",
+      "lat": 10.2598872,
+      "lon": 123.8403749,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "San Isidro, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:05:53.281Z"
+    },
+    {
+      "slug": "talisay-city.san-roque",
+      "lat": 10.2557527,
+      "lon": 123.8606442,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Bulwagang Barangay ng San Roque, Vicente H. Garces Street, Laray, San Roque, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "way",
+      "fetched_at": "2026-09-03T02:59:16.290Z"
+    },
+    {
+      "slug": "talisay-city.tangke",
+      "lat": 10.2509649,
+      "lon": 123.8613078,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tangke, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:06:01.588Z"
+    },
+    {
+      "slug": "talisay-city.tapul",
+      "lat": 10.2889433,
+      "lon": 123.8034437,
+      "source": "nominatim",
+      "verified": false,
+      "display_name": "Tapul, Talisay, Cebu, Central Visayas, 6045, Philippines",
+      "osm_type": "node",
+      "fetched_at": "2026-09-03T03:06:05.068Z"
+    }
+  ]
+}

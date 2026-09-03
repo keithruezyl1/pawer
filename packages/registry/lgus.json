@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "lgus": [
+    {
+      "slug": "cebu-city",
+      "display": "Cebu City",
+      "psgc": "072217000",
+      "aliases": [
+        "cebu city"
+      ]
+    },
+    {
+      "slug": "mandaue-city",
+      "display": "Mandaue City",
+      "psgc": "072230000",
+      "aliases": [
+        "mandaue city",
+        "mandaue"
+      ]
+    },
+    {
+      "slug": "talisay-city",
+      "display": "Talisay City",
+      "psgc": "072250000",
+      "aliases": [
+        "talisay city",
+        "talisay"
+      ]
+    },
+    {
+      "slug": "naga",
+      "display": "City of Naga",
+      "psgc": "072234000",
+      "aliases": [
+        "city of naga",
+        "naga city",
+        "naga"
+      ]
+    },
+    {
+      "slug": "liloan",
+      "display": "Liloan",
+      "psgc": "072227000",
+      "aliases": [
+        "liloan"
+      ]
+    },
+    {
+      "slug": "consolacion",
+      "display": "Consolacion",
+      "psgc": "072219000",
+      "aliases": [
+        "consolacion"
+      ]
+    },
+    {
+      "slug": "minglanilla",
+      "display": "Minglanilla",
+      "psgc": "072232000",
+      "aliases": [
+        "minglanilla"
+      ]
+    },
+    {
+      "slug": "san-fernando",
+      "display": "San Fernando",
+      "psgc": "072241000",
+      "aliases": [
+        "san fernando"
+      ]
+    }
+  ]
+}

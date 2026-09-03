@@ -1,0 +1,27 @@
+{
+  "name": "@pawer/registry",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./barangays.json": "./barangays.json",
+    "./lgus.json": "./lgus.json"
+  },
+  "scripts": {
+    "build": "tsx scripts/build-from-glossary.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@pawer/shared": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.0",
+    "tsx": "^4.19.0",
+    "typescript": "~6.0.3",
+    "vitest": "^2.1.0"
+  }
+}

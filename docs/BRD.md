@@ -1,0 +1,263 @@
+# PAWER — Business Requirements Document
+
+| | |
+|---|---|
+| **Version** | 1.0 |
+| **Date** | 2 September 2026 |
+| **Status** | Approved |
+| **Nature** | Free public-service application; secondary purpose as a portfolio artifact |
+| **Revenue model** | None. No ads, no subscriptions, no data monetisation |
+| **Budget** | ₱0 / $0 recurring |
+
+---
+
+## 1. Business context
+
+Visayan Electric is the second-largest electric distribution utility in the Philippines. Its franchise covers **eight** local government units in Metro Cebu — the cities of Cebu, Mandaue, Talisay, and Naga, and the municipalities of Liloan, Consolacion, Minglanilla, and San Fernando — an area of roughly 672 km² with an estimated population of 1.73 million. It publishes scheduled service-interruption advisories weekly, typically three days in advance.
+
+**Lapu-Lapu City and Cordova are outside the franchise** and are served by a different distribution utility. They are therefore outside PAWER's scope entirely, and must not appear in the barangay picker. See ARCHITECTURE.md §5.6.
+
+Those advisories are complete, accurate, and effectively unusable at the individual level. They arrive as prose covering 25–35 interruptions at once, distributed primarily through a Facebook page whose ranked feed offers no location filtering, no notification capability, and no guarantee that the post reaches the households it concerns.
+
+**The business opportunity is not informational — it is one of accessibility.** The value PAWER creates is entirely in the transformation: taking correct information trapped in a high-noise, engagement-optimised channel and delivering it as a targeted, low-noise, glanceable utility. PAWER produces no new information whatsoever. It changes only who can act on it.
+
+### 1.1 Why the underlying data source is durable
+
+Philippine distribution utilities operate under Energy Regulatory Commission rules that require advance public notice of scheduled service interruptions. The weekly advisory therefore exists to satisfy a regulatory obligation, not as a discretionary communications choice — which makes it substantially more likely to persist than a marketing channel would be.
+
+**BA-1 (assumption to verify).** The specific regulatory instrument and its notice-period requirement should be confirmed before publication, so that PAWER's documentation describes it accurately. The business conclusion — that a regulated disclosure is a more dependable foundation than a social media page — holds regardless of the exact citation.
+
+---
+
+## 2. Business objectives
+
+| ID | Objective | Measure |
+|---|---|---|
+| BO-1 | Make scheduled interruption information actionable for Metro Cebu residents at barangay granularity | A user can determine their status in under 2 seconds without opening the app |
+| BO-2 | Operate at permanently zero recurring cost | $0/month verified against every platform's free tier (§5) |
+| BO-3 | Require effectively no ongoing operator attention | ≤ 1 maintenance action per month |
+| BO-4 | Introduce no legal, contractual, or reputational liability | No terms-of-service violation; no personal data processed; no trademark use |
+| BO-5 | Serve as a demonstrable engineering portfolio artifact | Public repository, documented decisions, test-covered parser, reproducible build |
+| BO-6 | Remain trustworthy under degradation | When the pipeline fails, the app tells the user rather than showing stale or invented data |
+
+### 2.1 Where the two purposes conflict
+
+The civic and portfolio objectives are mostly aligned — a public repository is required for the portfolio and simultaneously grants unlimited free CI minutes, which serves BO-2. One genuine tension exists, and it is resolved in advance:
+
+> **Resolution.** Where portfolio impressiveness and user trust conflict, user trust wins. PAWER will not add features that demonstrate technical range (machine-learning classification, crowdsourced reporting, live grid inference, interactive mapping) at the cost of accuracy, battery, or honesty. The portfolio value of this project is intended to lie in its restraint and its correctness, not in its surface area.
+
+---
+
+## 3. Stakeholders
+
+| Stakeholder | Interest | Involvement |
+|---|---|---|
+| **Metro Cebu residents** | Timely, accurate, low-noise outage information | End users. Not consulted formally; no analytics collected, so feedback arrives only through direct channels |
+| **Maintainer** | Portfolio value, minimal operational burden, zero cost | Sole owner, developer, and operator |
+| **Visayan Electric** | Accurate representation of its advisories; protection of its marks | **Non-participating third party.** No agreement, endorsement, or communication is assumed. PAWER consumes only public information |
+| **GitHub** | Acceptable-use compliance | Platform dependency: CI, static hosting, APK distribution |
+| **Google (Firebase)** | Acceptable-use compliance | Platform dependency: push messaging only |
+
+**BR-1.** PAWER must function correctly and indefinitely without any cooperation, permission, or acknowledgement from Visayan Electric.
+
+**BR-2.** Should Visayan Electric request changes or removal, the project must be able to comply quickly. The maintainer retains sole control of distribution, and the app's non-affiliation notice must be prominent enough that no reasonable user believes it is an official product.
+
+---
+
+## 4. Business requirements
+
+### 4.1 Product
+
+| ID | Requirement |
+|---|---|
+| BR-3 | Scope is limited to Visayan Electric's Metro Cebu service area. No other utility or cooperative in v1 |
+| BR-4 | The app is free at point of use, with no paid tier, trial, or gated functionality |
+| BR-5 | The app displays no advertising and integrates no advertising SDK |
+| BR-6 | **No personal data ever leaves the device.** An optional, user-supplied name stored in local storage is the only personal field, and it is never transmitted or held server-side |
+| BR-7 | The app must be usable on a low-end, several-year-old Android handset on limited mobile data — the modal device of the target population |
+| BR-8 | The app must communicate the boundaries of its coverage plainly, including the interruption types it cannot report |
+
+### 4.2 Operations
+
+| ID | Requirement |
+|---|---|
+| BR-9 | Ingestion runs unattended. No human step is required for normal operation |
+| BR-10 | Failures must be surfaced to the maintainer by push (email via CI failure notification and auto-filed issues), never requiring a dashboard to be checked |
+| BR-11 | The system must survive 60 days of source silence without self-disabling |
+| BR-12 | Recovery from a source format change must be achievable by a single person in under one working day |
+| BR-13 | No component may require a credit card, paid tier, or trial that expires |
+
+### 4.3 Distribution
+
+| ID | Requirement |
+|---|---|
+| BR-14 | v1 distributes as a directly downloadable APK. No Google Play release |
+| BR-15 | Users must be told, before download, that sideloading requires enabling installation from unknown sources |
+| BR-16 | Because store-managed updates are unavailable, the app must detect and prompt for its own updates (PRD FR-19–21) |
+| BR-17 | Release artifacts must include a published checksum, so users can verify an APK obtained outside official channels |
+| BR-18 | The codebase must remain iOS-capable so that an iOS release requires funding and build access only — never a rewrite |
+
+---
+
+## 5. Cost model
+
+| Component | Provider | Tier | Recurring cost |
+|---|---|---|---|
+| Source data | visayanelectric.com | Public, unauthenticated | $0 |
+| Ingestion / CI | GitHub Actions | Free, **unlimited minutes on public repositories** | $0 |
+| Data hosting | GitHub Pages | Free — 100 GB/month bandwidth | $0 |
+| APK hosting | GitHub Releases | Free | $0 |
+| Push messaging | Firebase Cloud Messaging | Spark plan — free and uncapped; no card required | $0 |
+| Android builds | Expo `eas build --local` | Free, unlimited, runs locally | $0 |
+| Map images | MapTiler Static Maps | Free tier, **build-time only** — 232 images generated once, not per user | $0 |
+| Android distribution | Direct APK | No store account | $0 |
+| **Total recurring** | | | **$0** |
+
+### 5.1 Costs deliberately not incurred
+
+| Item | Cost | Decision |
+|---|---|---|
+| Apple Developer Program | $99/year | **Deferred.** Blocks iOS release; codebase stays iOS-ready |
+| Google Play registration | $25 one-time | **Declined.** Costs store-managed updates and discoverability; bought back partially via in-app update checks |
+| Custom domain | ~$10/year | **Optional.** Default hosting subdomain is acceptable |
+| Managed hosting / database | $0–20/month | **Avoided by architecture.** No user records exist to store |
+
+### 5.2 Capacity headroom
+
+The binding constraint is data-hosting bandwidth. At roughly 8 KB gzipped per feed fetch — and with conditional requests reducing the large majority of fetches to ~300-byte `304` responses, because the data changes only weekly — the free tier accommodates a user base far larger than Visayan Electric's entire customer base of approximately half a million.
+
+**BR-19.** Should any free-tier limit come within 50% of exhaustion, the migration path documented in ARCHITECTURE.md §9 must be executed rather than a paid tier adopted.
+
+---
+
+## 6. Legal and compliance
+
+*The following is a good-faith engineering assessment, not legal advice. Independent review is advisable before public release.*
+
+### 6.1 Terms of service
+
+**The original concept called for scraping Facebook. That approach was rejected on this basis.** Automated collection from Facebook contravenes Meta's terms, generally requires an authenticated session, and exposes the project to account termination and IP blocking. It is also technically fragile in a way that fails silently.
+
+**BR-20.** PAWER collects data exclusively from Visayan Electric's own public website via its published RSS feed and public post pages, unauthenticated, at low frequency. No login, no credential, no access-control circumvention, and no Facebook automation.
+
+### 6.2 Data privacy — RA 10173 (Data Privacy Act of 2012)
+
+PAWER transmits and processes no personal information. It has no accounts, collects no identifiers, requests no location permission, and holds no server-side record of any user. The one personal field — an optional display name — is written to local storage and never sent anywhere, so it is not processed by any controller. Notification targeting uses topic subscription, so the server publishes to a barangay name and never learns which or how many devices are listening. A user's selected barangays never leave their device.
+
+**BR-21.** The obligations of a personal information controller are therefore not engaged, and PAWER must remain in this position by design. Any future feature that would introduce personal data processing requires a deliberate re-assessment before implementation.
+
+### 6.3 Intellectual property
+
+| Concern | Position |
+|---|---|
+| **Advisory text** | Factual public-safety notices are reproduced in limited, attributed excerpts, with a link to the source. PAWER adds structure and targeting rather than republishing wholesale |
+| **Map images** | **Never reproduced.** PAWER links to the source post. This also serves the app's performance requirements |
+| **Trademarks** | "PAWER" is independent. VECO's and Visayan Electric's names and logos are not used in the app identity, icon, or promotional material. Attribution appears as plain text |
+| **Non-affiliation** | Stated in onboarding, Settings, the repository, and the download page |
+
+### 6.4 Liability
+
+**BR-22.** The app must carry a plain-language disclaimer stating that PAWER reports Visayan Electric's *published schedule*, that actual interruptions may differ in timing or occur without notice, and that PAWER must not be relied upon for medical, safety-critical, or life-support purposes. The disclaimer must be visible during onboarding — not buried in Settings.
+
+---
+
+## 7. Assumptions and dependencies
+
+### Assumptions
+
+| ID | Assumption | If false |
+|---|---|---|
+| BA-1 | ERC regulation obliges advance public notice of scheduled interruptions | Source becomes discretionary and less durable; product risk rises materially |
+| BA-2 | VECO continues publishing weekly advisories as server-rendered HTML text | Ingestion fails. No mitigation within v1's constraints |
+| BA-3 | Advisory `Areas Affected` text continues to name barangays recognisably | Registry-scan matching degrades; entries fall to `partial` |
+| BA-4 | Target users have Google Play Services (required for push) | Push unavailable on Huawei and de-Googled devices; app still functions via manual refresh |
+| BA-5 | Target users can and will enable sideloading | Adoption ceiling; the primary cost of declining a Play release |
+| BA-6 | GitHub's free tier terms remain suitable for this workload | Migrate per ARCHITECTURE.md §9 |
+| BA-7 | MapTiler's free tier permits build-time static rendering and redistribution of the resulting images | Map confirmation degrades to name-only (ONBOARDING-AND-TOUR.md §4.2); no other feature is affected |
+
+### Dependencies
+
+**Critical:** visayanelectric.com availability and format · GitHub Actions, Pages, Releases · Firebase Cloud Messaging · Google Play Services on device.
+**Non-critical:** Expo and React Native toolchain (build-time only) · PSGC barangay reference data (seed-time only).
+
+---
+
+## 8. Business risk register
+
+| ID | Risk | Likelihood | Impact | Response |
+|---|---|---|---|---|
+| BRK-1 | VECO changes advisory HTML structure | High over time | High | Registry-scan tolerance; auto-filed issue; `failed` entries still shown with source link. Recovery target: one working day |
+| BRK-2 | VECO stops publishing to the website | Low | Critical | Accept. Freshness indicator and stale warning ensure users are not misled |
+| BRK-3 | A user suffers loss after relying on PAWER during an unreported emergency outage | Medium | High | Disclosure over capability: onboarding disclaimer, Settings statement, no safety-critical reliance claim |
+| BRK-4 | Sideloading friction suppresses adoption | High | Medium | Clear install guide, published checksums. Revisit a Play release if adoption is the binding constraint |
+| BRK-5 | Stale clients render wrong data after a schema change | Medium | High | Non-dismissible update prompt below `min_schema_version` |
+| BRK-6 | VECO objects to the project | Low | Medium | Prominent non-affiliation, no marks used, sole maintainer control, prepared to comply promptly |
+| BRK-7 | Maintainer abandons the project | Medium | Medium | See §9 — degradation is graceful by design |
+| BRK-8 | Free-tier terms change | Low | Medium | Documented migration path; parser is platform-agnostic by construction |
+| BRK-9 | An APK is redistributed with modifications | Low | Medium | Published checksums; single official download channel |
+
+---
+
+## 9. Sustainability and bus factor
+
+PAWER has one maintainer, which is a real business risk that the architecture is designed to absorb rather than eliminate.
+
+**If the maintainer stops entirely, nothing breaks immediately.** Ingestion is fully unattended: the pipeline continues polling, parsing, publishing, and pushing indefinitely with no human involvement and no bill to pay. Installed apps continue working.
+
+**When the source format eventually changes, the system degrades rather than lies.** Unparseable entries surface as `failed` with a link to VECO's post — PAWER becomes a filtered index of relevant advisories instead of a structured dashboard. Diminished, still useful, and never wrong.
+
+**BR-23.** To keep the project recoverable by someone else, the repository must contain: this document set, the coverage glossary of all 232 franchise barangays with its collision index and source-disagreement record, a parser test corpus of real advisories, a documented decision log (§10), and reproducible build instructions. Being a public repository, the project can be forked and continued by any third party without the maintainer's involvement.
+
+---
+
+## 10. Decision log
+
+Recorded because the reasoning is more valuable than the conclusions, and because several decisions look wrong without it.
+
+| # | Decision | Rejected alternative | Rationale |
+|---|---|---|---|
+| D-1 | Ingest from visayanelectric.com | Scrape Facebook | Legal, stable, unauthenticated, and **structured HTML text** rather than poster images — which also avoids OCR, and therefore avoids AI |
+| D-2 | Ship 3 of 6 interruption types | Ship all via Facebook or crowdsourcing | Emergency, cancelled, and confirmed-restoration events have no compliant public source. Partial coverage, honestly disclosed, beats full coverage that silently breaks |
+| D-3 | Derive "ongoing" from the clock | Treat it as a data feed | Given start and end times, it needs no source at all — the cheapest requirement in the product |
+| D-4 | Barangay granularity | City-level, or street-level | Matches how VECO actually writes advisories. City-level is too noisy to stay trusted; street-level exceeds what the text supports |
+| D-5 | FCM topic subscriptions | Device token registry | Delivers true push while keeping the "no user database" requirement literally true |
+| D-6 | Three of four alerts scheduled on-device | All four pushed from the server | The schedule is known days ahead, so only "new advisory" needs a server. The rest work offline and cost nothing |
+| D-7 | CI-as-backend, git-as-state | Managed serverless plus a database | Free without an asterisk, no service to monitor, no user data at rest, and the commit history becomes a free audit log |
+| D-8 | `RemoteViews` widget | Jetpack Glance | **Reversal of an earlier decision.** Glance imports the Compose runtime, raising APK size and memory floor against an explicit low-resource requirement |
+| D-9 | System `Chronometer` for countdown | App-scheduled periodic refresh | The system renders the tick, so a live countdown costs **zero** app wakeups — the classic Android widget battery trap, avoided outright |
+| D-10 | Android 7.0 (API 24) floor | API 23 via a pinned old SDK; API 21 via native Kotlin | API 23 buys one version for a frozen, unpatched toolchain. API 21 requires abandoning cross-platform and the iOS-ready codebase |
+| D-11 | Registry-scan matching | Grammar-parse the sentence | The source uses at least two different grammars for the same field. Scanning for known names parses both identically and tolerates typos |
+| D-12 | Never silently discard an entry | Skip unparseable entries | A dropped entry is a missed brownout — the worst failure this app has. Visible degradation is strictly better than invisible loss |
+| D-13 | No Play Store release | $25 Play registration | Maintainer decision. Cost is store-managed updates and discoverability; partially recovered through in-app update checks |
+| D-14 | English only | Cebuano, or bilingual | VECO publishes in English, so quoted text passes through untranslated with no risk of drift. Revisit after launch |
+| D-15 | Geography is **verified reference data**, PSGC-sourced, with provenance and a release-time diff gate | Seed the registry from the advisory text, or from general knowledge | **Prompted by a real error in v0 of these documents**, which listed Lapu-Lapu City and Cordova as franchise LGUs. They are not. The mistake would have been invisible in testing — affected users would have seen permanent silence, not a failure. Geographic error is uniquely dangerous in this product because its symptom is indistinguishable from good news. See ARCHITECTURE.md §5.6 |
+| D-16 | Subscription at **barangay level only**; browsing across the whole franchise | LGU-wide subscription; street-level subscription | Street level has no canonical registry and is where VECO's typos and truncations concentrate — matching it would cause false negatives. LGU level would make most alerts irrelevant in an 80-barangay city and train users to mute the app. Browsing satisfies the breadth need without touching the alert set |
+| D-17 | LGU-wide subscription blocked **in the data plane**, not just the UI | Hide the option in the client | No LGU-level topic is ever published, so a client bug or a modified APK cannot subscribe to one. A product decision enforced where it cannot be circumvented is cheaper than one enforced in a screen |
+| D-18 | Setup happens in the **guided tour**, not onboarding | Capture the barangay during onboarding | The original flow captured location in onboarding *and* walked through adding a place in the tour — the same action twice. Moving it makes every tour step change state instead of narrating, at the cost of allowing a zero-area dashboard |
+| D-19 | Map images **pre-rendered at build time**; MapTiler key never ships | Call MapTiler from the app with an embedded key | A key inside a sideloaded, checksummed APK is trivially extractable, and a leaked key spends the owner's quota. Pre-rendering removes the exposure instead of mitigating it — and incidentally removes the map SDK, the runtime quota, and any offline failure |
+| D-20 | Onboarding screen 3 retargeted from *sudden* outages to *buried advisories* | Keep the original emotional hook | Sudden outages are the deferred type (D-2). Opening on that question would promise, on the first screen, the one thing v1 cannot do |
+| D-21 | **Neobrutalist** visual system with the owner's five-colour palette; `#EA5C1F` accent used least, noticed most; single light theme | Warm-neutral flat system with light/dark themes (DG v1.0) | Owner decision. Neobrutalism's thick borders and hard offset shadows are cheap to render and match the low-resource constraint; a single theme halves the token and contrast surface |
+| D-22 | A **ten-entry animation vocabulary**, each bound to one meaning, ≤ 240 ms, transform/opacity only, reduce-motion → cut | No animation at all (NFR-4 v1) | Motion that *means* something aids comprehension; motion that decorates costs battery. The contract permits the first and forbids the second. Nothing animates in the widget |
+| D-23 | **Green adopted** for the clear state | No green, to avoid implying the power is known to be on | Owner decision. The honesty constraint moves wholly into copy (`No scheduled outage today`, never `Power is on`), where it was already enforced |
+| D-24 | **PSGC is the canonical registry input**, via the psgc.gitlab.io mirror; PhilAtlas/Wikipedia/VECO spellings become aliases | Keep PhilAtlas+Wikipedia with all variants aliased and no winner | The authority became reachable, so R1 could be implemented literally. It settled all five disputed spellings (Camputhaw, Hippodromo, To-ong Pardo, Alfaco, Lorega) — three of them *against* the earlier alias guesses — and gave every barangay its 9-digit code, turning the two-Nagas trap into a test |
+| D-25 | Barangay centroids sourced from **Nominatim with name validation**, all `verified:false` until a person reviews the rendered image | OSM Overpass boundary centroids; skip maps | Overpass covers 9 of Cebu City's 80 barangays — unusable. Raw Nominatim returned a *wrong* pin for Lahug (Barangay Luz's hall), so results must name the barangay or are discarded. Coverage is partial by design: no centroid, no map (C4) |
+
+---
+
+## 11. Out of scope for this BRD
+
+Revenue, pricing, and competitive analysis — PAWER is free with no commercial ambition. Marketing spend, user acquisition funding, hiring, organisational structure, SLAs, and support commitments are likewise not applicable to a single-maintainer, zero-budget public-service project.
+
+---
+
+## 12. Acceptance
+
+v1 is accepted as a business deliverable when:
+
+1. Every PRD functional and non-functional requirement for a shipped feature is met.
+2. The parser achieves ≥ 99% `parsed` across a 12-week corpus with zero silent drops.
+3. A full week runs unattended, with a newly published advisory reaching devices within one hour.
+4. Recurring cost is verified at $0 with all limits below 50% utilisation.
+5. Battery measurement confirms PAWER does not appear in Android's per-app ranking after a week of normal use.
+6. Legal positioning is in place: disclaimer, attribution, non-affiliation, published checksums.
+7. The repository is public and contains the document set, parser corpus, decision log, and build instructions.

@@ -1,0 +1,44 @@
+# Pre-renders one static locator image per barangay with MapTiler and commits them to
+# assets/maps/. Runs only when centroids change or on demand — never on the ingest schedule.
+# The MapTiler key exists only here; the app fetches finished images from Pages
+# (ONBOARDING-AND-TOUR.md §4, ARCHITECTURE.md §12).
+#
+# Secret consumed by name: MAPTILER_KEY
+
+name: maps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/registry/centroids.json"
+      - "pipeline/src/maps/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maps
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - name: Render maps
+        run: npx tsx pipeline/src/maps/cli.ts
+        env:
+          MAPTILER_KEY: ${{ secrets.MAPTILER_KEY }}
+      - name: Commit rendered maps
+        run: |
+          git config user.name "pawer-maps[bot]"
+          git config user.email "pawer-maps@users.noreply.github.com"
+          git add assets/maps
+          if git diff --cached --quiet; then echo "no map changes"; else git commit -m "maps: re-render $(date -u +%F)" && git push; fi

@@ -1,0 +1,99 @@
+# Builds signed per-ABI APKs on a tag, publishes them as a GitHub Release with SHA-256 sums,
+# and updates release/version.json (which triggers the pages workflow, so the in-app update
+# check sees the new version). ARCHITECTURE.md §15, PRD FR-19–21, NFR-11.
+#
+# Secrets consumed by name:
+#   ANDROID_KEYSTORE_BASE64   release keystore, base64-encoded
+#   ANDROID_KEYSTORE_PASSWORD
+#   ANDROID_KEY_ALIAS
+#   ANDROID_KEY_PASSWORD
+#   GOOGLE_SERVICES_JSON      the Firebase android config file's contents (for @react-native-firebase)
+# Back the keystore up in two places before the first release — losing it strands every
+# installed user (ARCHITECTURE.md §12.1).
+
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: android-actions/setup-android@v3
+      - run: npm ci --no-audit --no-fund
+      - run: npm test
+
+      - name: Version from tag
+        id: v
+        run: |
+          TAG="${GITHUB_REF_NAME}"; VER="${TAG#v}"
+          CODE=$(echo "$VER" | awk -F. '{ printf "%d", $1*10000 + $2*100 + $3 }')
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"; echo "version=$VER" >> "$GITHUB_OUTPUT"; echo "code=$CODE" >> "$GITHUB_OUTPUT"
+
+      - name: Firebase config from secret
+        working-directory: app
+        run: echo '${{ secrets.GOOGLE_SERVICES_JSON }}' > google-services.json
+
+      - name: Prebuild Android project
+        working-directory: app
+        run: npx expo prebuild --platform android --no-install --clean
+        env:
+          APP_VERSION: ${{ steps.v.outputs.version }}
+          APP_VERSION_CODE: ${{ steps.v.outputs.code }}
+
+      - name: Restore keystore
+        working-directory: app/android/app
+        run: echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 -d > release.keystore
+
+      - name: Build per-ABI and universal APKs
+        working-directory: app/android
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          set -e
+          SIGN="-Pandroid.injected.signing.store.file=$PWD/app/release.keystore -Pandroid.injected.signing.store.password=$KEYSTORE_PASSWORD -Pandroid.injected.signing.key.alias=$KEY_ALIAS -Pandroid.injected.signing.key.password=$KEY_PASSWORD"
+          V=${{ steps.v.outputs.version }}
+          mkdir -p ../../out
+          for ABI in arm64-v8a armeabi-v7a; do
+            ./gradlew :app:assembleRelease -PreactNativeArchitectures=$ABI $SIGN --no-daemon
+            cp app/build/outputs/apk/release/app-release.apk ../../out/pawer-$V-$ABI.apk
+          done
+          ./gradlew :app:assembleRelease -PreactNativeArchitectures=arm64-v8a,armeabi-v7a $SIGN --no-daemon
+          cp app/build/outputs/apk/release/app-release.apk ../../out/pawer-$V-universal.apk
+          (cd ../../out && sha256sum *.apk | tee SHA256SUMS && node -e 'const fs=require("fs");const o={};for(const l of fs.readFileSync("SHA256SUMS","utf8").trim().split("\n")){const [h,f]=l.split(/\s+/);o[f]=h}fs.writeFileSync("../release/sha256.json",JSON.stringify(o,null,2))')
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            out/*.apk
+            out/SHA256SUMS
+          body: |
+            PAWER ${{ steps.v.outputs.version }} — Android APK (min Android 7.0).
+            Verify with SHA256SUMS. Installing requires allowing installation from unknown sources once.
+            PAWER is not affiliated with Visayan Electric and covers scheduled outages only.
+
+      - name: Update release manifest
+        run: |
+          npx tsx pipeline/src/cli.ts release-manifest ${{ steps.v.outputs.version }} ${{ steps.v.outputs.code }} ${{ steps.v.outputs.tag }}
+          git config user.name "pawer-release[bot]"
+          git config user.email "pawer-release@users.noreply.github.com"
+          git fetch origin main && git checkout main
+          git add release/version.json release/sha256.json
+          git commit -m "release: ${{ steps.v.outputs.tag }}" && git push

@@ -1,0 +1,434 @@
+[
+  {
+    "id": "8f9c1f96f57c24d4",
+    "start": "2026-08-23T07:00:00+08:00",
+    "end": "2026-08-23T17:00:00+08:00",
+    "duration_minutes": 600,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.binaliw",
+      "cebu-city.pit-os"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Binaliw & Pit-os, Cebu City, along portions of A. Minoza Street & Binaliw Road.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Binaliw & Pit-os by facilitating primary line upgrading.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "fdc9e2fcf279f02e",
+    "start": "2026-08-23T09:00:00+08:00",
+    "end": "2026-08-23T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "mandaue-city"
+    ],
+    "barangays": [
+      "mandaue-city.jagobiao"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Jagobiao, Mandaue City, along portions of Lourdes Rd., Sto. Rosario Rd.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Jagobiao by facilitating correction of low voltage of the distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "cc073643558f1b28",
+    "start": "2026-08-24T09:00:00+08:00",
+    "end": "2026-08-24T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "mandaue-city"
+    ],
+    "barangays": [
+      "mandaue-city.basak",
+      "mandaue-city.canduman",
+      "mandaue-city.cubacub",
+      "mandaue-city.pagsabungan"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Basak, Canduman, Cubacub & Pagsabungan, Mandaue City, along portions of Bombil Street & H. Abellana Street.",
+    "purpose_raw": "To prevent unnecessary interruptions due to obstruction of pole in the distribution system serving Brgy. Basak, Canduman, Cubacub & Pagsabungan by facilitating relocation of primary pole as per customer request.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "6527b5355f9c5622",
+    "start": "2026-08-24T10:00:00+08:00",
+    "end": "2026-08-24T17:00:00+08:00",
+    "duration_minutes": 420,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.guadalupe"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Guadalupe, Cebu City, along portions of V. Rama Ave.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Guadalupe by facilitating secondary line reconductoring.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "cc0766d2d35bfd1f",
+    "start": "2026-08-25T09:00:00+08:00",
+    "end": "2026-08-25T15:00:00+08:00",
+    "duration_minutes": 360,
+    "lgus": [
+      "talisay-city"
+    ],
+    "barangays": [
+      "talisay-city.jaclupan"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Jaclupan, Talisay City, along portions of Cebu-Toledo Wharf Rd.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Jaclupan by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "586e80fe427a09f6",
+    "start": "2026-08-25T09:00:00+08:00",
+    "end": "2026-08-25T15:00:00+08:00",
+    "duration_minutes": 360,
+    "lgus": [
+      "naga"
+    ],
+    "barangays": [
+      "naga.jaguimit",
+      "naga.patag"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Jaguimit & Patag, City of Naga, along portions of Brgy. Patag-Brgy. Jaguimit Rd.",
+    "purpose_raw": "To prevent unnecessary interruptions due to obstruction of pole in the distribution system serving Brgy. Jaguimit & Patag by facilitating relocation of primary pole as per customer request.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "184ede306a7af520",
+    "start": "2026-08-25T09:00:00+08:00",
+    "end": "2026-08-25T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "talisay-city"
+    ],
+    "barangays": [
+      "talisay-city.cansojong"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Cansojong, Talisay City, along portions of Cebu South Coastal Road.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Cansojong by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "705434fdcfd783bf",
+    "start": "2026-08-26T10:00:00+08:00",
+    "end": "2026-08-26T12:00:00+08:00",
+    "duration_minutes": 120,
+    "lgus": [
+      "mandaue-city"
+    ],
+    "barangays": [
+      "mandaue-city.tipolo"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Tipolo, Mandaue City, along portions of H. Cortes Ext.",
+    "purpose_raw": "To prevent unnecessary interruptions due to anticipated system fault/damage Brgy. Tipolo by facilitating Hotspot Correction.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "a724634f7386c46a",
+    "start": "2026-08-26T13:00:00+08:00",
+    "end": "2026-08-26T15:00:00+08:00",
+    "duration_minutes": 120,
+    "lgus": [
+      "mandaue-city"
+    ],
+    "barangays": [
+      "mandaue-city.casuntingan"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Casuntingan, Mandaue City, along M.L. Quezon Ave., Greenhills Rd.",
+    "purpose_raw": "To prevent unnecessary interruptions due to anticipated system fault/damage Brgy. Casuntingan by facilitating Hotspot Correction.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "62763ad646fb5218",
+    "start": "2026-08-26T09:00:00+08:00",
+    "end": "2026-08-26T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "talisay-city"
+    ],
+    "barangays": [
+      "talisay-city.camp-iv"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Camp IV, Talisay City, along portions of Toledo-Manipis Rd., Cebu-Toledo Wharf Rd.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Camp IV by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "5b4199470ec98520",
+    "start": "2026-08-26T10:00:00+08:00",
+    "end": "2026-08-26T15:00:00+08:00",
+    "duration_minutes": 300,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.kasambagan"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Kasambagan, Cebu City, along portions of Pres. Magsaysay St. including portions of Roga Subd.",
+    "purpose_raw": "To prevent unnecessary interruptions due to obstruction of pole in the distribution system serving Brgy. Kasambagan by facilitating relocation of primary pole as per customer request.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "0f9373f553deb3b9",
+    "start": "2026-08-27T09:00:00+08:00",
+    "end": "2026-08-27T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.basak-san-nicolas"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Basak San Nicolas, Cebu City, along portions of L. Gabuya St.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Basak San Nicolas by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "af088963241bb1f5",
+    "start": "2026-08-27T09:00:00+08:00",
+    "end": "2026-08-27T15:00:00+08:00",
+    "duration_minutes": 360,
+    "lgus": [
+      "talisay-city"
+    ],
+    "barangays": [
+      "talisay-city.pooc"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Pooc, Talisay City, along portions of Corona del Mar, Paseo Roberto St.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Pooc by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "658cca917388100e",
+    "start": "2026-08-27T09:00:00+08:00",
+    "end": "2026-08-27T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.santa-cruz"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Sta. Cruz, Cebu City, along portions of Junquera Ext.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Sta. Cruz by facilitating upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "8ad0db565058cfe3",
+    "start": "2026-08-27T09:30:00+08:00",
+    "end": "2026-08-27T13:30:00+08:00",
+    "duration_minutes": 240,
+    "lgus": [
+      "consolacion"
+    ],
+    "barangays": [
+      "consolacion.casili"
+    ],
+    "unknown_area_tokens": [
+      "Royale Cebu Estates"
+    ],
+    "areas_raw": "Portion of Casili, Consolacion, Portion of Royale Cebu Estates along Omaha St.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Casili by facilitating secondary line maintenance.",
+    "parse_status": "partial",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "a4886856ea4be8f0",
+    "start": "2026-08-27T22:00:00+08:00",
+    "end": "2026-08-28T06:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "naga",
+      "san-fernando"
+    ],
+    "barangays": [
+      "san-fernando.pitalo",
+      "san-fernando.poblacion-north",
+      "san-fernando.san-isidro",
+      "san-fernando.tananas",
+      "naga.langtad"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Pitalo, Poblacion North, San Isidro, Tananas & Langtad, San Fernando & City of Naga, along Cebu South Road, & Tananas Road.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Pitalo, Poblacion North, San Isidro & Tananas by facilitating 69kV pole installation and dressing and installation of automatic reclosing device (recloser).",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "f77cd51a73848844",
+    "start": "2026-08-27T22:00:00+08:00",
+    "end": "2026-08-28T06:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "mandaue-city"
+    ],
+    "barangays": [
+      "mandaue-city.bakilid",
+      "mandaue-city.banilad",
+      "mandaue-city.cabancalan",
+      "mandaue-city.casuntingan",
+      "mandaue-city.maguikay"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Bakilid, Banilad, Cabancalan, Casuntingan, & Maguikay, Mandaue City, along portions of P. Remedio St., M.L Quezon St., & M.L. Quezon Avenue, including portions of Sitios Gemelina, Bakante, Cardava, Greenfield, Luran, Nangka, Pilit, Tambis, Tindok, & Veto, and Cabahug Compound, Ceniza Compound, Cortes Compound, Country Club Village, Hidden Homes, Hidden Homes Subdivision, Holy Family Townhouse, Tophills, & Zanoria Compound.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Cabancalan by facilitating 69kV pole installation and dressing.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "d6714c22544c4d09",
+    "start": "2026-08-28T09:00:00+08:00",
+    "end": "2026-08-28T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.guadalupe"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Guadalupe, Cebu City, along portions of M. Velez Street and the road beside Alberto’s Pizza - Capitol.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Guadalupe by facilitating replacement of primary pole and upgrading of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "b8253a2a9116b828",
+    "start": "2026-08-28T09:00:00+08:00",
+    "end": "2026-08-28T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "liloan"
+    ],
+    "barangays": [
+      "liloan.tayud",
+      "liloan.yati"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Tayud & Yati, Liloan, along portions of Bag-ong Daan Road and roads leading to Purok Mahogany 1, as well as Gemsville Subdivision.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Tayud & Yati by facilitating installation of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "bd4efa08a9fc2a47",
+    "start": "2026-08-28T09:00:00+08:00",
+    "end": "2026-08-28T13:00:00+08:00",
+    "duration_minutes": 240,
+    "lgus": [
+      "talisay-city"
+    ],
+    "barangays": [
+      "talisay-city.pooc"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Pooc, Talisay City, along portions of San Isidro Road and the streets of Deca Homes Baywalk Talisay, including Shark Street, Hammerhead Street, Whale Street, Emperor Street, Longfin Street, and Opaleye Street.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Pooc by facilitating rerouting of secondary lines.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "185394fb45f05430",
+    "start": "2026-08-28T09:00:00+08:00",
+    "end": "2026-08-28T17:00:00+08:00",
+    "duration_minutes": 480,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.lorega"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Lorega-San Miguel, Cebu City, along portions of Gen. Echavez Extension.",
+    "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Lorega-San Miguel by facilitating installation of distribution transformer.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "19adb158df9033c1",
+    "start": "2026-08-29T07:00:00+08:00",
+    "end": "2026-08-29T17:00:00+08:00",
+    "duration_minutes": 600,
+    "lgus": [
+      "liloan"
+    ],
+    "barangays": [
+      "liloan.jubay"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Jubay, Liloan, Portions along Fatima Road.",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Jubay by facilitating 69kV pole installation and dressing.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  },
+  {
+    "id": "740c16f5e2132f8e",
+    "start": "2026-08-29T08:00:00+08:00",
+    "end": "2026-08-29T17:00:00+08:00",
+    "duration_minutes": 540,
+    "lgus": [
+      "cebu-city"
+    ],
+    "barangays": [
+      "cebu-city.pit-os",
+      "cebu-city.pulangbato"
+    ],
+    "unknown_area_tokens": [],
+    "areas_raw": "Portion of Pit-os & Pulangbato, Cebu City, along portion of Pulangbato Road, including portions of Sitios Aroma, Baliw, Burgos, Cambaog, Candarong, Dita, Kamanggahan, Kasambahan, Manguyas, Nawanao, Pasilagon, Pundok, Tayabas, & Tuburan, and Greenwoods Executive Village, Metropolis Subdivision Phase II, Sunnymede Subdivision, & Villa Del Rio II",
+    "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Pit-os & Pulangbato by facilitating primary line maintenance and primary line upgrading.",
+    "parse_status": "parsed",
+    "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-23",
+    "source_published_at": "2026-01-01T00:00:00Z"
+  }
+]

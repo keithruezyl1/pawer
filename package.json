@@ -1,0 +1,25 @@
+{
+  "name": "pawer",
+  "private": true,
+  "version": "0.1.0",
+  "description": "PAWER \u2014 scheduled power-interruption alerts for Visayan Electric's Metro Cebu franchise",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "pipeline",
+    "app"
+  ],
+  "scripts": {
+    "build:registry": "npm run build -w @pawer/registry",
+    "test": "npm run test -w @pawer/shared -w @pawer/registry -w @pawer/parser -w @pawer/pipeline",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "contrast": "npm run contrast -w @pawer/shared",
+    "ingest": "npm run ingest -w @pawer/pipeline",
+    "maps": "npx tsx pipeline/src/maps/cli.ts",
+    "publish": "npx tsx pipeline/src/cli.ts publish",
+    "centroids": "npx tsx packages/registry/scripts/source-centroids.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
