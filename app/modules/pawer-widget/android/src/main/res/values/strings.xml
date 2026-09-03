@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="pawer_widget_label">PAWER</string>
-  <string name="pawer_widget_description">Today's scheduled outage status for your barangay</string>
+  <string name="pawer_widget_description">Scheduled outage status for your barangay today</string>
 </resources>
