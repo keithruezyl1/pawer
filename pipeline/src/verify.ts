@@ -49,7 +49,7 @@ export async function runVerify(env: VerifyEnv, fetchImpl: typeof fetch = fetch,
   // --- FCM ---
   let sa: ServiceAccount | null = null;
   if (!env.FCM_SERVICE_ACCOUNT) {
-    report("FCM_SERVICE_ACCOUNT", false, "not set");
+    report("FCM_SERVICE_ACCOUNT", false, "missing, or saved with an empty value");
   } else {
     try {
       sa = JSON.parse(env.FCM_SERVICE_ACCOUNT) as ServiceAccount;
@@ -69,7 +69,7 @@ export async function runVerify(env: VerifyEnv, fetchImpl: typeof fetch = fetch,
 
   // --- MapTiler ---
   if (!env.MAPTILER_KEY) {
-    report("MAPTILER_KEY", false, "not set");
+    report("MAPTILER_KEY", false, "missing, or saved with an empty value");
   } else {
     try {
       const url = `https://api.maptiler.com/maps/streets-v2/static/123.8996,10.3322,15/100x100.webp?key=${encodeURIComponent(env.MAPTILER_KEY)}`;
@@ -83,7 +83,7 @@ export async function runVerify(env: VerifyEnv, fetchImpl: typeof fetch = fetch,
 
   // --- google-services.json ---
   if (!env.GOOGLE_SERVICES_JSON) {
-    report("GOOGLE_SERVICES_JSON", false, "not set");
+    report("GOOGLE_SERVICES_JSON", false, "missing, or saved with an empty value");
   } else {
     const r = checkGoogleServices(env.GOOGLE_SERVICES_JSON, sa?.project_id ?? "(unknown — FCM check failed)", "ph.pawer.app");
     report("GOOGLE_SERVICES_JSON", r.ok, r.ok ? "project and Android package match" : r.problems.join("; "));
