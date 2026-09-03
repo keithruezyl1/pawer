@@ -33,7 +33,8 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
-      "expo-notifications"
+      "expo-notifications",
+      "expo-audio"
     ],
     "scheme": "pawer",
     "backgroundColor": "#F5F5F5",

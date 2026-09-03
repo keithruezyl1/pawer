@@ -8,6 +8,7 @@ import { useApp } from "../state/AppState";
 import { CoachMark, type Rect } from "../ui/CoachMark";
 import { requestPermission } from "../platform/notifications";
 import { widget } from "../platform/widget";
+import { useSounds } from "../theme/sound";
 import { T } from "../ui/Text";
 
 export type { Rect };
@@ -24,6 +25,7 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
   const { prefs, tourPending, setTourPending, addBarangay, completeTour } = useApp();
   const [step, setStep] = useState<Step>(prefs.barangays.length ? "T6" : "T1");
   const [mapOk, setMapOk] = useState(true);
+  const sounds = useSounds();
 
   // T2 → T3: the picker returned a selection.
   useEffect(() => { if (tourPending && tourPending.length > 0 && (step === "T1" || step === "T6")) setStep("T3"); }, [tourPending]);
@@ -66,7 +68,7 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
           body=""
           primary={{
             label: "Yes, add it",
-            onPress: () => { tourPending?.forEach(addBarangay); setTourPending(null); setStep("T5"); },
+            onPress: () => { tourPending?.forEach(addBarangay); sounds.areaAdded(); setTourPending(null); setStep("T5"); },
           }}
           secondary={{ label: "Choose another", onPress: () => { setTourPending(null); router.push("/picker?tour=1"); } }}
           onSkip={skip}

@@ -23,6 +23,7 @@ export interface AppStateValue {
   completeOnboarding: () => void;
   completeTour: () => void;
   resetTour: () => void;
+  setSounds: (on: boolean) => void;
 
   /** Tour T2→T4 hand-off: the picker's selection, awaiting map/name confirmation before it is added. */
   tourPending: string[] | null;
@@ -96,6 +97,7 @@ export function AppStateProvider({ children }: PropsWithChildren) {
     completeOnboarding: () => persistPrefs({ ...prefs, onboardingDone: true }),
     completeTour: () => persistPrefs({ ...prefs, tourDone: true }),
     resetTour: () => persistPrefs({ ...prefs, tourDone: false }),
+    setSounds: (on) => persistPrefs({ ...prefs, sounds: on }),
     tourPending,
     setTourPending,
   }), [prefs, outages, fetchedAtMs, refreshing, lastRefreshKind, nowMs, refresh, persistPrefs, tourPending]);

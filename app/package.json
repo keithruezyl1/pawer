@@ -8,6 +8,7 @@
     "@react-native-firebase/app": "^26.3.3",
     "@react-native-firebase/messaging": "^26.3.3",
     "expo": "~57.0.19",
+    "expo-audio": "~57.0.4",
     "expo-build-properties": "~57.0.16",
     "expo-constants": "~57.0.17",
     "expo-file-system": "~57.0.6",

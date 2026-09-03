@@ -22,6 +22,8 @@ export interface Prefs {
   alerts: { newAdvisory: boolean; eveningBefore: boolean; hourBefore: boolean; restoration: boolean };
   onboardingDone: boolean;
   tourDone: boolean;
+  /** UI sounds (DG §12). Notification sounds are the system default regardless. */
+  sounds: boolean;
   /** Outage ids already surfaced as a "new advisory" notification (FR-30 de-dup). */
   notifiedIds: string[];
 }
@@ -33,6 +35,7 @@ export const DEFAULT_PREFS: Prefs = {
   alerts: { newAdvisory: true, eveningBefore: true, hourBefore: true, restoration: true },
   onboardingDone: false,
   tourDone: false,
+  sounds: true,
   notifiedIds: [],
 };
 

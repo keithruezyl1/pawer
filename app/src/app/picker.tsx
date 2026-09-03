@@ -7,6 +7,7 @@ import { barangays, lgus, displayName } from "@pawer/registry";
 import { foldKey } from "../util/fold";
 import { color, layout, space } from "../theme/tokens";
 import { useJudder } from "../theme/motion";
+import { useSounds } from "../theme/sound";
 import { useApp } from "../state/AppState";
 import { Screen } from "../ui/Screen";
 import { T } from "../ui/Text";
@@ -27,6 +28,7 @@ export default function Picker() {
   const { tour } = useLocalSearchParams<{ tour?: string }>();
   const { prefs, addBarangay, setTourPending } = useApp();
   const judder = useJudder();
+  const sounds = useSounds();
 
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState<Record<string, boolean>>({});
@@ -54,6 +56,7 @@ export default function Picker() {
       return;
     }
     picked.forEach(addBarangay);
+    sounds.areaAdded();
     router.back();
   };
 

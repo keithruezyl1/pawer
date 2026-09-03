@@ -226,7 +226,7 @@ Evaluated against the user's selected barangays in `Asia/Manila`.
 | NFR-3 | Cold start to rendered dashboard: **under 2 seconds** on a 2019 mid-range device |
 | NFR-4 | No gradients, blur, or elevation effects. **No idle, looping, or decorative motion.** Shadows are solid offset rectangles (a second view), never blur |
 | NFR-4a | Motion is limited to the ten named animations in DESIGN-GUIDELINES.md §11 — each transform- or opacity-only, ≤ 240 ms, UI-thread, bound to one meaning. All collapse to a 0 ms cut when the system reduce-motion setting is on. Nothing animates in the widget |
-| NFR-5 | No **bundled** image assets beyond the launcher icon. No custom fonts — system font only. One runtime-fetched static map image per barangay is permitted for onboarding confirmation, pre-rendered at build time and served from the CDN |
+| NFR-5 | No **bundled** image assets beyond the launcher icon and the Android notification icon. No custom fonts — system font only. Two short UI sound files (71 KB total, DESIGN-GUIDELINES §12) are the only audio assets. One runtime-fetched locator image per barangay is permitted for onboarding confirmation, composited at build time and served from the CDN |
 | NFR-6 | **VECO's advisory maps are never rendered.** They are per-advisory, arbitrary in size and content, and would require a fetch per entry; PAWER links to the source post instead. Barangay locator images are a separate, permitted case (NFR-5) — one small cached asset per barangay, never per advisory |
 | NFR-7 | Network transfer per refresh ≤ 15 KB, and ≈ 300 bytes when unchanged (`304`) |
 | NFR-8 | On-device storage under 1 MB excluding the APK |

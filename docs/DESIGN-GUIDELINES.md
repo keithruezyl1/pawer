@@ -395,3 +395,22 @@ Motion in PAWER is a **vocabulary**, not a polish layer. Every animation has one
 **Forbidden:** fades · crossfades · springs with more than one overshoot · parallax · skeleton shimmer · pulsing · anything on a loop · anything in the widget · animating colour · animating layout.
 
 **Implementation contract.** Each entry is a single hook in `app/src/theme/motion.ts` (`useStamp`, `useSlam`, `usePress`, …) built on Reanimated worklets. Every hook reads the reduce-motion setting once and sets its duration to 0 when enabled. No screen defines its own animation; it composes these ten.
+
+---
+
+## 12. Sound vocabulary
+
+Two sounds, each bound to one meaning, each paired with the motion it accompanies. Nothing else in the app makes a sound; notifications keep the system default (§8).
+
+| Name | Meaning | Paired motion | Trigger | Asset |
+|---|---|---|---|---|
+| **`areaAdded`** | *A barangay was added* | `slam` | Picker confirm; tour T4 "Yes, add it" | `assets/sounds/area-added.mp3` (21 KB) |
+| **`statusChanged`** | *The hero resolved to a new state* | `stamp` | Any `NONE_TODAY` ↔ `UPCOMING_TODAY` ↔ `ONGOING` ↔ `ENDED_TODAY` transition while the app is open | `assets/sounds/status-change.mp3` (50 KB) |
+
+**Rules**
+
+- A sound never plays without its state change, and never on first render.
+- Device silent mode is respected (`playsInSilentMode: false`); other audio is mixed with, never interrupted; nothing plays in the background.
+- One **Sounds** toggle in Settings, on by default. Reduce-motion does not silence sounds — they are independent channels of the same meaning.
+- The two MP3s are the only audio assets and, with the notification icon, the only bundled assets beyond the launcher icon (PRD NFR-5). Total 71 KB.
+- The widget makes no sound. It cannot, and it should not.

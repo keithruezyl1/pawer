@@ -7,6 +7,7 @@ import {
 import { findBarangay, displayName } from "@pawer/registry";
 import { color, layout, space } from "../theme/tokens";
 import { useStamp } from "../theme/motion";
+import { useSounds } from "../theme/sound";
 import { Block } from "./Block";
 import { T } from "./Text";
 
@@ -40,9 +41,10 @@ export interface StatusFieldProps {
  */
 export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFieldProps) {
   const stamp = useStamp();
+  const sounds = useSounds();
   const prev = useRef<WidgetStateName | null>(null);
   useEffect(() => {
-    if (prev.current !== null && prev.current !== status.state) stamp.run();
+    if (prev.current !== null && prev.current !== status.state) { stamp.run(); sounds.statusChanged(); }
     prev.current = status.state;
   }, [status.state]);
 

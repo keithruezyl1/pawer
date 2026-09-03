@@ -23,7 +23,7 @@ const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string }>
 /** Flat list, no nesting (DG §6.5). The only two things to configure: which areas, which alerts. */
 export default function Settings() {
   const router = useRouter();
-  const { prefs, removeBarangay, setAlert, setName, fetchedAtMs, nowMs, refresh, refreshing, resetTour } = useApp();
+  const { prefs, removeBarangay, setAlert, setName, setSounds, fetchedAtMs, nowMs, refresh, refreshing, resetTour } = useApp();
   const [nameDraft, setNameDraft] = useState(prefs.name ?? "");
 
   return (
@@ -57,6 +57,14 @@ export default function Settings() {
           />
         </View>
       ))}
+
+      <View style={styles.row}>
+        <View style={styles.rowText}>
+          <T v="body">Sounds</T>
+          <T v="caption" muted>Two short cues: an area added, and the status changing. Silent mode is respected</T>
+        </View>
+        <Switch value={prefs.sounds} onValueChange={setSounds} trackColor={{ false: color.surface2, true: color.ink }} thumbColor={color.ground} accessibilityLabel="Sounds" />
+      </View>
 
       <T v="label" style={styles.section}>DATA</T>
       <T v="body">{fetchedAtMs ? `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}` : "Not checked yet"}</T>
