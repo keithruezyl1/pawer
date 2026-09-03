@@ -38,7 +38,8 @@ npm run build:registry # rebuild registry from PSGC + glossary aliases
 npm run ingest         # run the ingest locally (writes data/; no push without FCM_SERVICE_ACCOUNT)
 npm run publish        # build dist/ exactly as Pages serves it
 npm run centroids      # source barangay centroid candidates from Nominatim (1 req/s)
-npm run maps           # render locator images for VERIFIED centroids (needs MAPTILER_KEY)
+npm run maps           # composite locator images for VERIFIED centroids from free raster tiles (needs MAPTILER_KEY)
+# after reviewing the map-review artifact: npx tsx packages/registry/scripts/mark-verified.ts <slug...> | --lgu <lgu> | --all
 ```
 
 Parser review table for the real corpus:

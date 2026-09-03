@@ -17,7 +17,8 @@
     "ingest": "npm run ingest -w @pawer/pipeline",
     "maps": "npx tsx pipeline/src/maps/cli.ts",
     "publish": "npx tsx pipeline/src/cli.ts publish",
-    "centroids": "npx tsx packages/registry/scripts/source-centroids.ts"
+    "centroids": "npx tsx packages/registry/scripts/source-centroids.ts",
+    "centroids:verify": "npx tsx packages/registry/scripts/mark-verified.ts"
   },
   "engines": {
     "node": ">=20"

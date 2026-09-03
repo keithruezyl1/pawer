@@ -719,4 +719,4 @@ pawer/
 | App shell | Onboarding, dashboard, picker, all-areas, detail, settings, tour; neobrutalist system; motion vocabulary; typechecks and bundles |
 | App notifications | Local scheduler + FCM topic sync + background de-dup handler wired; needs `google-services.json` and a device to verify |
 | Widget | Android `RemoteViews` module (Kotlin) + iOS WidgetKit target (unshipped) written; **not yet compiled** — no Android SDK on the build machine |
-| Maps | Pre-renderer written; centroid candidates sourced from Nominatim, **all unverified** pending human review (C3) |
+| Maps | Compositor from free raster tiles (D-26) **running in CI**: 199 candidate images rendered to the `map-review` artifact; 0 published until a person verifies pins (`scripts/mark-verified.ts`). 33 barangays have no candidate, 26 of them in Mandaue |
