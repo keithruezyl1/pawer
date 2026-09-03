@@ -20,6 +20,7 @@
       "googleServicesFile": "./google-services.json"
     },
     "plugins": [
+      "./plugins/withFirebaseNotificationColorReplace.js",
       "expo-router",
       [
         "expo-build-properties",
