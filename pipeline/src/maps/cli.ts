@@ -3,12 +3,13 @@
  * Every request carries this exact User-Agent; the MapTiler key is restricted to the substring
  * "PAWER-maps", so the key is worthless to anyone who does not also spoof the header.
  */
-export const MAPS_UA = "PAWER-maps/0.1 (+https://github.com/keithruezyl1/pawer; build-time static renders only)";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { barangays } from "@pawer/registry";
 import { mapUrl, planRenders, type Centroid } from "./render";
+
+export const MAPS_UA = "PAWER-maps/0.1 (+https://github.com/keithruezyl1/pawer; build-time static renders only)";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 const centroidsPath = resolve(ROOT, "packages/registry/centroids.json");
