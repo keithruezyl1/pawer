@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 import { barangays, lgus } from "@pawer/registry";
 import { runIngest, type IngestDeps } from "./run";
 import { buildTopicMessage, getAccessToken, sendTopicMessages, type ServiceAccount } from "./fcm";
+import { runVerify } from "./verify";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const UA = "PAWER-ingest/0.1 (+https://github.com/keithruezyl1/pawer; polls one public RSS feed every 30 minutes)";
@@ -136,5 +137,6 @@ switch (cmd) {
   case "ingest": ingest().catch((e) => { console.error(e); process.exit(1); }); break;
   case "publish": publish(); break;
   case "release-manifest": releaseManifest(args[0]!, args[1]!, args[2]!); break;
-  default: console.error("usage: cli.ts <ingest|publish|release-manifest>"); process.exit(2);
+  case "verify": runVerify(process.env).then((ok) => process.exit(ok ? 0 : 1)).catch((e) => { console.error(e); process.exit(1); }); break;
+  default: console.error("usage: cli.ts <ingest|publish|release-manifest|verify>"); process.exit(2);
 }

@@ -8,8 +8,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { barangays } from "@pawer/registry";
 import { mapUrl, planRenders, type Centroid } from "./render";
-
-export const MAPS_UA = "PAWER-maps/0.1 (+https://github.com/keithruezyl1/pawer; build-time static renders only)";
+import { MAPS_UA } from "./ua";
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../..");
 const centroidsPath = resolve(ROOT, "packages/registry/centroids.json");

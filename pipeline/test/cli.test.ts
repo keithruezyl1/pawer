@@ -13,7 +13,7 @@ describe("cli.ts header literals", () => {
 });
 
 describe("maps/cli.ts User-Agent", () => {
-  const src = readFileSync(new URL("../src/maps/cli.ts", import.meta.url), "utf8");
+  const src = readFileSync(new URL("../src/maps/ua.ts", import.meta.url), "utf8");
   test("is ASCII and contains the substring the MapTiler key is restricted to", () => {
     const m = src.match(/const MAPS_UA = "([^"]*)"/);
     expect(m).not.toBeNull();
