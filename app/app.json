@@ -41,6 +41,10 @@
       "backgroundColor": "#F5F5F5",
       "resizeMode": "contain",
       "image": "./assets/icon.png"
+    },
+    "notification": {
+      "icon": "./assets/notification-icon.png",
+      "color": "#EA5C1F"
     }
   }
 }

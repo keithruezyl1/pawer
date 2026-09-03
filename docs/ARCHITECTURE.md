@@ -696,7 +696,7 @@ pawer/
 
 | Step | Detail |
 |---|---|
-| Build | `eas build --local` — free, unlimited, no cloud quota |
+| Build | `expo prebuild` + Gradle — fully local, no Expo account, no cloud quota. Android Studio for local/dev builds; the release workflow runs the same two steps |
 | Variants | Per-ABI `arm64-v8a` and `armeabi-v7a`, plus universal fallback (PRD NFR-11) |
 | Signing | Release keystore held locally, backed up twice, never committed (§12.1) |
 | Distribution | GitHub Releases, with published SHA-256 per artifact |

@@ -108,7 +108,7 @@ The civic and portfolio objectives are mostly aligned — a public repository is
 | Data hosting | GitHub Pages | Free — 100 GB/month bandwidth | $0 |
 | APK hosting | GitHub Releases | Free | $0 |
 | Push messaging | Firebase Cloud Messaging | Spark plan — free and uncapped; no card required | $0 |
-| Android builds | Expo `eas build --local` | Free, unlimited, runs locally | $0 |
+| Android builds | `expo prebuild` + Gradle (Android Studio locally, Actions in CI) | Free, no Expo account needed | $0 |
 | Map images | MapTiler Static Maps | Free tier, **build-time only** — 232 images generated once, not per user | $0 |
 | Android distribution | Direct APK | No store account | $0 |
 | **Total recurring** | | | **$0** |

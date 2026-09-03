@@ -2,7 +2,7 @@
   "name": "pawer-widget",
   "version": "0.1.0",
   "private": true,
-  "description": "PAWER 2x2 home-screen widget — Expo local module (Android RemoteViews; iOS WidgetKit target unshipped)",
+  "description": "PAWER 2x2 home-screen widget: Android RemoteViews + iOS WidgetKit bridge (Expo local module)",
   "main": "index.ts",
   "license": "MIT"
 }
