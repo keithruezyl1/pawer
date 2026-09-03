@@ -1,0 +1,30 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- Boundary alarms do not survive a reboot; this re-arms them (ARCH §9.4). -->
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+  <application>
+    <receiver
+      android:name="ph.pawer.widget.PawerWidgetProvider"
+      android:exported="true"
+      android:label="@string/pawer_widget_label">
+      <intent-filter>
+        <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+      </intent-filter>
+      <intent-filter>
+        <action android:name="ph.pawer.widget.ACTION_BOUNDARY" />
+      </intent-filter>
+      <meta-data
+        android:name="android.appwidget.provider"
+        android:resource="@xml/pawer_widget_info" />
+    </receiver>
+
+    <receiver
+      android:name="ph.pawer.widget.BootReceiver"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+      </intent-filter>
+    </receiver>
+  </application>
+</manifest>

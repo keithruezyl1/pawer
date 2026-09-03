@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!-- DESIGN-GUIDELINES v2 §4.2 — single ink for text and borders. -->
+  <color name="pawer_ink">#212431</color>
+  <color name="pawer_slate">#4F5D75</color>
+  <color name="pawer_ground">#F5F5F5</color>
+</resources>

@@ -1,0 +1,5 @@
+{
+  "_comment": "Placeholder. Download the real google-services.json from Firebase console → Project settings → Your apps (Android, package ph.pawer.app) and save it as app/google-services.json (git-ignored). In CI it is written from the GOOGLE_SERVICES_JSON secret.",
+  "project_info": { "project_id": "your-firebase-project" },
+  "client": []
+}
