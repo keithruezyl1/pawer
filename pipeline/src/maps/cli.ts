@@ -1,4 +1,9 @@
-/** Renders missing barangay locator images into assets/maps/. Needs MAPTILER_KEY. */
+/**
+ * Renders missing barangay locator images into assets/maps/. Needs MAPTILER_KEY.
+ * Every request carries this exact User-Agent; the MapTiler key is restricted to the substring
+ * "PAWER-maps", so the key is worthless to anyone who does not also spoof the header.
+ */
+export const MAPS_UA = "PAWER-maps/0.1 (+https://github.com/keithruezyl1/pawer; build-time static renders only)";
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -22,7 +27,7 @@ if (!key) { console.error("[maps] MAPTILER_KEY is not set and there are images t
 
 let ok = 0;
 for (const r of plan.render) {
-  const res = await fetch(mapUrl(r.centroid, key));
+  const res = await fetch(mapUrl(r.centroid, key), { headers: { "User-Agent": MAPS_UA } });
   if (!res.ok) { console.error(`[maps] ${r.slug}: HTTP ${res.status}`); continue; }
   writeFileSync(resolve(outDir, r.file), Buffer.from(await res.arrayBuffer()));
   ok++;

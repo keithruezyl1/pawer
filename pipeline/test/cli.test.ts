@@ -11,3 +11,13 @@ describe("cli.ts header literals", () => {
     expect(/^[\x20-\x7E]*$/.test(m![1]!), `non-ASCII in UA: ${m![1]}`).toBe(true);
   });
 });
+
+describe("maps/cli.ts User-Agent", () => {
+  const src = readFileSync(new URL("../src/maps/cli.ts", import.meta.url), "utf8");
+  test("is ASCII and contains the substring the MapTiler key is restricted to", () => {
+    const m = src.match(/const MAPS_UA = "([^"]*)"/);
+    expect(m).not.toBeNull();
+    expect(/^[ -~]*$/.test(m![1]!)).toBe(true);
+    expect(m![1]!.includes("PAWER-maps")).toBe(true);
+  });
+});
