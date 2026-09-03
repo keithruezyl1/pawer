@@ -100,10 +100,12 @@ export async function runIngest(deps: IngestDeps): Promise<IngestResult> {
     const byTopic = new Map<string, string[]>();
     for (const o of toNotify) for (const t of topicsFor(o)) byTopic.set(t, [...(byTopic.get(t) ?? []), o.id]);
     const okTopics = new Set<string>();
+    let skipped = 0;
     for (const [topic, ids] of byTopic) {
       if (await deps.push(topic, ids)) { okTopics.add(topic); pushed++; }
-      else deps.log(`push failed: ${topic}`);
+      else skipped++;
     }
+    if (skipped) deps.log(`${skipped} topic push(es) not sent — these outages stay un-notified and retry next run`);
     // an outage is "notified" only once every one of its topics went out; otherwise it retries next run
     const nowNotified = toNotify.filter((o) => topicsFor(o).every((t) => okTopics.has(t))).map((o) => o.id);
     if (nowNotified.length) deps.writeJson(PATHS.notified, [...notified, ...nowNotified]);

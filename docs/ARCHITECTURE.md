@@ -715,7 +715,7 @@ pawer/
 | `packages/registry` | Built from **PSGC** with glossary aliases; 232 entries with codes; `verification.md` emitted |
 | `packages/parser` | Built and tested against three real advisories (98 entries: 92 parsed · 6 partial · 0 failed); golden locks |
 | `pipeline` | Built and tested with injected deps — RSS, diff, merge, FCM (HTTP v1, no SDK), coverage (R9), issues (NFR-22), heartbeat (NFR-23), orchestrator; CLI with real adapters |
-| Workflows | `ingest.yml` (30-min poll → commit → Pages → FCM), `pages.yml`, `maps.yml`, `release.yml` (per-ABI signed APKs, SHA-256, manifest) — written, run on first push |
+| Workflows | `ingest.yml` (30-min poll → commit → Pages → FCM), `pages.yml`, `maps.yml`, `release.yml` (per-ABI signed APKs, SHA-256, manifest). **First live ingest succeeded 3 Sep 2026**: 3 advisories, 98 outages, `data/` committed, Pages serving `v1/advisories.json`, 5 unknown-area issues auto-filed. FCM pending the secret |
 | App shell | Onboarding, dashboard, picker, all-areas, detail, settings, tour; neobrutalist system; motion vocabulary; typechecks and bundles |
 | App notifications | Local scheduler + FCM topic sync + background de-dup handler wired; needs `google-services.json` and a device to verify |
 | Widget | Android `RemoteViews` module (Kotlin) + iOS WidgetKit target (unshipped) written; **not yet compiled** — no Android SDK on the build machine |
