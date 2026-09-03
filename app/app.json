@@ -33,7 +33,13 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/messaging",
-      "expo-notifications",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#EA5C1F"
+        }
+      ],
       "expo-audio",
       [
         "./plugins/withGradleDaemonJvm.js",
@@ -48,10 +54,6 @@
       "backgroundColor": "#F5F5F5",
       "resizeMode": "contain",
       "image": "./assets/icon.png"
-    },
-    "notification": {
-      "icon": "./assets/notification-icon.png",
-      "color": "#EA5C1F"
     }
   }
 }
