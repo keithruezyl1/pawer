@@ -150,14 +150,13 @@
       "cebu-city"
     ],
     "barangays": [
+      "cebu-city.san-nicolas-central",
       "cebu-city.sawang-calero"
     ],
-    "unknown_area_tokens": [
-      "San Nicolas Proper"
-    ],
+    "unknown_area_tokens": [],
     "areas_raw": "Portion of San Nicolas Proper & Sawang Calero, Cebu City, along Tupas St. & Magsaysay St.",
     "purpose_raw": "To increase the capacity of the distribution system serving Brgy. San Nicolas Proper & Sawang Calero by facilitating upgrading of distribution transformer",
-    "parse_status": "partial",
+    "parse_status": "parsed",
     "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-16",
     "source_published_at": "2026-01-01T00:00:00Z"
   },
@@ -802,12 +801,10 @@
     "barangays": [
       "naga.tangke"
     ],
-    "unknown_area_tokens": [
-      "Tangke Brgy. Rd"
-    ],
+    "unknown_area_tokens": [],
     "areas_raw": "Portion of Tangke, City of Naga Portion of Tangke Brgy. Rd",
     "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tangke by facilitating reconstruction of primary lines",
-    "parse_status": "partial",
+    "parse_status": "parsed",
     "source_post_url": "https://www.visayanelectric.com/post/corpus-2026-08-16",
     "source_published_at": "2026-01-01T00:00:00Z"
   },

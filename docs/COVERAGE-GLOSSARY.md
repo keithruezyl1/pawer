@@ -156,6 +156,11 @@ Harvested from the two advisories examined so far. This list will grow — every
 | `Lorega-San Miguel` | `cebu-city.lorega` | PSGC's *old* name; current is `Lorega`. A silent false negative until aliased |
 | `Budlaan` | `cebu-city.budla-an` | PSGC `Budla-an (Pob.)`. Found by the Aug 16–22 corpus — a second silent false negative |
 | `City of Naga` | `naga` (LGU) | Also seen as `Naga` |
+| `Ward I` | `minglanilla.poblacion-ward-i` | PSGC prefixes all four with `Poblacion`; VECO writes the ward alone. Minglanilla is the only LGU in the franchise with wards, so the short form is unambiguous |
+| `Ward II` | `minglanilla.poblacion-ward-ii` | as above |
+| `Ward III` | `minglanilla.poblacion-ward-iii` | as above |
+| `Ward IV` | `minglanilla.poblacion-ward-iv` | as above. Observed 2026-09-04: `Portion of Ward IV & Tunghaan, Minglanilla` matched Tunghaan only |
+| `San Nicolas Proper` | `cebu-city.san-nicolas-central` | PSGC's *current* name is `San Nicolas Central`; `Proper` is the older local form, the same pattern as `Lorega-San Miguel`. **Inferred, wants confirming** — Cebu City has three other San Nicolas barangays, and the observed advisory (`San Nicolas Proper & Sawang Calero … along Tupas St. & Magsaysay St.`) points at Central by adjacency, not by name |
 
 **`Sta.` → `Santa` normalisation is required, not optional.** VECO writes `Sta. Cruz`; both registry entries are `Santa Cruz`. Without expansion, every `Santa Cruz` advisory silently fails to match — a false negative, the failure class this product cannot tolerate. The same applies to `Sto.`, `Gen.`, and any other honorific abbreviation encountered.
 

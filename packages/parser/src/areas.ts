@@ -6,7 +6,8 @@
  *   2  candidates = barangays of the detected LGUs
  *   3  tokenise the head on , & ( ) and match each WHOLE token — never a prefix (R11).
  *      A short form matching several same-LGU barangays fans out and flags ambiguity (R12).
- *   4  whatever is left over is an unknown token — reported, never dropped (NFR-22)
+ *   4  whatever is left over is an unknown token — reported, never dropped (NFR-22), except
+ *      street names, which are not areas and never were (see THOROUGHFARE)
  */
 import type { Registry } from "@pawer/shared";
 import { registry as defaultRegistry } from "@pawer/registry";
@@ -21,6 +22,25 @@ export interface AreaResolution {
 }
 
 const STOP_TOKENS = new Set(["", "portion", "portions", "portion of", "portions of", "of", "and", "the"]);
+
+/**
+ * A residual token that names a street rather than a place.
+ *
+ * Step 0 already discards streets wholesale, but only when VECO introduces them with "along".
+ * It also appends them bare after the LGU, where there is no keyword to split on:
+ *
+ *   "Portion of Alang-Alang, Mandaue City, R. Colina St., R. Colina Extn., and Marciano Quizon Road."
+ *   "Portion of Tangke, City of Naga Portion of Tangke Brgy. Rd"
+ *
+ * Those roads used to surface as unknown areas, which auto-filed a GitHub issue per street and
+ * marked otherwise-complete outages `partial`. Suppressing them makes step 0's intent hold whether
+ * or not the keyword is present. Checked against all 232 registry names and every alias: none ends
+ * in one of these words, so this cannot hide a real barangay. The list is deliberately narrow —
+ * "South Reclamation Area" and "Corona Del Mar Subd" are NOT streets, and must keep reporting,
+ * because an unmatched place means real outages reaching nobody.
+ */
+const THOROUGHFARE =
+  /(?:^|[\s.-])(?:road|rd|street|st|avenue|ave|boulevard|blvd|highway|hway|hwy|extension|extn|ext|drive|drv|lane|bridge|diversion|circumferential|flyover|wharf|pier)\.?$/i;
 
 function escapeRe(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -83,11 +103,13 @@ export function resolveAreas(areasText: string, reg: Registry = defaultRegistry)
   const candidates = lgus.flatMap((l) => byLgu.get(l) ?? []);
   const barangays: string[] = [];
   const unknownTokens: string[] = [];
+  /** Reports a gap in coverage. A street is not a gap, so it is not reported. */
+  const report = (token: string) => { if (!THOROUGHFARE.test(token)) unknownTokens.push(token); };
   let ambiguous = false;
   const add = (slug: string) => { if (!barangays.includes(slug)) barangays.push(slug); };
 
   for (const token of tokens) {
-    if (lgus.length === 0) { unknownTokens.push(token); continue; }
+    if (lgus.length === 0) { report(token); continue; }
     const key = foldForMatch(token);
     if (!key) continue;
 
@@ -116,11 +138,11 @@ export function resolveAreas(areasText: string, reg: Registry = defaultRegistry)
       .sort((x, y) => y.k.length - x.k.length);
     if (loose.length > 0) {
       add(loose[0]!.c.slug);
-      unknownTokens.push(token);
+      report(token);
       continue;
     }
 
-    unknownTokens.push(token);
+    report(token);
   }
 
   return { lgus, barangays, unknownTokens, ambiguous };

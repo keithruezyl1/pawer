@@ -131,6 +131,7 @@ The cost of this decision is the deferral of emergency, cancelled, and confirmed
 8  if changed:
 9      commit data/  →  deploy Pages  →  push FCM to affected topics
 10 if any unknown area name:  open or update a GitHub issue
+   (street names are not areas and are dropped before this — D-36)
 11 if no commit made today:   commit data/heartbeat.json
 ```
 

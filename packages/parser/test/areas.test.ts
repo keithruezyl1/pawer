@@ -125,4 +125,55 @@ describe("resolveAreas — ARCH §5.4 registry scan", () => {
     const r = R("Portion of Lahug, Cebu City.");
     expect(r.barangays).toEqual(["cebu-city.lahug"]);
   });
+
+  // Roads that arrive WITHOUT the "along" keyword. Observed 2026-09-04: each of these filed a
+  // GitHub issue per street and marked the outage `partial`, though every barangay had matched.
+  test("streets appended bare after the LGU are not reported as areas", () => {
+    const r = R("Portion of Alang-Alang, Mandaue City, R. Colina St., R. Colina Extn., and Marciano Quizon Road.");
+    expect(r.barangays).toEqual(["mandaue-city.alang-alang"]);
+    expect(r.unknownTokens).toEqual([]);
+  });
+
+  test("streets appended after a barangay list, including a 'going to' phrasing", () => {
+    const r = R("Portion of Cabangahan, Danglag, Garing, Panoypoy, Polog & Tolotolo, Consolacion, Cabangahan Road, Polog Road, going to Panoypoy Road and Polog-Garing Road.");
+    expect(r.barangays).toEqual([
+      "consolacion.cabangahan", "consolacion.danglag", "consolacion.garing",
+      "consolacion.panoypoy", "consolacion.polog", "consolacion.tolotolo",
+    ]);
+    expect(r.unknownTokens).toEqual([]);
+  });
+
+  test("a road repeated under a second 'Portion of' is not reported either", () => {
+    const r = R("Portion of Tangke, City of Naga Portion of Tangke Brgy. Rd");
+    expect(r.barangays).toEqual(["naga.tangke"]);
+    expect(r.unknownTokens).toEqual([]);
+  });
+
+  // The counterweight: suppressing streets must never quieten a real coverage gap, because an
+  // unmatched place means an outage nobody is warned about. These three outages exist today.
+  test("an unmatched PLACE still reports, even beside streets it cannot match", () => {
+    const r = R("Portion of South Reclamation Area, Cebu City, along SRP Backroad & Banog Road");
+    expect(r.barangays).toEqual([]);
+    expect(r.unknownTokens).toEqual(["South Reclamation Area"]);
+  });
+
+  test("subdivisions and landmarks are places, not streets, so they keep reporting", () => {
+    expect(R("Portion of Pooc, Talisay City, Royale Cebu Estates, along X.").unknownTokens)
+      .toEqual(["Royale Cebu Estates"]);
+    expect(R("Portion of Pooc, Talisay City, Corona Del Mar Subd, along X.").unknownTokens)
+      .toEqual(["Corona Del Mar Subd"]);
+  });
+
+  // Glossary §5 aliases added 2026-09-04 from auto-filed issues.
+  test("VECO's bare 'Ward IV' resolves to Minglanilla's Poblacion Ward IV", () => {
+    const r = R("Portion of Ward IV & Tunghaan, Minglanilla, along portions of Tres de Mayo St.");
+    expect(r.barangays).toEqual(["minglanilla.poblacion-ward-iv", "minglanilla.tunghaan"]);
+    expect(r.unknownTokens).toEqual([]);
+  });
+
+  test("'San Nicolas Proper' resolves to San Nicolas Central, PSGC's current name", () => {
+    const r = R("Portion of San Nicolas Proper & Sawang Calero, Cebu City, along Tupas St. & Magsaysay St.");
+    expect(r.barangays).toEqual(["cebu-city.san-nicolas-central", "cebu-city.sawang-calero"]);
+    expect(r.unknownTokens).toEqual([]);
+  });
 });

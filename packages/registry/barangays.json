@@ -780,7 +780,9 @@
       "slug": "cebu-city.san-nicolas-central",
       "display": "San Nicolas Central",
       "lgu": "cebu-city",
-      "aliases": [],
+      "aliases": [
+        "san nicolas proper"
+      ],
       "psgc": "072217068",
       "psgc_name": "San Nicolas Central",
       "psgc_old_name": "",
@@ -1891,7 +1893,9 @@
       "slug": "minglanilla.poblacion-ward-i",
       "display": "Poblacion Ward I",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "ward i"
+      ],
       "psgc": "072232010",
       "psgc_name": "Poblacion Ward I",
       "psgc_old_name": "",
@@ -1907,7 +1911,9 @@
       "slug": "minglanilla.poblacion-ward-ii",
       "display": "Poblacion Ward II",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "ward ii"
+      ],
       "psgc": "072232011",
       "psgc_name": "Poblacion Ward II",
       "psgc_old_name": "",
@@ -1921,7 +1927,9 @@
       "slug": "minglanilla.poblacion-ward-iii",
       "display": "Poblacion Ward III",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "ward iii"
+      ],
       "psgc": "072232012",
       "psgc_name": "Poblacion Ward III",
       "psgc_old_name": "",
@@ -1933,7 +1941,9 @@
       "slug": "minglanilla.poblacion-ward-iv",
       "display": "Poblacion Ward IV",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "ward iv"
+      ],
       "psgc": "072232013",
       "psgc_name": "Poblacion Ward IV",
       "psgc_old_name": "",
