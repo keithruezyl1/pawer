@@ -90,8 +90,12 @@
 
   <!-- The slack sits HERE, between the subtitle and the area chip: the tag, value and subtitle
        group tight at the top, and the chip stays pinned to the bottom of the card. Putting this
-       after the chip instead pulled the chip up with the value block. -->
-  <Space
+       after the chip instead pulled the chip up with the value block.
+
+       A FrameLayout, not a Space: RemoteViews inflates only classes the framework annotates
+       @RemoteView, and Space is not one of them. A layout containing one fails to inflate in the
+       launcher and the widget draws BLANK, with nothing logged in our own process. -->
+  <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1" />
