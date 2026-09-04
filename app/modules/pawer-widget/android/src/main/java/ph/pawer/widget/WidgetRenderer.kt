@@ -22,7 +22,7 @@ object WidgetRenderer {
     if (s == null) {
       // Not configured yet: the app has never written a blob.
       v.setInt(R.id.pawer_root, "setBackgroundResource", R.drawable.pawer_bg_clear)
-      text(v, "PAWER", "Open PAWER", "Add your barangay", "")
+      text(ctx, v, "PAWER", "Open PAWER", "Add your barangay", "", false)
       hideCountdown(v)
       return v
     }
@@ -35,23 +35,23 @@ object WidgetRenderer {
         val until = s.primaryUntilMs
         if (until != null && until > nowMs) {
           showCountdown(v, until, nowMs)
-          text(v, s.label, null, s.secondary, line4(s, stale))
+          text(ctx, v, s.label, null, s.secondary, line4(s, stale), !stale)
         } else {
           hideCountdown(v)
-          text(v, s.label, if (s.state == "ONGOING") "Now" else "Soon", s.secondary, line4(s, stale))
+          text(ctx, v, s.label, if (s.state == "ONGOING") "Outage in-progress" else "Soon", s.secondary, line4(s, stale), !stale)
         }
       }
       "ENDED_TODAY" -> {
         hideCountdown(v)
-        text(v, s.label, "Restored", s.secondary, line4(s, stale)) // qualified by line 3: "Should be back by now"
+        text(ctx, v, s.label, "Restored", s.secondary, line4(s, stale), !stale) // qualified by line 3: "Should be back by now"
       }
       else -> { // NONE_TODAY
         hideCountdown(v)
         if (s.nextStartMs != null && s.secondary.contains(" · ")) {
           // "Fri · 9:00 AM – 5:00 PM" → display the day, window on line 3
-          text(v, s.label, s.secondary.substringBefore(" · "), s.secondary.substringAfter(" · "), line4(s, stale))
+          text(ctx, v, s.label, s.secondary.substringBefore(" · "), s.secondary.substringAfter(" · "), line4(s, stale), !stale)
         } else {
-          text(v, s.label, "Clear", s.secondary, line4(s, stale))
+          text(ctx, v, s.label, "Clear", s.secondary, line4(s, stale), !stale)
         }
       }
     }
@@ -69,7 +69,14 @@ object WidgetRenderer {
   private fun line4(s: WidgetState, stale: Boolean): String =
     if (stale) "Data may be outdated" else s.areaLabel
 
-  private fun text(v: RemoteViews, tag: String, display: String?, line3: String, line4: String) {
+  private fun dp(ctx: Context, v: Float): Int = (v * ctx.resources.displayMetrics.density).toInt()
+
+  /**
+   * `pill` dresses line 4 as the dashboard card's area chip. It is off for the stale notice and
+   * the unconfigured prompt, because neither is a place, and a warning inside a location chip
+   * reads as a location.
+   */
+  private fun text(ctx: Context, v: RemoteViews, tag: String, display: String?, line3: String, line4: String, pill: Boolean) {
     v.setTextViewText(R.id.pawer_tag, tag)
     if (display != null) {
       v.setViewVisibility(R.id.pawer_display, View.VISIBLE)
@@ -80,6 +87,11 @@ object WidgetRenderer {
     v.setTextViewText(R.id.pawer_line3, line3)
     v.setTextViewText(R.id.pawer_line4, line4)
     v.setViewVisibility(R.id.pawer_line4, if (line4.isEmpty()) View.GONE else View.VISIBLE)
+    v.setInt(R.id.pawer_line4, "setBackgroundResource", if (pill) R.drawable.pawer_pill else 0)
+    v.setTextColor(R.id.pawer_line4, ctx.getColor(if (pill) R.color.pawer_ink else R.color.pawer_slate))
+    // Without the chip the padding would indent the notice out of line with everything above it.
+    if (pill) v.setViewPadding(R.id.pawer_line4, dp(ctx, 6f), dp(ctx, 2f), dp(ctx, 6f), dp(ctx, 2f))
+    else v.setViewPadding(R.id.pawer_line4, 0, 0, 0, 0)
   }
 
   private fun showCountdown(v: RemoteViews, untilMs: Long, nowMs: Long) {

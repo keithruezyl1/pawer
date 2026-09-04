@@ -109,7 +109,7 @@
       "x": 1000,
       "y": -210,
       "w": 430,
-      "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other three lines are the phone's own font, which is what the widget actually uses.\n\nExported PNGs and PDFs fall back to a substitute for that one, so judge the small text here on the canvas rather than in an export."
+      "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines are lines are the phone's own font, which is what the widget actually uses.\n\nExported PNGs and PDFs fall back to a substitute for that one, so judge the small text here on the canvas rather than in an export."
     }
   ],
   "launch": {

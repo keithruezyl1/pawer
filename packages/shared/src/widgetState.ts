@@ -40,7 +40,7 @@ export function deriveWidgetState(
       secondary = `until ${formatTime12h(start!)}`;
       break;
     case "ONGOING":
-      label = "NOW";
+      // The tag stays TODAY in every state. "NOW" duplicated what the display already says.
       primary = end;
       secondary = `until ${formatTime12h(end!)}`;
       break;

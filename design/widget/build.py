@@ -33,13 +33,24 @@ def clamp(lines):
     return (f"display:-webkit-box;-webkit-line-clamp:{lines};-webkit-box-orient:vertical;"
             "overflow:hidden;")
 
-def board(state, tag, display, line3, line4, *, countdown=False):
+def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     dashed = state == "stale"
     shadow_col = SLATE if dashed else INK
     border = f"{BORDER}px {'dashed' if dashed else 'solid'} {SLATE if dashed else INK}"
     big = ("font-family:'Getai Grotesk Black',Impact,sans-serif;"
            f"font-size:{20 if countdown else 17}px;"
            + ("" if countdown else "line-height:0.95;"))
+    # The area chip, as on the dashboard card. The stale notice is not a place, so it keeps the
+    # plain slate line rather than being dressed up as one.
+    if not line4:
+        four = ""
+    elif pill:
+        four = (f'<div style="align-self: flex-start; margin-top: 4px; background: {GROUND}; '
+                f'border: {BORDER}px solid {INK}; border-radius: 9px; padding: 2px 6px; '
+                f'font-size: 9px; color: {INK}; {clamp(1)}">{line4}</div>')
+    else:
+        four = (f'<div style="align-self: flex-start; margin-top: 4px; font-size: 9px; '
+                f'color: {SLATE}; {clamp(1)}">{line4}</div>')
     return f"""<!doctype html>
 <html>
 <head>
@@ -63,9 +74,11 @@ def board(state, tag, display, line3, line4, *, countdown=False):
 <div style="width: {CELL}px; height: {CELL}px; display: flex; align-items: flex-start; justify-content: flex-start;">
   <div style="width: {CARD}px; height: {CARD}px; box-sizing: border-box; background: {FILL[state]}; border: {border}; border-radius: {RADIUS}px; box-shadow: {SHADOW}px {SHADOW}px 0 {shadow_col}; padding: {PAD_T}px {PAD_L}px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden;">
     <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
-    <div style="margin-top: 3px; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
-    <div style="margin-top: 5px; font-size: 10px; line-height: 1.0; color: {INK}; {clamp(2)}">{line3}</div>
-    <div style="margin-top: 3px; font-size: 9px; color: {SLATE}; {clamp(2)}">{line4}</div>
+    <div style="flex: 1; margin-top: 3px; display: flex; align-items: center;">
+      <div style="width: 100%; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
+    </div>
+    <div style="margin-top: 5px; font-size: 10px; color: {INK}; {clamp(1)}">{line3}</div>
+    {four}
   </div>
 </div>
 </x-dc>
@@ -77,8 +90,8 @@ def board(state, tag, display, line3, line4, *, countdown=False):
 BOARDS = [
     ("Main",         "Upcoming · counting down", "upcoming", "TODAY",     "3:20:00",     "until 3:00 PM",         "Lahug",  True),
     ("UpcomingSoon", "Upcoming · countdown run out", "upcoming", "TODAY", "Soon",        "until 3:00 PM",         "Lahug",  False),
-    ("Ongoing",      "Ongoing · counting down", "ongoing",  "NOW",       "0:42:00",     "until 3:00 PM",         "Lahug",  True),
-    ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "NOW",       "Now",         "until 3:00 PM",         "Lahug",  False),
+    ("Ongoing",      "Ongoing · counting down", "ongoing",  "TODAY",     "0:42:00",     "until 3:00 PM",         "Lahug",  True),
+    ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "TODAY",     "Outage in-progress", "until 3:00 PM",  "Lahug",  False),
     ("Ended",        "Ended today",             "ended",    "TODAY",     "Restored",    "Should be back by now", "Lahug",  False),
     ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "Clear",       "No scheduled outage",   "Lahug",  False),
     ("ClearNext",    "Clear · next one known",  "clear",    "NEXT",      "Fri",         "9:00 AM – 5:00 PM",     "Lahug",  False),
@@ -91,7 +104,8 @@ BOARDS = [
 ]
 
 for name, _title, state, tag, display, line3, line4, cd in BOARDS:
-    (HERE / f"{name}.dc.html").write_text(board(state, tag, display, line3, line4, countdown=cd), encoding="utf-8")
+    (HERE / f"{name}.dc.html").write_text(
+        board(state, tag, display, line3, line4, countdown=cd, pill=(state != "stale")), encoding="utf-8")
 
 FRAME, GAP_X, GAP_Y, PER_ROW = 170, 80, 130, 5
 artboards, titles = [], {n: t for n, t, *_ in BOARDS}
@@ -115,7 +129,7 @@ canvas = {
                  "So if a line looks cut off on one of these boards, it is genuinely too long. If "
                  "it fits here, it fits everywhere."},
         {"id": "faces", "x": 1000, "y": -210, "w": 430,
-         "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other three "
+         "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines are "
                  "lines are the phone's own font, which is what the widget actually uses.\n\n"
                  "Exported PNGs and PDFs fall back to a substitute for that one, so judge the "
                  "small text here on the canvas rather than in an export."},

@@ -26,11 +26,12 @@ describe("deriveWidgetState — the precomputed blob the Kotlin widget reads (AR
     expect(w).toMatchObject({ state: "UPCOMING_TODAY", label: "TODAY", primary_until_ms: fromManila(2026, 9, 4, 9), secondary: "until 9:00 AM" });
   });
 
+  // The tag reads TODAY in every state (D-41): "NOW" said what the display already said.
   test("ONGOING counts down to expected restoration", () => {
     const now = fromManila(2026, 9, 4, 12);
     const o = mk("a", fromManila(2026, 9, 4, 9), fromManila(2026, 9, 4, 17));
     const w = deriveWidgetState(resolveStatus([o], SEL, now, fresh(now)), SEL, now, fresh(now), label);
-    expect(w).toMatchObject({ state: "ONGOING", label: "NOW", primary_until_ms: fromManila(2026, 9, 4, 17), secondary: "until 5:00 PM" });
+    expect(w).toMatchObject({ state: "ONGOING", label: "TODAY", primary_until_ms: fromManila(2026, 9, 4, 17), secondary: "until 5:00 PM" });
   });
 
   test("ENDED_TODAY has no countdown and honest copy", () => {

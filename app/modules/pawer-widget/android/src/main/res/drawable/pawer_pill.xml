@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The area chip, as on the dashboard card (DG §5): ground fill, 2 dp ink border, ink text.
+     Radius is a true pill here rather than the card chip's 5 dp, matching the widget's own
+     rounder corners. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+  <solid android:color="@color/pawer_ground" />
+  <stroke android:width="2dp" android:color="@color/pawer_ink" />
+  <corners android:radius="9dp" />
+</shape>
