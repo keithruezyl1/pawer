@@ -12,6 +12,8 @@ export interface AppStateValue {
   fetchedAtMs: number;
   refreshing: boolean;
   lastRefreshKind: "fresh" | "unchanged" | "error" | null;
+  /** Why the last refresh failed, so the dashboard can pick the screen that tells the truth. */
+  lastError: { reason: "offline" | "server" | "outdated"; code?: string } | null;
   /** Manila clock, ticking once a second (drives countdowns; `count` is no animation). */
   nowMs: number;
 
@@ -38,6 +40,7 @@ export function AppStateProvider({ children }: PropsWithChildren) {
   const [etag, setEtag] = useState<string | null>(() => store.readFeed()?.etag ?? null);
   const [refreshing, setRefreshing] = useState(false);
   const [lastRefreshKind, setLastKind] = useState<AppStateValue["lastRefreshKind"]>(null);
+  const [lastError, setLastError] = useState<AppStateValue["lastError"]>(null);
   const [nowMs, setNow] = useState(() => Date.now());
   const [tourPending, setTourPending] = useState<string[] | null>(null);
 
@@ -65,9 +68,13 @@ export function AppStateProvider({ children }: PropsWithChildren) {
         const prev = store.readFeed();
         if (prev) store.writeFeed({ ...prev, fetched_at_ms: at });
       }
-      // "error": leave last-known-good untouched (FR-18)
+      // "error": leave last-known-good untouched (FR-18), but remember WHY, because the three
+      // failures need three different screens and only one of them is the user's problem.
+      setLastError(r.kind === "error" ? { reason: r.reason ?? "offline", code: r.code } : null);
       setLastKind(r.kind);
     } catch {
+      // feedSource itself threw, which is a bug in us rather than a bad response.
+      setLastError({ reason: "server", code: "unexpected" });
       setLastKind("error");
     } finally {
       setRefreshing(false);
@@ -88,7 +95,7 @@ export function AppStateProvider({ children }: PropsWithChildren) {
   }, [refresh]);
 
   const value = useMemo<AppStateValue>(() => ({
-    prefs, outages, fetchedAtMs, refreshing, lastRefreshKind, nowMs, refresh,
+    prefs, outages, fetchedAtMs, refreshing, lastRefreshKind, lastError, nowMs, refresh,
     addBarangay: (slug) => { if (!prefs.barangays.includes(slug)) persistPrefs({ ...prefs, barangays: [...prefs.barangays, slug] }); },
     removeBarangay: (slug) => persistPrefs({ ...prefs, barangays: prefs.barangays.filter((b) => b !== slug) }),
     setName: (name) => persistPrefs({ ...prefs, name: name?.trim() ? name.trim() : null }),
@@ -98,7 +105,7 @@ export function AppStateProvider({ children }: PropsWithChildren) {
     setSounds: (on) => persistPrefs({ ...prefs, sounds: on }),
     tourPending,
     setTourPending,
-  }), [prefs, outages, fetchedAtMs, refreshing, lastRefreshKind, nowMs, refresh, persistPrefs, tourPending]);
+  }), [prefs, outages, fetchedAtMs, refreshing, lastRefreshKind, lastError, nowMs, refresh, persistPrefs, tourPending]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

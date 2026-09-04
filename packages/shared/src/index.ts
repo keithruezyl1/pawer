@@ -4,3 +4,4 @@ export * from "./status";
 export * from "./palette";
 export * from "./widgetState";
 export * from "./notifications";
+export * from "./validateFeed";

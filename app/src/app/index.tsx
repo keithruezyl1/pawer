@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Pressable, RefreshControl, StyleSheet, View, type View as RNView } from "react-native";
+import { Linking, Pressable, RefreshControl, StyleSheet, View, type View as RNView } from "react-native";
 import Animated from "react-native-reanimated";
 import { Link, useRouter } from "expo-router";
 import { color, layout, space } from "../theme/tokens";
@@ -17,12 +17,13 @@ import { Chevron } from "../ui/Glyph";
 import { Clock, Plus } from "../ui/Icon";
 import { IconRow } from "../ui/Surface";
 import { CardSkeleton, FetchingNote, HeroSkeleton } from "../ui/Skeleton";
-import { OfflineState } from "../ui/states";
+import { FeedErrorState, OfflineState, UpdateRequiredState } from "../ui/states";
+import { RELEASES_URL } from "../data/feed";
 import { Tour, type Rect } from "../tour/Tour";
 
 export default function Dashboard() {
   const router = useRouter();
-  const { prefs, outages, nowMs, fetchedAtMs, refreshing, lastRefreshKind, refresh } = useApp();
+  const { prefs, outages, nowMs, fetchedAtMs, refreshing, lastRefreshKind, lastError, refresh } = useApp();
   const status = useStatus();
   const tick = useTick();
   const bump = useBump();
@@ -57,7 +58,14 @@ export default function Dashboard() {
    */
   const deadEnd = nothingSaved && lastRefreshKind === "error";
 
-  if (deadEnd) return <OfflineState onRetry={() => void refresh()} />;
+  // Nothing saved AND the last fetch failed: there is no dashboard to draw, so say which of the
+  // three things went wrong rather than blaming the user's connection for all of them.
+  if (deadEnd) {
+    const retry = () => void refresh();
+    if (lastError?.reason === "outdated") return <UpdateRequiredState onUpdate={() => void Linking.openURL(RELEASES_URL)} />;
+    if (lastError?.reason === "server") return <FeedErrorState code={lastError.code} onRetry={retry} />;
+    return <OfflineState onRetry={retry} />;
+  }
 
   return (
     <View style={styles.root}>
