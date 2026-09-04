@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View, type ScrollViewProps } from "react-native
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { color, layout } from "../theme/tokens";
+import { Checker } from "./Surface";
 
 interface ScreenProps extends PropsWithChildren {
   scroll?: boolean;
@@ -16,6 +17,8 @@ export function Screen({ children, scroll = true, refreshControl, bleed }: Scree
   return (
     <SafeAreaView style={styles.root} edges={["top", "left", "right"]}>
       <StatusBar style="dark" />
+      {/* The ground is a checkerboard, drawn once behind everything (DG §5). */}
+      <Checker />
       {scroll ? (
         <ScrollView
           contentContainerStyle={[styles.content, pad]}

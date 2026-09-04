@@ -11,6 +11,10 @@ export const color = {
   ink: palette.ink,
   accent: palette.accent,
   status: palette.status,
+  /** Decorative card fills. Never a saturated status hue — see palette.ts. */
+  tint: palette.tint,
+  /** The checkerboard ground: ink at 4.5%, drawn as 12 dp squares. */
+  checker: "rgba(33, 36, 49, 0.045)",
   /** §4.3 notice: slate at 15% over ground. Precomputed so no runtime alpha blending. */
   noticeFill: "#DDE0E6",
 } as const;
@@ -51,8 +55,10 @@ export const layout = {
   cardGap: 12,
   border: 2,
   shadow: 4,
-  radius: 2,
+  radius: 5,
   touchTarget: 48,
+  /** One checkerboard square. Two of these make the repeating tile. */
+  checkerSquare: 12,
 } as const;
 
 /**

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
 import { color, layout, space } from "../theme/tokens";
@@ -12,13 +13,15 @@ export interface ButtonProps {
   disabled?: boolean;
   style?: StyleProp<ViewStyle>;
   accessibilityHint?: string;
+  /** Drawn glyph before the label. */
+  icon?: ReactNode;
 }
 
 /**
  * Press is physical: the block translates (4,4) onto its shadow and back (DG §5, §11 `press`).
  * That is the only feedback — no ripple, no colour change.
  */
-export function Button({ label, onPress, variant = "secondary", disabled, style, accessibilityHint }: ButtonProps) {
+export function Button({ label, onPress, variant = "secondary", disabled, style, accessibilityHint, icon }: ButtonProps) {
   const press = usePress();
   const ghost = variant === "ghost";
   const fill = variant === "primary" ? color.accent : color.ground;
@@ -37,6 +40,7 @@ export function Button({ label, onPress, variant = "secondary", disabled, style,
     >
       {!ghost && <View pointerEvents="none" style={styles.shadow} />}
       <Animated.View style={[styles.face, ghost ? styles.ghostFace : { backgroundColor: fill }, press.style]}>
+        {icon}
         {/* Accent carries labels at headline or larger only (DG §4.4). */}
         <T v={ghost ? "label" : "headline"} style={styles.label}>{label}</T>
       </Animated.View>
@@ -56,7 +60,7 @@ const styles = StyleSheet.create({
     minHeight: layout.touchTarget,
     borderWidth: layout.border, borderColor: color.ink, borderRadius: layout.radius,
     paddingHorizontal: space.xl, paddingVertical: space.md,
-    alignItems: "center", justifyContent: "center",
+    alignItems: "center", justifyContent: "center", flexDirection: "row", gap: space.sm + 1,
   },
   ghostFace: { borderWidth: 0, backgroundColor: "transparent", paddingHorizontal: space.md },
   label: { textAlign: "center" },

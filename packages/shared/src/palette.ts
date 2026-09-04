@@ -11,6 +11,16 @@ export const tokens = {
     ongoing: "#FF5C5C",
     ended: "#FFD93D",
   },
+  /**
+   * Card fills. Each status hue at 32% over ground, precomputed so nothing blends at runtime.
+   * The SATURATED four above mean status and nothing else; a card may never wear one, or a
+   * pastel list would start competing with the hero for the same glance (DG §4).
+   */
+  tint: {
+    clear: "#D8F3C9",
+    upcoming: "#F8D5F1",
+    ended: "#F8ECBA",
+  },
 } as const;
 
 export type StatusFill = keyof typeof tokens.status;

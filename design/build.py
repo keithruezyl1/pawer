@@ -239,9 +239,6 @@ def main_dashboard():
              + meta + cards + foot + fade())
     write("Main.dc.html", page(inner, pad="0", gap=12))
 
-def dashboard_empty():
-    write("DashboardEmpty.dc.html", page(empty_dashboard_body(), pad="0", gap=STACK_GAP))
-
 def status_states():
     rows = []
     for label, fill, tag, disp, detail in [
@@ -487,6 +484,752 @@ def onboarding_all():
         + floater(sparkle(30, ACCENT), bottom=190, right=36, cls="drift", delay="1.4s")))
 
 
+def _tint(hex_, amount):
+    """A status hue laid over ground. Keeps the SATURATED four for status only, so a decorative
+    card fill can never be mistaken for a status."""
+    g = (245, 245, 245)
+    c = tuple(int(hex_[i:i + 2], 16) for i in (1, 3, 5))
+    return "#%02X%02X%02X" % tuple(round(gg * (1 - amount) + cc * amount) for gg, cc in zip(g, c))
+
+
+TINT_UPCOMING = _tint(UPCOMING, 0.32)
+TINT_CLEAR = _tint(CLEAR, 0.32)
+TINT_ENDED = _tint(ENDED, 0.32)
+CARD_TINTS = [TINT_UPCOMING, TINT_CLEAR, TINT_ENDED]
+
+# --- drawn icons; nothing from an icon library ------------------------------------------------
+def clock_icon(size=14, tone=None):
+    tone = tone or INK
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 16 16" fill="none" aria-hidden="true" '
+            f'style="flex-shrink: 0;"><circle cx="8" cy="8" r="6.4" stroke="{tone}" stroke-width="2"/>'
+            f'<path d="M8 4.4V8.2l2.6 1.9" stroke="{tone}" stroke-width="2" stroke-linecap="round"/></svg>')
+
+
+def pin_icon(size=14, tone=None):
+    tone = tone or INK
+    h = round(size * 15 / 12)
+    return (f'<svg width="{size}" height="{h}" viewBox="0 0 12 15" fill="none" aria-hidden="true" '
+            f'style="flex-shrink: 0;"><path d="M6 13.6S10.4 8.4 10.4 5.4A4.4 4.4 0 0 0 1.6 5.4C1.6 8.4 6 13.6 6 13.6Z" '
+            f'stroke="{tone}" stroke-width="2" stroke-linejoin="round"/>'
+            f'<circle cx="6" cy="5.3" r="1.5" fill="{tone}"/></svg>')
+
+
+def ext_icon(size=12, tone=None):
+    tone = tone or ACCENT
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 12 12" fill="none" aria-hidden="true" '
+            f'style="flex-shrink: 0;"><path d="M3 9L9 3M9 3H4.6M9 3v4.4" stroke="{tone}" stroke-width="2" '
+            f'stroke-linecap="square"/></svg>')
+
+
+def iconed(icon, text, text_style):
+    return ('<div style="display: flex; align-items: center; gap: 7px;">' + icon
+            + '<div style="' + text_style + '">' + text + '</div></div>')
+
+
+def placed(text, text_style, size=13):
+    """A geographical value never travels without its pin."""
+    return ('<div style="display: flex; align-items: center; gap: 6px;">' + pin_icon(size)
+            + '<div style="' + text_style + '">' + text + '</div></div>')
+
+
+def card_pattern():
+    """Neobrutalist hatch in the bottom-right corner, masked so it dissolves into the card."""
+    mask = "linear-gradient(to top left, #000 8%, transparent 70%)"
+    return ('<div style="position: absolute; right: 0; bottom: 0; width: 128px; height: 82px; '
+            'background-image: repeating-linear-gradient(45deg, rgba(33,36,49,0.22) 0 3px, transparent 3px 9px); '
+            f'-webkit-mask-image: {mask}; mask-image: {mask}; pointer-events: none;"></div>')
+
+
+def pin_chip(text):
+    return ('<div style="display: flex; align-items: center; gap: 5px; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; background: ' + GROUND + '; padding: 3px 9px 3px 7px;">'
+            + pin_icon(12) + '<div style="' + LABEL + '">' + text + '</div></div>')
+
+
+def upcoming_card(date, window, chips, fill, note=None, pattern=True):
+    head = '<div style="' + HEAD + ' margin-bottom: 6px;">' + date + '</div>'
+    when = iconed(clock_icon(15), window, BODY)
+    n = ('<div style="' + CAPTION + MUTED + ' margin-top: 6px;">' + note + '</div>') if note else ''
+    ch = ('<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; position: relative; z-index: 1;">'
+          + "".join(pin_chip(c) for c in chips) + '</div>')
+    return ('<div style="position: relative; overflow: hidden; background: ' + fill + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; padding: 16px; margin-bottom: 4px;">'
+            + (card_pattern() if pattern else '')
+            + '<div style="position: relative; z-index: 1;">' + head + when + n + '</div>' + ch + '</div>')
+
+
+def browse_button():
+    """Bottom right, a real button rather than a rule with a chevron."""
+    return ('<div style="display: flex; justify-content: flex-end; padding: 0 20px; margin-top: 20px;">'
+            '<div style="min-height: 48px; background: ' + GROUND + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; display: inline-flex; '
+            'align-items: center; gap: 9px; padding: 12px 18px;">'
+            '<div style="' + HEAD + ' font-size: 15px;">Browse all areas</div>' + CHEVRON + '</div></div>')
+
+
+def latest_advisory():
+    """Below upcoming. The link goes to visayanelectric.com — the only post URL the pipeline
+    stores (D-1 ingests the website, not Facebook)."""
+    link = ('<div style="display: flex; align-items: center; gap: 6px; min-height: 48px;">'
+            '<div style="' + HEAD + ' font-size: 15px; color: ' + ACCENT + '; text-decoration: underline; '
+            'text-underline-offset: 3px;">View</div>' + ext_icon(13) + '</div>')
+    body = ('<div style="position: relative; z-index: 1;">'
+            + iconed(clock_icon(15), "Posted Wed, Sep 3 at 4:12 PM", BODY)
+            + '<div style="' + BODY + ' margin-top: 8px;">Scheduled service interruption, September 5 to 11. '
+              'Nine barangays across Cebu City and Mandaue City.</div>'
+            + link + '</div>')
+    return ('<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 22px;">'
+            '<div style="' + LABEL + '">LATEST ADVISORY</div>'
+            '<div style="position: relative; overflow: hidden; background: ' + SURFACE2 + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; padding: 16px; margin-bottom: 4px;">'
+            + body + '</div></div>')
+
+
+def hero2(fill, tag, display, detail, area, stale=False):
+    """The status card is the one place a time carries no clock — the time IS the headline."""
+    inner = ('<div style="display: flex; flex-direction: column; gap: 8px;">'
+             '<div style="' + LABEL + '">' + tag + '</div>'
+             '<div style="' + DISPLAY + ' margin-top: 4px;">' + display + '</div>'
+             '<div style="' + HEAD + '">' + detail + '</div>'
+             + ('<div style="margin-top: 6px;">' + placed(area, LABEL, 14) + '</div>' if area else '')
+             + ('<div style="' + CAPTION + ' margin-top: 12px;">Data may be outdated</div>' if stale else '')
+             + '</div>')
+    return ('<div style="background: ' + fill + '; border: ' + ("2px dashed " + SLATE if stale else BORDER) + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; padding: 24px; min-height: 210px;'
+            + (' opacity: 0.85;' if stale else '') + '">' + inner + '</div>')
+
+
+def dashboard(name, fill, tag, display, detail, area, cards, meta_left="Checked 4 min ago",
+              meta_right="2 scheduled", stale=False):
+    meta = ('<div style="display: flex; justify-content: space-between; align-items: center; padding: 0 20px;">'
+            + iconed(clock_icon(12, SLATE), meta_left, CAPTION + MUTED)
+            + '<div style="' + CAPTION + MUTED + '">' + meta_right + '</div></div>')
+    body = ('<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px;">'
+            '<div style="' + LABEL + ' margin-top: 4px;">UPCOMING</div>' + cards + '</div>')
+    inner = ('<div style="height: ' + str(STATUS_GAP) + 'px;"></div>' + app_header()
+             + '<div style="padding: 0 20px;">' + hero2(fill, tag, display, detail, area, stale) + '</div>'
+             + meta + body + latest_advisory() + browse_button() + fade())
+    write(name, page(inner, pad="0", gap=12))
+
+
+def nothing_block(text):
+    return ('<div style="background: ' + TINT_CLEAR + '; border: ' + BORDER + '; border-radius: ' + RADIUS + '; '
+            'box-shadow: ' + SHADOW + '; padding: 16px; margin-bottom: 4px;">'
+            '<div style="' + BODY + '">' + text + '</div></div>')
+
+
+def all_dashboards():
+    two = (upcoming_card("Tomorrow", "9:00 AM – 3:00 PM · 6h", ["Apas", "Lahug"], CARD_TINTS[0])
+           + upcoming_card("Sat, Sep 12", "8:00 AM – 5:00 PM · 9h", ["Mabolo"], CARD_TINTS[1]))
+    one = upcoming_card("Sat, Sep 12", "8:00 AM – 5:00 PM · 9h", ["Mabolo"], CARD_TINTS[1])
+
+    dashboard("DashClear.dc.html", CLEAR, "TODAY", "No outage today",
+              "Nothing scheduled for your areas", "",
+              nothing_block("Nothing else scheduled this week."), meta_right="0 scheduled")
+    dashboard("DashUpcoming.dc.html", UPCOMING, "SCHEDULED · TODAY", "Outage in 3h 20m",
+              "9:00 AM – 3:00 PM · 6h", "Part of Lahug", two)
+    dashboard("Main.dc.html", ONGOING, "SCHEDULED · NOW", "Outage in progress",
+              "Expected back 3:00 PM · 2h 10m left", "Part of Lahug", two)
+    dashboard("DashEnded.dc.html", ENDED, "TODAY", "Power should be back",
+              "Outage ended 3:00 PM", "Part of Lahug", one, meta_right="1 scheduled")
+    dashboard("DashStale.dc.html", UPCOMING, "SCHEDULED · TODAY", "Outage in 3h 20m",
+              "9:00 AM – 3:00 PM · 6h", "Part of Lahug", two,
+              meta_left="Last checked Tue, 9:04 PM",
+              meta_right="Couldn&#39;t check. Showing saved data.", stale=True)
+
+
+def dashboard_empty():
+    """No areas yet. No upcoming, no advisory section, but the browse button still belongs."""
+    inner = ('<div style="height: ' + str(STATUS_GAP) + 'px;"></div>' + app_header()
+             + '<div style="padding: 0 20px;">' + empty_card() + '</div>'
+             + latest_advisory() + browse_button())
+    write("DashboardEmpty.dc.html", page(inner, pad="0", gap=STACK_GAP))
+
+
+def search_field(placeholder, typed=False):
+    txt = (BODY if typed else BODY + MUTED)
+    return ('<div style="min-height: 48px; background: ' + GROUND + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; padding: 12px 16px; display: flex; align-items: center; '
+            'box-sizing: border-box;"><div style="' + txt + '">' + placeholder + '</div>'
+            + ('<div style="width: 2px; height: 20px; background: ' + ACCENT + '; margin-left: 2px;"></div>' if typed else '')
+            + '</div>')
+
+
+def picker_search():
+    def brgy(nm, checked=False, dimmed=False, note=None):
+        n = ('<div style="' + CAPTION + MUTED + '">' + note + '</div>') if note else ''
+        return ('<div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 0;'
+                + (' opacity: 0.55;' if dimmed else '') + '">' + checkbox(checked, dimmed)
+                + '<div style="' + BODY + '">' + nm + '</div>' + n + '</div>')
+
+    def group(nm):
+        return ('<div style="display: flex; justify-content: space-between; align-items: center; min-height: 48px; '
+                'border-bottom: ' + BORDER + '; margin-top: 8px;">'
+                '<div style="' + HEAD + '">' + nm + '</div></div>')
+
+    chips = ('<div style="display: flex; flex-wrap: wrap; gap: 8px;">'
+             + removable_chip("Basak, Cebu City") + removable_chip("Basak, Mandaue City") + '</div>')
+    # A search hides the +/- toggles and flattens every LGU that still has a match.
+    listing = ('<div style="position: relative; flex-grow: 1; overflow: hidden;">'
+               '<div style="display: flex; flex-direction: column;">'
+               + group("Cebu City") + brgy("Basak, Cebu City", checked=True) + brgy("Basak Pardo")
+               + group("Mandaue City") + brgy("Basak, Mandaue City", checked=True)
+               + group("Talisay City") + brgy("Basak, Talisay City")
+               + '</div>' + fade(64) + '</div>')
+    inner = ('<div style="' + TITLE + ' margin-top: 8px;">Add areas</div>'
+             + search_field("Basak", typed=True)
+             + '<div style="' + CAPTION + MUTED + '">Four barangays share this name, so each one shows its city.</div>'
+             + chips
+             + '<div style="' + CAPTION + MUTED + '">You&#39;ll get alerts for 5 areas, which may be frequent.</div>'
+             + listing
+             + '<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0 16px 0;">'
+             + button("Add 2", primary=True) + button("Cancel", ghost=True) + '</div>')
+    write("PickerSearch.dc.html", page(inner))
+
+
+def all_areas_no_match():
+    head = ('<div style="display: flex; justify-content: space-between; align-items: center;">'
+            '<div style="' + TITLE + '">All areas</div>' + button("Back", ghost=True) + '</div>')
+    inner = (head + search_field("Talamban", typed=True)
+             + '<div style="' + CAPTION + MUTED + '">0 scheduled. Viewing here doesn&#39;t add alerts.</div>'
+             + '<div style="' + BODY + MUTED + ' margin-top: 24px;">No scheduled outages match.</div>')
+    write("AllAreasNoMatch.dc.html", page(inner))
+
+
+def detail_variants():
+    def shell(title, extra):
+        return ('<div style="display: flex; justify-content: space-between; align-items: center;">'
+                '<div style="' + TITLE + '">' + title + '</div>' + button("Back", ghost=True) + '</div>') + extra
+
+    quote = ('<div style="border-left: 3px solid ' + ACCENT + '; padding-left: 16px; display: flex; '
+             'flex-direction: column; gap: 4px;">'
+             '<div style="' + CAPTION + MUTED + '">Areas affected</div>'
+             '<div style="' + BODY + '">Portion of Brgy. Apas and Brgy. Lahug, Cebu City along Salinas Drive, '
+             'Nasipit and nearby areas</div>'
+             '<div style="' + CAPTION + MUTED + ' margin-top: 8px;">Purpose</div>'
+             '<div style="' + BODY + '">Replacement of deteriorated poles and re-stringing of primary lines</div></div>')
+
+    # fully parsed — no notice block at all
+    write("DetailClean.dc.html", page(shell("Tomorrow",
+        '<div style="' + HEAD + '">9:00 AM – 3:00 PM · 6h</div>'
+        '<div style="display: flex; flex-wrap: wrap; gap: 8px;">' + chip("Apas") + chip("Lahug") + '</div>'
+        + '<div style="' + LABEL + ' margin-top: 16px;">FROM VISAYAN ELECTRIC</div>' + quote
+        + '<div style="' + CAPTION + MUTED + '">Quoted as published. Outages often affect only part of a barangay.</div>'
+        + '<div style="margin-top: 16px;">' + button("View original post") + '</div>')))
+
+    # the time could not be read at all
+    write("DetailFailed.dc.html", page(shell("Advisory",
+        '<div style="display: flex; flex-wrap: wrap; gap: 8px;">' + chip("Poblacion, Liloan") + '</div>'
+        + block('<div style="' + BODY + '">PAWER couldn&#39;t read the time on this advisory. The original is '
+                'linked below.</div>', fill=NOTICE, pad=16, shadow=None)
+        + '<div style="' + LABEL + ' margin-top: 16px;">FROM VISAYAN ELECTRIC</div>'
+        + '<div style="border-left: 3px solid ' + ACCENT + '; padding-left: 16px; display: flex; '
+          'flex-direction: column; gap: 4px;">'
+          '<div style="' + CAPTION + MUTED + '">Areas affected</div>'
+          '<div style="' + BODY + '">Portion of Brgy. Poblacion, Liloan and nearby areas</div>'
+          '<div style="' + CAPTION + MUTED + ' margin-top: 8px;">Purpose</div>'
+          '<div style="' + BODY + '">Upgrading of distribution transformer</div></div>'
+        + '<div style="' + CAPTION + MUTED + '">Quoted as published. Outages often affect only part of a barangay.</div>'
+        + '<div style="margin-top: 16px;">' + button("View original post") + '</div>')))
+
+    # the advisory has aged out of the saved data
+    write("DetailNotFound.dc.html", page(shell("Not found",
+        '<div style="' + BODY + MUTED + '">This advisory is no longer in the saved data.</div>'
+        + '<div style="margin-top: 16px;">' + button("Back") + '</div>')))
+
+
+def settings_empty():
+    head = ('<div style="display: flex; justify-content: space-between; align-items: center;">'
+            '<div style="' + TITLE + '">Settings</div>' + button("Done", ghost=True) + '</div>')
+
+    def alert_row(nm, hint, on=True):
+        return ('<div style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; '
+                'border-bottom: 2px solid ' + SURFACE2 + '; padding: 8px 0; gap: 12px;">'
+                '<div style="flex-grow: 1; display: flex; flex-direction: column;">'
+                '<div style="' + BODY + '">' + nm + '</div>'
+                '<div style="' + CAPTION + MUTED + '">' + hint + '</div></div>' + toggle(on) + '</div>')
+
+    inner = (head
+             + '<div style="' + LABEL + '">MY AREAS</div>'
+             + '<div style="' + BODY + MUTED + '">None yet.</div>'
+             + button("Add area", primary=True)
+             + '<div style="' + LABEL + ' margin-top: 20px;">ALERTS</div>'
+             + alert_row("New advisory", "A new outage is scheduled")
+             + alert_row("Evening before", "Around 8:00 PM")
+             + alert_row("An hour before", "Give or take a few minutes", on=False)
+             + alert_row("Expected restoration", "When the window ends")
+             + alert_row("Sounds", "Respects silent mode")
+             + '<div style="' + LABEL + ' margin-top: 20px;">DATA</div>'
+             + '<div style="' + BODY + '">Not checked yet</div>' + button("Refresh now") + fade())
+    write("SettingsEmpty.dc.html", page(inner))
+
+
+# ================================================================ the rest of the icon set
+# All drawn here, none from a library. One 16x16 grid, 2px stroke, so they sit together.
+def _svg(paths, size=15, tone=None, box=16):
+    tone = tone or INK
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 {box} {box}" fill="none" aria-hidden="true" '
+            f'style="flex-shrink: 0;">{paths.replace("@", tone)}</svg>')
+
+
+def magnifier(size=15, tone=None):
+    return _svg('<circle cx="6.6" cy="6.6" r="4.6" stroke="@" stroke-width="2"/>'
+                '<path d="M10.3 10.3L14.2 14.2" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def warn(size=15, tone=None):
+    return _svg('<path d="M8 2.1L14.6 13.6H1.4L8 2.1Z" stroke="@" stroke-width="2" stroke-linejoin="round"/>'
+                '<path d="M8 6.4v3.0" stroke="@" stroke-width="2" stroke-linecap="round"/>'
+                '<circle cx="8" cy="11.5" r="1" fill="@"/>', size, tone)
+
+
+def bell(size=15, tone=None):
+    return _svg('<path d="M4.2 10.9V7.5a3.8 3.8 0 0 1 7.6 0v3.4" stroke="@" stroke-width="2" stroke-linejoin="round"/>'
+                '<path d="M2.7 10.9h10.6" stroke="@" stroke-width="2" stroke-linecap="round"/>'
+                '<path d="M6.5 13.1a1.7 1.7 0 0 0 3 0" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def moon(size=15, tone=None):
+    return _svg('<path d="M12.9 10.1A5.5 5.5 0 0 1 6.4 3.2 5.7 5.7 0 1 0 12.9 10.1Z" stroke="@" '
+                'stroke-width="2" stroke-linejoin="round"/>', size, tone)
+
+
+def bolt(size=15, tone=None):
+    return _svg('<path d="M9.4 1.7L3.5 9.1h3.4l-.5 5.3 5.9-7.7H8.8l.6-5Z" stroke="@" stroke-width="2" '
+                'stroke-linejoin="round"/>', size, tone)
+
+
+def speaker(size=15, tone=None):
+    return _svg('<path d="M8.2 2.7L4.7 5.8H2.1v4.4h2.6l3.5 3.1V2.7Z" stroke="@" stroke-width="2" stroke-linejoin="round"/>'
+                '<path d="M10.9 5.7a3.5 3.5 0 0 1 0 4.6" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def refresh(size=15, tone=None):
+    return _svg('<path d="M13.3 8.2A5.3 5.3 0 1 1 11.3 4" stroke="@" stroke-width="2" stroke-linecap="round"/>'
+                '<path d="M13.6 2.3v3.5H10.1" stroke="@" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>', size, tone)
+
+
+def info(size=15, tone=None):
+    return _svg('<circle cx="8" cy="8" r="6.2" stroke="@" stroke-width="2"/>'
+                '<path d="M8 7.3v4.1" stroke="@" stroke-width="2" stroke-linecap="round"/>'
+                '<circle cx="8" cy="4.8" r="1" fill="@"/>', size, tone)
+
+
+def doc_icon(size=15, tone=None):
+    return _svg('<path d="M3.8 2.4h8.4v11.2H3.8V2.4Z" stroke="@" stroke-width="2" stroke-linejoin="round"/>'
+                '<path d="M6.1 6h3.8M6.1 9.2h3.8" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def plus(size=15, tone=None):
+    return _svg('<path d="M8 2.8v10.4M2.8 8h10.4" stroke="@" stroke-width="2.4" stroke-linecap="round"/>', size, tone)
+
+
+def chev(direction="right", size=14, tone=None):
+    deg = {"right": 0, "down": 90, "left": 180, "up": 270}[direction]
+    return (f'<span style="display: inline-flex; transform: rotate({deg}deg); flex-shrink: 0;">'
+            + _svg('<path d="M6 3l5 5-5 5" stroke="@" stroke-width="2.5" stroke-linecap="square"/>', size, tone)
+            + '</span>')
+
+
+def check_badge(size=15, tone=None):
+    return _svg('<circle cx="8" cy="8" r="6.2" stroke="@" stroke-width="2"/>'
+                '<path d="M5.1 8.3l2.1 2.1 3.8-4.4" stroke="@" stroke-width="2" stroke-linecap="round" '
+                'stroke-linejoin="round"/>', size, tone)
+
+
+def pin_filled(size=14, tone=None):
+    tone = tone or INK
+    h = round(size * 15 / 12)
+    return (f'<svg width="{size}" height="{h}" viewBox="0 0 12 15" fill="none" aria-hidden="true" '
+            f'style="flex-shrink: 0;"><path d="M6 13.6S10.4 8.4 10.4 5.4A4.4 4.4 0 0 0 1.6 5.4C1.6 8.4 6 13.6 6 13.6Z" '
+            f'fill="{tone}" stroke="{tone}" stroke-width="2" stroke-linejoin="round"/>'
+            f'<circle cx="6" cy="5.3" r="1.5" fill="{GROUND}"/></svg>')
+
+
+def back_btn():
+    """A bare chevron. On a phone the word 'Back' earns nothing the arrow does not."""
+    return ('<div style="width: 48px; height: 48px; display: flex; align-items: center; '
+            'justify-content: flex-end;">' + chev("left", 17) + '</div>')
+
+
+def icon_button(label, icon, primary=False):
+    fill = ACCENT if primary else GROUND
+    return ('<div style="min-height: 48px; background: ' + fill + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; display: flex; align-items: center; '
+            'justify-content: center; gap: 9px; padding: 12px 24px;">' + icon
+            + '<div style="' + HEAD + ' text-align: center;">' + label + '</div></div>')
+
+
+def section_label(text, icon):
+    return ('<div style="display: flex; align-items: center; gap: 7px;">' + icon
+            + '<div style="' + LABEL + '">' + text + '</div></div>')
+
+
+def notice_row(icon, text, sub=None):
+    s = ('<div style="' + CAPTION + MUTED + ' margin-top: 6px;">' + sub + '</div>') if sub else ''
+    return ('<div style="display: flex; gap: 10px; align-items: flex-start;">' + icon
+            + '<div><div style="' + BODY + '">' + text + '</div>' + s + '</div></div>')
+
+
+def field(placeholder, typed=False):
+    txt = BODY if typed else BODY + MUTED
+    return ('<div style="min-height: 48px; background: ' + GROUND + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; padding: 12px 16px; display: flex; align-items: center; gap: 10px; '
+            'box-sizing: border-box;">' + magnifier(16, SLATE) + '<div style="' + txt + '">' + placeholder + '</div>'
+            + ('<div style="width: 2px; height: 20px; background: ' + ACCENT + ';"></div>' if typed else '')
+            + '</div>')
+
+
+# ---- stale hero and card notes now carry the warning mark ------------------------------------
+def hero2(fill, tag, display, detail, area, stale=False):
+    inner = ('<div style="display: flex; flex-direction: column; gap: 8px;">'
+             '<div style="' + LABEL + '">' + tag + '</div>'
+             '<div style="' + DISPLAY + ' margin-top: 4px;">' + display + '</div>'
+             '<div style="' + HEAD + '">' + detail + '</div>'
+             + ('<div style="margin-top: 6px;">' + placed(area, LABEL, 14) + '</div>' if area else '')
+             + ('<div style="margin-top: 12px;">' + iconed(warn(13), "Data may be outdated", CAPTION) + '</div>'
+                if stale else '')
+             + '</div>')
+    return ('<div style="background: ' + fill + '; border: ' + ("2px dashed " + SLATE if stale else BORDER) + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; padding: 24px; min-height: 210px;'
+            + (' opacity: 0.85;' if stale else '') + '">' + inner + '</div>')
+
+
+def upcoming_card(date, window, chips, fill, note=None, pattern=True, following=False, no_time=False):
+    head = ('<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">'
+            '<div style="' + HEAD + '">' + date + '</div>'
+            + (pin_filled(13) if following else '') + '</div>')
+    when = ('' if no_time else iconed(clock_icon(15), window, BODY))
+    n = ('<div style="margin-top: 8px;">' + iconed(warn(13, SLATE), note, CAPTION + MUTED) + '</div>') if note else ''
+    ch = ('<div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; position: relative; z-index: 1;">'
+          + "".join(pin_chip(c) for c in chips) + '</div>')
+    lead = ('<div style="' + BODY + MUTED + '">' + window + '</div>') if no_time else when
+    return ('<div style="position: relative; overflow: hidden; background: ' + fill + '; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; box-shadow: ' + SHADOW + '; padding: 16px; margin-bottom: 4px;">'
+            + (card_pattern() if pattern else '')
+            + '<div style="position: relative; z-index: 1;">' + head + lead + n + '</div>' + ch + '</div>')
+
+
+# ---- the four screens, re-cut with the icon language --------------------------------------
+def picker():
+    def brgy(nm, checked=False, dimmed=False, added=False):
+        badge = ('<div style="margin-left: auto;">' + check_badge(15, SLATE) + '</div>') if added else ''
+        return ('<div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 0;'
+                + (' opacity: 0.55;' if dimmed else '') + '">' + checkbox(checked, dimmed)
+                + '<div style="' + BODY + '">' + nm + '</div>' + badge + '</div>')
+
+    def group(nm, open_=False):
+        return ('<div style="display: flex; justify-content: space-between; align-items: center; min-height: 48px; '
+                'border-bottom: ' + BORDER + '; margin-top: 8px;">'
+                '<div style="' + HEAD + '">' + nm + '</div>' + chev("up" if open_ else "down", 14) + '</div>')
+
+    listing = ('<div style="position: relative; flex-grow: 1; overflow: hidden;">'
+               '<div style="display: flex; flex-direction: column;">'
+               + group("Cebu City", True) + brgy("Apas", checked=True)
+               + brgy("Lahug", checked=True, dimmed=True, added=True) + brgy("Mabolo") + brgy("Basak, Cebu City")
+               + group("Mandaue City") + group("Talisay City") + group("Naga") + '</div>' + fade(64) + '</div>')
+    inner = ('<div style="' + TITLE + ' margin-top: 8px;">Add areas</div>' + field("Search 232 barangays")
+             + '<div style="' + CAPTION + MUTED + '">Your barangay is on your Visayan Electric bill.</div>'
+             + '<div style="display: flex; flex-wrap: wrap; gap: 8px;">'
+             + removable_chip("Apas") + removable_chip("Basak, Mandaue City") + '</div>'
+             + listing
+             + '<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0 16px 0;">'
+             + icon_button("Add 2", plus(15), primary=True) + button("Cancel", ghost=True) + '</div>')
+    write("Picker.dc.html", page(inner))
+
+
+def picker_search():
+    def brgy(nm, checked=False):
+        return ('<div style="display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 4px 0;">'
+                + checkbox(checked) + '<div style="' + BODY + '">' + nm + '</div></div>')
+
+    def group(nm):
+        return ('<div style="display: flex; align-items: center; min-height: 48px; border-bottom: ' + BORDER + '; '
+                'margin-top: 8px;"><div style="' + HEAD + '">' + nm + '</div></div>')
+
+    listing = ('<div style="position: relative; flex-grow: 1; overflow: hidden;">'
+               '<div style="display: flex; flex-direction: column;">'
+               + group("Cebu City") + brgy("Basak, Cebu City", True) + brgy("Basak Pardo")
+               + group("Mandaue City") + brgy("Basak, Mandaue City", True)
+               + group("Talisay City") + brgy("Basak, Talisay City")
+               + '</div>' + fade(64) + '</div>')
+    inner = ('<div style="' + TITLE + ' margin-top: 8px;">Add areas</div>' + field("Basak", typed=True)
+             + '<div style="' + CAPTION + MUTED + '">Four barangays share this name, so each one shows its city.</div>'
+             + '<div style="display: flex; flex-wrap: wrap; gap: 8px;">'
+             + removable_chip("Basak, Cebu City") + removable_chip("Basak, Mandaue City") + '</div>'
+             + '<div style="margin-top: 2px;">' + iconed(warn(13, SLATE),
+               "You&#39;ll get alerts for 5 areas, which may be frequent.", CAPTION + MUTED) + '</div>'
+             + listing
+             + '<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0 16px 0;">'
+             + icon_button("Add 2", plus(15), primary=True) + button("Cancel", ghost=True) + '</div>')
+    write("PickerSearch.dc.html", page(inner))
+
+
+def screen_head(title):
+    return ('<div style="display: flex; justify-content: space-between; align-items: center;">'
+            '<div style="' + TITLE + '">' + title + '</div>' + back_btn() + '</div>')
+
+
+def all_areas():
+    cards = (upcoming_card("Tomorrow", "9:00 AM – 3:00 PM · 6h", ["Apas, Cebu City", "Lahug, Cebu City"],
+                           CARD_TINTS[0], following=True)
+             + upcoming_card("Fri, Sep 11", "8:00 AM – 12:00 PM · 4h",
+                             ["Basak, Mandaue City", "Tipolo, Mandaue City"], CARD_TINTS[1])
+             + upcoming_card("Sat, Sep 12", "8:00 AM – 5:00 PM · 9h", ["Colon, Naga", "Tinaan, Naga"],
+                             CARD_TINTS[2], note="Some areas couldn&#39;t be matched")
+             + upcoming_card("Advisory", "Couldn&#39;t read this one. Tap to view the original.",
+                             ["Poblacion, Liloan"], NOTICE, pattern=False, no_time=True))
+    inner = (screen_head("All areas") + field("Search by barangay")
+             + '<div style="' + CAPTION + MUTED + '">14 scheduled. Viewing here doesn&#39;t add alerts.</div>'
+             + cards + fade())
+    write("AllAreas.dc.html", page(inner))
+
+
+def all_areas_no_match():
+    inner = (screen_head("All areas") + field("Talamban", typed=True)
+             + '<div style="' + CAPTION + MUTED + '">0 scheduled. Viewing here doesn&#39;t add alerts.</div>'
+             + '<div style="margin-top: 24px;">' + iconed(magnifier(16, SLATE), "No scheduled outages match.",
+                                                          BODY + MUTED) + '</div>')
+    write("AllAreasNoMatch.dc.html", page(inner))
+
+
+def _quote(areas, purpose):
+    return ('<div style="border-left: 3px solid ' + ACCENT + '; padding-left: 16px; display: flex; '
+            'flex-direction: column; gap: 6px;">'
+            + iconed(pin_icon(13, SLATE), "Areas affected", CAPTION + MUTED)
+            + '<div style="' + BODY + '">' + areas + '</div>'
+            + '<div style="margin-top: 8px;">' + iconed(doc_icon(13, SLATE), "Purpose", CAPTION + MUTED) + '</div>'
+            + '<div style="' + BODY + '">' + purpose + '</div></div>')
+
+
+def _detail(name, title, when, chips, notice, areas, purpose):
+    inner = (screen_head(title)
+             + (('<div style="margin-top: 2px;">' + iconed(clock_icon(16), when, HEAD) + '</div>') if when else '')
+             + '<div style="display: flex; flex-wrap: wrap; gap: 8px;">' + "".join(pin_chip(c) for c in chips) + '</div>'
+             + (notice or '')
+             + '<div style="' + LABEL + ' margin-top: 16px;">FROM VISAYAN ELECTRIC</div>' + _quote(areas, purpose)
+             + '<div style="' + CAPTION + MUTED + '">Quoted as published. Outages often affect only part of a '
+               'barangay.</div>'
+             + '<div style="margin-top: 16px;">' + icon_button("View original post", ext_icon(14, INK)) + '</div>')
+    write(name, page(inner))
+
+
+def detail():
+    notice = ('<div style="background: ' + NOTICE + '; border: ' + BORDER + '; border-radius: ' + RADIUS + '; '
+              'padding: 16px;">' + notice_row(warn(16), "Some area names couldn&#39;t be matched. The original is "
+              "linked below.", "Couldn&#39;t match Sitio Kalubihan or Villa Aurora Subd.") + '</div>')
+    _detail("Detail.dc.html", "Tomorrow", "9:00 AM – 3:00 PM · 6h", ["Apas", "Lahug"], notice,
+            "Portion of Brgy. Apas and Brgy. Lahug, Cebu City along Salinas Drive, Nasipit, Sitio Kalubihan, "
+            "Villa Aurora Subd. and nearby areas",
+            "Replacement of deteriorated poles and re-stringing of primary lines")
+
+
+def detail_variants():
+    _detail("DetailClean.dc.html", "Tomorrow", "9:00 AM – 3:00 PM · 6h", ["Apas", "Lahug"], None,
+            "Portion of Brgy. Apas and Brgy. Lahug, Cebu City along Salinas Drive, Nasipit and nearby areas",
+            "Replacement of deteriorated poles and re-stringing of primary lines")
+
+    notice = ('<div style="background: ' + NOTICE + '; border: ' + BORDER + '; border-radius: ' + RADIUS + '; '
+              'padding: 16px;">' + notice_row(warn(16), "PAWER couldn&#39;t read the time on this advisory. The "
+              "original is linked below.") + '</div>')
+    _detail("DetailFailed.dc.html", "Advisory", None, ["Poblacion, Liloan"], notice,
+            "Portion of Brgy. Poblacion, Liloan and nearby areas", "Upgrading of distribution transformer")
+
+    inner = (screen_head("Not found")
+             + '<div style="margin-top: 8px;">' + notice_row(warn(16, SLATE),
+               "This advisory is no longer in the saved data.") + '</div>')
+    write("DetailNotFound.dc.html", page(inner))
+
+
+def _settings(name, areas_html, data_line, about=None):
+    def alert_row(icon, nm, hint, on=True):
+        return ('<div style="display: flex; align-items: center; justify-content: space-between; min-height: 52px; '
+                'border-bottom: 2px solid ' + SURFACE2 + '; padding: 8px 0; gap: 12px;">'
+                '<div style="flex-shrink: 0;">' + icon + '</div>'
+                '<div style="flex-grow: 1; display: flex; flex-direction: column;">'
+                '<div style="' + BODY + '">' + nm + '</div>'
+                '<div style="' + CAPTION + MUTED + '">' + hint + '</div></div>' + toggle(on) + '</div>')
+
+    inner = ('<div style="display: flex; justify-content: space-between; align-items: center;">'
+             '<div style="' + TITLE + '">Settings</div>' + button("Done", ghost=True) + '</div>'
+             + section_label("MY AREAS", pin_icon(13)) + areas_html
+             + icon_button("Add area", plus(15), primary=True)
+             + '<div style="margin-top: 20px;">' + section_label("ALERTS", bell(13)) + '</div>'
+             + alert_row(bell(16), "New advisory", "A new outage is scheduled")
+             + alert_row(moon(16), "Evening before", "Around 8:00 PM")
+             + alert_row(clock_icon(16), "An hour before", "Give or take a few minutes", on=False)
+             + alert_row(bolt(16), "Expected restoration", "When the window ends")
+             + alert_row(speaker(16), "Sounds", "Respects silent mode")
+             + '<div style="margin-top: 20px;">' + section_label("DATA", refresh(13)) + '</div>'
+             + iconed(clock_icon(15), data_line, BODY)
+             + icon_button("Refresh now", refresh(15))
+             + (('<div style="margin-top: 20px;">' + section_label("ABOUT", info(13)) + '</div>'
+                 + '<div style="' + BODY + MUTED + '">' + about + '</div>') if about else '')
+             + fade())
+    write(name, page(inner))
+
+
+def settings():
+    chips = ('<div style="display: flex; flex-wrap: wrap; gap: 8px;">'
+             + removable_chip("Lahug") + removable_chip("Mabolo") + '</div>')
+    _settings("Settings.dc.html", chips, "Last checked 9:04 PM",
+              about="PAWER reads Visayan Electric&#39;s public advisories. It isn&#39;t made by them and isn&#39;t "
+                    "affiliated with them. It covers scheduled outages only, and shows the published schedule rather "
+                    "than the real state of the grid.")
+
+
+def settings_empty():
+    _settings("SettingsEmpty.dc.html", '<div style="' + BODY + MUTED + '">None yet.</div>', "Not checked yet")
+
+
+# ================================================================ empty, loading, error
+def bolt_off(size=15, tone=None):
+    return _svg('<path d="M9.4 1.7L3.5 9.1h3.4l-.5 5.3 5.9-7.7H8.8l.6-5Z" stroke="@" stroke-width="2" '
+                'stroke-linejoin="round"/>'
+                '<path d="M1.8 1.8l12.4 12.4" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def cloud_off(size=15, tone=None):
+    return _svg('<path d="M4.4 12.2h6.6a3 3 0 0 0 .3-6 4 4 0 0 0-7.3-1.2 3.1 3.1 0 0 0 .4 7.2Z" stroke="@" '
+                'stroke-width="2" stroke-linejoin="round"/>'
+                '<path d="M1.8 1.8l12.4 12.4" stroke="@" stroke-width="2" stroke-linecap="round"/>', size, tone)
+
+
+def clear_mark(size=58):
+    """Good news needs a mark that says so. A green disc alone is decoration; the tick is the message."""
+    return (f'<svg width="{size}" height="{size}" viewBox="0 0 58 58" fill="none" aria-hidden="true">'
+            f'<circle cx="29" cy="29" r="26.5" fill="{CLEAR}" stroke="{INK}" stroke-width="2.5"/>'
+            f'<path d="M17.5 30.5l7.8 7.8L41 20.5" stroke="{INK}" stroke-width="3.6" stroke-linecap="round" '
+            f'stroke-linejoin="round"/></svg>')
+
+
+def bar(width, h=14, fill=SURFACE2):
+    return f'<div style="width: {width}; height: {h}px; background: {fill}; border-radius: 3px;"></div>'
+
+
+def code_chip(code):
+    """Neutral surface, never a status colour — a status hue here would read as an outage."""
+    return ('<div style="display: inline-flex; align-items: center; border: ' + BORDER + '; '
+            'border-radius: ' + RADIUS + '; background: ' + SURFACE2 + '; padding: 5px 11px;">'
+            '<div style="' + LABEL + ' letter-spacing: 0.10em;">' + code + '</div></div>')
+
+
+def state_screen(name, mark, display, body, primary, secondary=None, code=None, foot=None, shapes=""):
+    """One shape for every dead end: a mark, a plain sentence, and exactly one obvious way out."""
+    head = ('<div style="display: flex; align-items: center; gap: 12px;">' + mark
+            + (('<div style="margin-left: auto;">' + code_chip(code) + '</div>') if code else '') + '</div>')
+    inner = (shapes
+             + '<div style="position: relative; z-index: 1; flex-grow: 1; display: flex; flex-direction: column; '
+               'justify-content: center; gap: 16px;">'
+             + head
+             + '<div style="' + DISPLAY + ' font-size: 34px; line-height: 36px;">' + display + '</div>'
+             + '<div style="' + BODY + '">' + body + '</div>'
+             + (('<div style="' + CAPTION + MUTED + '">' + foot + '</div>') if foot else '')
+             + '</div>'
+             + '<div style="position: relative; z-index: 1; display: flex; flex-direction: column; gap: 12px; '
+               'margin-bottom: 28px;">' + primary + (secondary or '') + '</div>')
+    write(name, page(inner, gap=0))
+
+
+def error_screens():
+    state_screen("ErrOffline.dc.html", cloud_off(30), "No connection",
+                 "PAWER needs the internet to fetch new advisories. Everything already saved is still here.",
+                 icon_button("Try again", refresh(15), primary=True),
+                 button("Use saved data", ghost=True),
+                 shapes=floater(burst(84, ENDED), top=60, right=-22, cls="turn")
+                        + floater(disc(28, UPCOMING), top=200, left=-10, cls="bob", delay="0.6s"))
+
+    state_screen("ErrFeed.dc.html", warn(30), "Can&#39;t reach the schedule",
+                 "PAWER&#39;s data feed did not answer. This one is on our side, not yours.",
+                 icon_button("Try again", refresh(15), primary=True),
+                 button("Use saved data", ghost=True),
+                 code="503",
+                 shapes=floater(squiggle(80, 28, INK), bottom=290, left=-14, cls="bob"))
+
+    state_screen("ErrUpdate.dc.html", bolt(30), "Time for an update",
+                 "VECO&#39;s advisories now use a newer format than this copy of PAWER can read.",
+                 icon_button("Get the update", ext_icon(15, INK), primary=True),
+                 button("Not now", ghost=True),
+                 foot="Your saved schedule still works, but new advisories will not appear until you update.",
+                 shapes=floater(burst(92, CLEAR), top=48, left=-30, cls="turn")
+                        + floater(sparkle(34, ACCENT), bottom=260, right=-8, cls="drift", delay="0.5s"))
+
+    state_screen("ErrUnknown.dc.html", bolt_off(30), "Something broke",
+                 "PAWER hit an error it did not expect.",
+                 icon_button("Restart PAWER", refresh(15), primary=True),
+                 code="500",
+                 shapes=floater(disc(70, ONGOING), bottom=230, right=-26, cls="drift"))
+
+
+def picker_no_match():
+    empty = ('<div style="position: relative; flex-grow: 1; display: flex; flex-direction: column; '
+             'align-items: center; justify-content: center; gap: 12px; padding: 0 20px;">'
+             + magnifier(34, SLATE)
+             + '<div style="' + HEAD + ' text-align: center;">No barangay matches that</div>'
+             + '<div style="' + BODY + MUTED + ' text-align: center;">Try fewer letters, or check the spelling '
+               'against your VECO bill.</div></div>')
+    inner = ('<div style="' + TITLE + ' margin-top: 8px;">Add areas</div>' + field("Talambn", typed=True)
+             + '<div style="' + CAPTION + MUTED + '">Searching all 232 barangays.</div>'
+             + empty
+             + '<div style="display: flex; flex-direction: column; gap: 8px; padding: 12px 0 16px 0;">'
+             + button("Add", primary=True, state="disabled") + button("Cancel", ghost=True) + '</div>')
+    write("PickerNoMatch.dc.html", page(inner))
+
+
+def all_areas_empty():
+    empty = ('<div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; '
+             'justify-content: center; gap: 14px;">' + clear_mark(58)
+             + '<div style="' + HEAD + ' text-align: center;">Nothing scheduled right now</div>'
+             + '<div style="' + BODY + MUTED + ' text-align: center;">Visayan Electric has not published any '
+               'interruptions for the coming week.</div></div>')
+    inner = (screen_head("All areas") + field("Search by barangay")
+             + '<div style="' + CAPTION + MUTED + '">0 scheduled across the franchise.</div>' + empty)
+    write("AllAreasEmpty.dc.html", page(inner))
+
+
+# ---- skeletons. No shimmer: DG 11 forbids it, and a pulse is a loop. -------------------------
+def skel_block(height, rows, fill=GROUND):
+    body = "".join('<div style="margin-bottom: 10px;">' + bar(w, h) + '</div>' for w, h in rows)
+    return ('<div style="background: ' + fill + '; border: ' + BORDER + '; border-radius: ' + RADIUS + '; '
+            'box-shadow: ' + SHADOW + '; padding: 16px; margin-bottom: 4px; min-height: ' + str(height) + 'px;">'
+            + body + '</div>')
+
+
+def dash_skeleton():
+    hero = ('<div style="background: ' + GROUND + '; border: ' + BORDER + '; border-radius: ' + RADIUS + '; '
+            'box-shadow: ' + SHADOW + '; padding: 24px; min-height: 210px; display: flex; flex-direction: column; '
+            'gap: 14px;">' + bar("38%", 13) + bar("88%", 34) + bar("64%", 34) + bar("74%", 18) + bar("42%", 14)
+            + '</div>')
+    cards = ('<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 12px;">'
+             '<div style="' + LABEL + MUTED + ' margin-top: 4px;">UPCOMING</div>'
+             + skel_block(96, [("46%", 18), ("70%", 15), ("54%", 22)])
+             + skel_block(96, [("38%", 18), ("66%", 15), ("34%", 22)]) + '</div>')
+    inner = ('<div style="height: ' + str(STATUS_GAP) + 'px;"></div>' + app_header()
+             + '<div style="padding: 0 20px;">' + hero + '</div>'
+             + '<div style="display: flex; justify-content: space-between; padding: 0 20px;">'
+             + bar("34%", 12) + bar("18%", 12) + '</div>'
+             + cards
+             + '<div style="padding: 0 20px; margin-top: 22px; display: flex; align-items: center; gap: 10px;">'
+             + iconed(refresh(14, SLATE), "Fetching this week&#39;s advisories", CAPTION + MUTED) + '</div>')
+    write("DashSkeleton.dc.html", page(inner, pad="0", gap=12))
+
+
+def all_areas_skeleton():
+    inner = (screen_head("All areas") + field("Search by barangay") + bar("58%", 12)
+             + '<div style="height: 6px;"></div>'
+             + skel_block(104, [("44%", 18), ("68%", 15), ("58%", 22)])
+             + skel_block(104, [("36%", 18), ("72%", 15), ("46%", 22)])
+             + skel_block(104, [("50%", 18), ("62%", 15), ("64%", 22)])
+             + '<div style="display: flex; align-items: center; gap: 10px; margin-top: 8px;">'
+             + iconed(refresh(14, SLATE), "Fetching this week&#39;s advisories", CAPTION + MUTED) + '</div>'
+             + fade())
+    write("AllAreasSkeleton.dc.html", page(inner))
+
+
+def state_boards():
+    picker_no_match(); all_areas_empty(); dash_skeleton(); all_areas_skeleton(); error_screens()
+
+
 SCRIM = "rgba(33, 36, 49, 0.32)"   # a recede, not a blackout
 
 
@@ -542,6 +1285,8 @@ def tour_centre():
 
 if __name__ == "__main__":
     assert ADD_BTN_TOP == 262 and ADD_BTN_LEFT == 46, (ADD_BTN_TOP, ADD_BTN_LEFT)
-    main_dashboard(); dashboard_empty(); status_states(); component_states(); picker()
-    all_areas(); detail(); settings(); onboarding_all(); tour(); tour_centre()
+    all_dashboards(); dashboard_empty(); component_states(); picker(); picker_search()
+    all_areas(); all_areas_no_match(); detail(); detail_variants(); settings(); settings_empty()
+    state_boards()
+    onboarding_all(); tour(); tour_centre()
     print(f"done — tour highlight anchored to the Add area button at y {ADD_BTN_TOP}..{ADD_BTN_TOP+TOUCH}")

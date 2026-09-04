@@ -10,6 +10,8 @@ import { useStamp } from "../theme/motion";
 import { useSounds } from "../theme/sound";
 import { Block } from "./Block";
 import { T } from "./Text";
+import { Pin, Warn } from "./Icon";
+import { IconRow } from "./Surface";
 
 const FILL: Record<WidgetStateName, string> = {
   NONE_TODAY: color.status.clear,
@@ -108,9 +110,17 @@ export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFiel
         <T v="label" style={styles.tag}>{tag}</T>
         <T v="display" style={styles.display}>{display}</T>
         {detail ? <T v="headline">{detail}</T> : null}
-        {sub ? <T v="label" style={styles.sub}>{sub}</T> : null}
+        {/* A geographical value never travels without its pin. The TIME here deliberately has no
+            clock: inside a status card the time is the headline, not a field (DG §3). */}
+        {sub ? (
+          <IconRow icon={<Pin size={14} />} v="label" style={styles.sub}>{sub}</IconRow>
+        ) : null}
         <View style={styles.spacer} />
-        <T v="caption">{status.isStale ? `Data may be outdated — ${ago.toLowerCase()}` : ago}</T>
+        {status.isStale ? (
+          <IconRow icon={<Warn size={13} />} v="caption">Data may be outdated</IconRow>
+        ) : (
+          <T v="caption">{ago}</T>
+        )}
       </View>
     </Block>
   );

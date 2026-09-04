@@ -12,8 +12,12 @@ export interface GlyphProps {
   tone?: string;
 }
 
-/** Right-pointing chevron — "there is more this way". */
-export function Chevron({ size = 12, tone = color.ink }: GlyphProps) {
+const ROTATION = { right: "45deg", down: "135deg", left: "225deg", up: "315deg" } as const;
+
+/** Chevron. Right by default; `left` is the back affordance, `down`/`up` the group toggles. */
+export function Chevron({ size = 12, tone = color.ink, direction = "right" }: GlyphProps & {
+  direction?: keyof typeof ROTATION;
+}) {
   const s = Math.round(size * 0.7);
   return (
     <View style={{ width: size, height: size, alignItems: "center", justifyContent: "center" }}>
@@ -24,7 +28,7 @@ export function Chevron({ size = 12, tone = color.ink }: GlyphProps) {
           borderTopWidth: layout.border,
           borderRightWidth: layout.border,
           borderColor: tone,
-          transform: [{ rotate: "45deg" }, { translateX: -1 }, { translateY: 1 }],
+          transform: [{ rotate: ROTATION[direction] }],
         }}
       />
     </View>

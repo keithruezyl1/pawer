@@ -40,7 +40,8 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={addAreaRect}
-          body="Start here. Add the barangay you want alerts for."
+          title="Where do you live?"
+          body="Pick your barangay and PAWER will keep an eye on it for you."
           primary={{ label: "Add area", onPress: () => router.push("/picker?tour=1") }}
           onSkip={skip}
           passThroughTarget
@@ -51,8 +52,8 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title="Let PAWER warn you"
-          body={`You'll get an alert when a new outage is scheduled for ${pendingName}, the evening before, an hour before, and when power should be back.`}
+          title="Can we give you a heads up?"
+          body={`We'll tell you when a new outage is scheduled for ${pendingName}, the evening before, an hour before, and when the power should be back.`}
           primary={{ label: "Allow", onPress: () => { requestPermission().catch(() => false).finally(() => setStep("T4")); } }}
           secondary={{ label: "Not now", onPress: () => setStep("T4") }}
           onSkip={skip}
@@ -64,13 +65,13 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title="Is this the right area?"
+          title="Look right?"
           body=""
           primary={{
             label: "Yes, add it",
             onPress: () => { tourPending?.forEach(addBarangay); sounds.areaAdded(); setTourPending(null); setStep("T5"); },
           }}
-          secondary={{ label: "Choose another", onPress: () => { setTourPending(null); router.push("/picker?tour=1"); } }}
+          secondary={{ label: "Pick another", onPress: () => { setTourPending(null); router.push("/picker?tour=1"); } }}
           onSkip={skip}
         >
           {mapUri && mapOk && (
@@ -82,7 +83,7 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
             />
           )}
           <T v="headline">{pending ? `${pending.display}, ${pendingLgu(pending.lgu)}` : ""}</T>
-          <T v="caption" muted>Approximate centre of the barangay. Outages usually affect only parts of a barangay, not all of it.</T>
+          <T v="caption" muted>Approximate centre. Outages often affect only part of a barangay.</T>
         </CoachMark>
       );
     }
@@ -91,8 +92,8 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title={`${firstName} added.`}
-          body="You'll be alerted when part of it is scheduled for an outage."
+          title={`${firstName} is yours now.`}
+          body="We'll tell you before the power goes."
           primary={{ label: "Continue", onPress: () => setStep("T6") }}
           onSkip={skip}
         />
@@ -102,8 +103,8 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title="Anywhere else?"
-          body="Add another if you look after more than one place — work, family, a business."
+          title="Anywhere else you care about?"
+          body="Work, your parents' place, the shop. Add as many as you like."
           primary={{ label: "Add another", onPress: () => router.push("/picker?tour=1") }}
           secondary={{ label: "No, continue", onPress: () => setStep("T7") }}
           onSkip={skip}
@@ -117,10 +118,10 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title="Put it on your home screen"
+          title="Want it on your home screen?"
           body={canPin
-            ? "PAWER is built to be glanced at. The widget shows today's status without opening anything."
-            : "PAWER is built to be glanced at. To add the widget: long-press an empty spot on your home screen → Widgets → PAWER → drag the 2×2 tile where you want it."}
+            ? "One tap and you can see the day's status without opening anything."
+            : "One tap and you can see the day's status without opening anything. To add it, long-press an empty spot on your home screen, choose Widgets, find PAWER, then drag the 2×2 tile where you want it."}
           primary={{ label: canPin ? "Add widget" : "Got it", onPress: () => { if (canPin) widget.requestPin(); setStep("T8"); } }}
           secondary={canPin ? { label: "Skip", onPress: () => setStep("T8") } : undefined}
           onSkip={skip}
@@ -132,8 +133,8 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title="That's it."
-          body={`PAWER will tell you when part of ${firstName} is scheduled to lose power. You can add areas or change alerts anytime in Settings.`}
+          title="You're all set."
+          body={`PAWER will speak up when part of ${firstName} is scheduled to lose power. Change anything in Settings.`}
           primary={{ label: "Done", onPress: completeTour }}
           onSkip={completeTour}
         />

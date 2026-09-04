@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { StyleSheet, Switch, View } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
@@ -12,12 +12,14 @@ import { T } from "../ui/Text";
 import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
 import { Chip } from "../ui/Chip";
+import { Bell, Bolt, Clock, Info, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
+import { Fade, IconRow, SectionLabel } from "../ui/Surface";
 
-const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string }> = [
-  { key: "newAdvisory", label: "New advisory", hint: "When a new outage is scheduled for your area" },
-  { key: "eveningBefore", label: "Evening before", hint: "Around 8:00 PM the day before" },
-  { key: "hourBefore", label: "About an hour before", hint: "Inexact by design — within a few minutes" },
-  { key: "restoration", label: "Expected restoration", hint: "When the scheduled window ends" },
+const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string; icon: ReactNode }> = [
+  { key: "newAdvisory", label: "New advisory", hint: "A new outage is scheduled for your area", icon: <Bell size={16} /> },
+  { key: "eveningBefore", label: "Evening before", hint: "Around 8:00 PM the day before", icon: <Moon size={16} /> },
+  { key: "hourBefore", label: "An hour before", hint: "Give or take a few minutes", icon: <Clock size={16} /> },
+  { key: "restoration", label: "Expected restoration", hint: "When the scheduled window ends", icon: <Bolt size={16} /> },
 ];
 
 /** Flat list, no nesting (DG §6.5). The only two things to configure: which areas, which alerts. */
@@ -33,17 +35,18 @@ export default function Settings() {
         <Button variant="ghost" label="Done" onPress={() => router.back()} />
       </View>
 
-      <T v="label">MY AREAS</T>
+      <SectionLabel icon={<Pin size={13} />}>MY AREAS</SectionLabel>
       <View style={styles.chips}>
         {prefs.barangays.map((slug) => { const b = findBarangay(slug); return b ? <Chip key={slug} barangay={b} onRemove={removeBarangay} /> : null; })}
         {prefs.barangays.length === 0 && <T v="body" muted>None yet.</T>}
       </View>
-      <Button variant="primary" label="Add area" onPress={() => router.push("/picker")} />
+      <Button variant="primary" label="Add area" icon={<Plus size={15} />} onPress={() => router.push("/picker")} />
       {prefs.barangays.length >= 5 && <T v="caption" muted>You'll get alerts for {prefs.barangays.length} areas, which may be frequent.</T>}
 
-      <T v="label" style={styles.section}>ALERTS</T>
+      <SectionLabel icon={<Bell size={13} />} style={styles.section}>ALERTS</SectionLabel>
       {ALERTS.map((a) => (
         <View key={a.key} style={styles.row}>
+          {a.icon}
           <View style={styles.rowText}>
             <T v="body">{a.label}</T>
             <T v="caption" muted>{a.hint}</T>
@@ -59,6 +62,7 @@ export default function Settings() {
       ))}
 
       <View style={styles.row}>
+        <Speaker size={16} />
         <View style={styles.rowText}>
           <T v="body">Sounds</T>
           <T v="caption" muted>Two short cues: an area added, and the status changing. Silent mode is respected</T>
@@ -66,9 +70,11 @@ export default function Settings() {
         <Switch value={prefs.sounds} onValueChange={setSounds} trackColor={{ false: color.surface2, true: color.ink }} thumbColor={color.ground} accessibilityLabel="Sounds" />
       </View>
 
-      <T v="label" style={styles.section}>DATA</T>
-      <T v="body">{fetchedAtMs ? `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}` : "Not checked yet"}</T>
-      <Button label={refreshing ? "Checking…" : "Refresh now"} onPress={() => void refresh()} disabled={refreshing} />
+      <SectionLabel icon={<Refresh size={13} />} style={styles.section}>DATA</SectionLabel>
+      <IconRow icon={<Clock size={15} />}>
+        {fetchedAtMs ? `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}` : "Not checked yet"}
+      </IconRow>
+      <Button label={refreshing ? "Checking…" : "Refresh now"} icon={<Refresh size={15} />} onPress={() => void refresh()} disabled={refreshing} />
       <Button label="Run the tour again" onPress={() => { resetTour(); router.replace("/"); }} />
 
       <T v="label" style={styles.section}>YOUR NAME</T>
@@ -79,11 +85,9 @@ export default function Settings() {
       <T v="body">Version {Constants.expoConfig?.version ?? "dev"}</T>
       <T v="caption" muted>PAWER is installed as an APK, so it checks for its own updates when it starts.</T>
 
-      <T v="label" style={styles.section}>ABOUT</T>
-      <T v="body">PAWER reads Visayan Electric's public service-interruption advisories and shows the ones scheduled for your barangay.</T>
-      <T v="body" muted>It isn't made by Visayan Electric and isn't affiliated with them.</T>
-      <T v="body" muted>It covers scheduled outages only. Sudden or emergency outages aren't published in advance, so PAWER can't warn you about them.</T>
-      <T v="body" muted>PAWER shows the published schedule, not the real state of the grid. Actual outages may differ in timing or happen without notice. Don't rely on it for medical or safety-critical needs.</T>
+      <SectionLabel icon={<Info size={13} />} style={styles.section}>ABOUT</SectionLabel>
+      {/* The ONLY place the full position appears now — the per-screen lines were cut (D-29). */}
+      <T v="body" muted>PAWER reads Visayan Electric's public advisories. It isn't made by them and isn't affiliated with them. It covers scheduled outages only, and shows the published schedule rather than the real state of the grid, so don't rely on it for anything medical or safety critical.</T>
       <T v="caption" muted style={styles.section}>No accounts. No location. Nothing about you is stored on any server.</T>
     </Screen>
   );

@@ -400,7 +400,9 @@ Motion in PAWER is a **vocabulary**, not a polish layer. Every animation has one
 | **`spot`** | *Look here* | Tour coach mark moves to a new target | Spotlight **hard-cuts** (0 ms) to the new target, then the target receives a `stamp` |
 | **`count`** | *Live countdown* | Hero countdown | **No animation.** Text updates once per second, mirroring the widget's Chronometer |
 
-**Forbidden:** fades · crossfades · springs with more than one overshoot · parallax · skeleton shimmer · pulsing · anything on a loop · anything in the widget · animating colour · animating layout.
+**Forbidden:** fades · crossfades · springs with more than one overshoot · parallax · skeleton shimmer · pulsing · anything in the widget · animating colour.
+
+**Two narrow exceptions to "nothing on a loop" (D-31).** Onboarding's background shapes `drift`, `bob` and `turn` on slow transform-only loops, and the tour arrow-free highlight is static but the onboarding dots animate `width`. Both are confined to screens seen once, both run on the UI thread, and both stop dead under reduce-motion. Nothing on the dashboard, in a list, or in the widget may loop or animate layout.
 
 **Implementation contract.** Each entry is a single hook in `app/src/theme/motion.ts` (`useStamp`, `useSlam`, `usePress`, …) built on Reanimated worklets. Every hook reads the reduce-motion setting once and sets its duration to 0 when enabled. No screen defines its own animation; it composes these ten.
 

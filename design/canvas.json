@@ -1,8 +1,152 @@
 {
   "artboards": [
     {
-      "file": "Onboarding1.dc.html",
+      "file": "DashClear.dc.html",
       "page": "page-1",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — nothing today"
+    },
+    {
+      "file": "DashUpcoming.dc.html",
+      "page": "page-1",
+      "x": 490,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — outage later"
+    },
+    {
+      "file": "Main.dc.html",
+      "page": "page-1",
+      "x": 980,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — in progress"
+    },
+    {
+      "file": "DashEnded.dc.html",
+      "page": "page-1",
+      "x": 1470,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — power back"
+    },
+    {
+      "file": "DashboardEmpty.dc.html",
+      "page": "page-1",
+      "x": 0,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — no areas"
+    },
+    {
+      "file": "DashStale.dc.html",
+      "page": "page-1",
+      "x": 490,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — stale, check failed"
+    },
+    {
+      "file": "Picker.dc.html",
+      "page": "page-1",
+      "x": 980,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Add areas — browsing"
+    },
+    {
+      "file": "PickerSearch.dc.html",
+      "page": "page-1",
+      "x": 1470,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Add areas — searching"
+    },
+    {
+      "file": "AllAreas.dc.html",
+      "page": "page-1",
+      "x": 0,
+      "y": 2200,
+      "w": 390,
+      "h": 980,
+      "title": "All areas"
+    },
+    {
+      "file": "AllAreasNoMatch.dc.html",
+      "page": "page-1",
+      "x": 490,
+      "y": 2200,
+      "w": 390,
+      "h": 980,
+      "title": "All areas — no match"
+    },
+    {
+      "file": "DetailClean.dc.html",
+      "page": "page-1",
+      "x": 980,
+      "y": 2200,
+      "w": 390,
+      "h": 980,
+      "title": "Detail — read cleanly"
+    },
+    {
+      "file": "Detail.dc.html",
+      "page": "page-1",
+      "x": 1470,
+      "y": 2200,
+      "w": 390,
+      "h": 980,
+      "title": "Detail — areas unmatched"
+    },
+    {
+      "file": "DetailFailed.dc.html",
+      "page": "page-1",
+      "x": 0,
+      "y": 3300,
+      "w": 390,
+      "h": 980,
+      "title": "Detail — time unreadable"
+    },
+    {
+      "file": "DetailNotFound.dc.html",
+      "page": "page-1",
+      "x": 490,
+      "y": 3300,
+      "w": 390,
+      "h": 980,
+      "title": "Detail — not found"
+    },
+    {
+      "file": "Settings.dc.html",
+      "page": "page-1",
+      "x": 980,
+      "y": 3300,
+      "w": 390,
+      "h": 980,
+      "title": "Settings"
+    },
+    {
+      "file": "SettingsEmpty.dc.html",
+      "page": "page-1",
+      "x": 1470,
+      "y": 3300,
+      "w": 390,
+      "h": 980,
+      "title": "Settings — no areas"
+    },
+    {
+      "file": "Onboarding1.dc.html",
+      "page": "page-3",
       "x": 0,
       "y": 0,
       "w": 390,
@@ -11,7 +155,7 @@
     },
     {
       "file": "Onboarding2.dc.html",
-      "page": "page-1",
+      "page": "page-3",
       "x": 490,
       "y": 0,
       "w": 390,
@@ -20,7 +164,7 @@
     },
     {
       "file": "Onboarding3.dc.html",
-      "page": "page-1",
+      "page": "page-3",
       "x": 980,
       "y": 0,
       "w": 390,
@@ -29,7 +173,7 @@
     },
     {
       "file": "Onboarding4.dc.html",
-      "page": "page-1",
+      "page": "page-3",
       "x": 1470,
       "y": 0,
       "w": 390,
@@ -38,7 +182,7 @@
     },
     {
       "file": "Onboarding5.dc.html",
-      "page": "page-1",
+      "page": "page-3",
       "x": 1960,
       "y": 0,
       "w": 390,
@@ -46,166 +190,191 @@
       "title": "S5 — handover"
     },
     {
-      "file": "Main.dc.html",
-      "page": "page-2",
-      "x": 0,
-      "y": 0,
-      "w": 390,
-      "h": 980,
-      "title": "Dashboard — ongoing"
-    },
-    {
-      "file": "DashboardEmpty.dc.html",
-      "page": "page-2",
-      "x": 490,
-      "y": 0,
-      "w": 390,
-      "h": 980,
-      "title": "Dashboard — no areas"
-    },
-    {
-      "file": "StatusStates.dc.html",
-      "page": "page-2",
-      "x": 980,
-      "y": 0,
-      "w": 390,
-      "h": 1180,
-      "title": "Hero states"
-    },
-    {
-      "file": "Picker.dc.html",
-      "page": "page-2",
-      "x": 0,
-      "y": 1300,
-      "w": 390,
-      "h": 980,
-      "title": "Add areas"
-    },
-    {
-      "file": "AllAreas.dc.html",
-      "page": "page-2",
-      "x": 490,
-      "y": 1300,
-      "w": 390,
-      "h": 980,
-      "title": "All areas"
-    },
-    {
-      "file": "Detail.dc.html",
-      "page": "page-2",
-      "x": 980,
-      "y": 1300,
-      "w": 390,
-      "h": 980,
-      "title": "Outage detail"
-    },
-    {
-      "file": "Settings.dc.html",
-      "page": "page-2",
-      "x": 0,
-      "y": 2400,
-      "w": 390,
-      "h": 980,
-      "title": "Settings"
-    },
-    {
       "file": "Tour.dc.html",
-      "page": "page-2",
-      "x": 490,
-      "y": 2400,
+      "page": "page-4",
+      "x": 0,
+      "y": 0,
       "w": 390,
       "h": 980,
       "title": "Tour — highlighting a control"
     },
     {
       "file": "TourCentre.dc.html",
-      "page": "page-2",
-      "x": 980,
-      "y": 2400,
+      "page": "page-4",
+      "x": 490,
+      "y": 0,
       "w": 390,
       "h": 980,
       "title": "Tour — centred step"
     },
     {
       "file": "ComponentStates.dc.html",
-      "page": "page-2",
-      "x": 0,
-      "y": 3500,
+      "page": "page-4",
+      "x": 980,
+      "y": 0,
       "w": 620,
       "h": 1240,
       "title": "Component states"
+    },
+    {
+      "file": "PickerNoMatch.dc.html",
+      "page": "page-2",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Empty — no barangay matches"
+    },
+    {
+      "file": "AllAreasEmpty.dc.html",
+      "page": "page-2",
+      "x": 490,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Empty — nothing scheduled anywhere"
+    },
+    {
+      "file": "DashSkeleton.dc.html",
+      "page": "page-2",
+      "x": 980,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Loading — dashboard, first run"
+    },
+    {
+      "file": "AllAreasSkeleton.dc.html",
+      "page": "page-2",
+      "x": 1470,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Loading — all areas"
+    },
+    {
+      "file": "ErrOffline.dc.html",
+      "page": "page-2",
+      "x": 0,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Error — no connection"
+    },
+    {
+      "file": "ErrFeed.dc.html",
+      "page": "page-2",
+      "x": 490,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Error — feed unreachable, 503"
+    },
+    {
+      "file": "ErrUpdate.dc.html",
+      "page": "page-2",
+      "x": 980,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Error — update required"
+    },
+    {
+      "file": "ErrUnknown.dc.html",
+      "page": "page-2",
+      "x": 1470,
+      "y": 1100,
+      "w": 390,
+      "h": 980,
+      "title": "Error — unexpected, 500"
     }
   ],
   "annotations": [
     {
-      "id": "ob-flow",
+      "id": "screens-map",
       "page": "page-1",
       "x": 0,
-      "y": -220,
-      "w": 620,
-      "text": "All five onboarding screens, left to right in the order they appear.\n\nS3 is the only one with no Skip. Everything after it depends on the reader having seen what PAWER cannot do.\n\nShapes drift, bob and turn behind the text. Onboarding is the one place a loop is allowed, since it is seen once, and everything stops for reduced motion."
+      "y": -300,
+      "w": 700,
+      "text": "EVERY SCREEN, EVERY STATE\n\nRow 1 is the dashboard in all four status colours. Row 2 is its two exceptional states plus the picker. Row 3 is all-areas and the detail sheet. Row 4 finishes detail and covers settings.\n\nEdit any of them. The dashboard hero repeats across five boards, so a layout change there needs making five times, or tell me and I will apply it to all five at once."
     },
     {
-      "id": "ob-copy",
+      "id": "screens-why",
       "page": "page-1",
+      "x": 760,
+      "y": -300,
+      "w": 700,
+      "text": "WHY THESE STATES\n\nEach one is a real branch in the code, not a hypothetical. Stale draws a dashed slate border and turns the freshness line into a warning. A failed check replaces the count with \"Couldn't check\". A failed parse hides the time entirely rather than guessing it.\n\nEmpty and error states are where a design usually falls apart, which is why they sit beside the happy path instead of waiting until later."
+    },
+    {
+      "id": "ob-flow",
+      "page": "page-3",
+      "x": 0,
+      "y": -240,
+      "w": 640,
+      "text": "All five onboarding screens, left to right in the order they appear. Copy is yours. The call-to-action buttons are Cebuano, recorded as decision D-30.\n\nS3 is the only one with no Skip."
+    },
+    {
+      "id": "ob-motion",
+      "page": "page-3",
       "x": 1470,
-      "y": -220,
-      "w": 620,
-      "text": "Copy is the real onboarding text, retuned for no em dashes and no prose colons.\n\nS1 lost its em dash. S4 lost one too. S5's \"Two things left:\" became \"Two things left.\"\n\nThe name on S4 is optional and never leaves the phone, which is why the field has no required marker."
-    },
-    {
-      "id": "how-to-use",
-      "page": "page-2",
-      "x": 1450,
-      "y": 0,
-      "w": 320,
-      "text": "Real screens, rebuilt from the app's own tokens.\n\nEdit anything. Drag, retype, restyle in the properties panel. Save keeps your version.\n\nThen tell Claude Code what changed."
-    },
-    {
-      "id": "type",
-      "page": "page-2",
-      "x": 1450,
-      "y": 320,
-      "w": 320,
-      "text": "TYPE\n\nGetai Grotesk Black on display 40, title 24, and the logo. It has no · › ✓ ✗ glyphs, so it stays on the big text.\n\nAspekta everywhere else. Headline 18/700, body 15/400, label 13/500, caption 11/400."
-    },
-    {
-      "id": "system",
-      "page": "page-2",
-      "x": 1450,
-      "y": 680,
-      "w": 320,
-      "text": "SYSTEM\n\nground #F5F5F5 · ink #212431 · slate #4F5D75 · accent #EA5C1F · notice #DDE0E6\nstatus clear #9BF06B · upcoming #FF90E8 · ongoing #FF5C5C · ended #FFD93D\n\nborder 2px · shadow 4px hard · radius 5"
+      "y": -240,
+      "w": 640,
+      "text": "Shapes drift, bob and turn behind the text, and stop for anyone with reduced motion on. Onboarding is the one place a loop is allowed, since it is seen once.\n\nPagination is five dots, the current page a wider oblong, 220ms ease out on width and fill."
     },
     {
       "id": "tour-note",
-      "page": "page-2",
-      "x": 1450,
-      "y": 1040,
-      "w": 320,
-      "text": "Everything except the target and the message dims by 32%. Not a blackout, just a recede, so you can still see what you are being shown in context.\n\nThe dim is four rectangles around the target, so the highlighted control keeps its real colours and stays tappable. The message is drawn above the dim and never darkens."
+      "page": "page-4",
+      "x": 0,
+      "y": -260,
+      "w": 640,
+      "text": "Everything except the target and the message dims by 32%. A recede, not a blackout, so the context stays readable.\n\nT1 highlights a real control. Every other step is a centred card, so the whole background dims and only the message stays lit."
     },
     {
-      "id": "not-yet-shipped",
+      "id": "shipped",
+      "page": "page-4",
+      "x": 980,
+      "y": -260,
+      "w": 620,
+      "text": "IN THE APP ALREADY\nFonts, slide transitions, drawn glyphs.\n\nSTILL ONLY HERE\nRadius 5, the checkerboard, the shorter copy, the removed disclaimer lines, list fades, shapes, the lighter tour dim, the Cebuano buttons and the dot pagination."
+    },
+    {
+      "id": "states-note",
       "page": "page-2",
-      "x": 1450,
-      "y": 1400,
-      "w": 320,
-      "text": "IN THE APP ALREADY\nFonts, slide transitions, drawn glyphs.\n\nSTILL ONLY HERE\nRadius 5, the checkerboard, the shorter copy, the removed disclaimer lines, list fades, shapes, the lighter tour dim and the new tour wording."
+      "x": 0,
+      "y": -300,
+      "w": 700,
+      "text": "EMPTY, LOADING, BROKEN\n\nRow 1 is empty. Row 2 is loading. Row 3 is every way this can fail, each with exactly one obvious way out.\n\nThe skeletons do not shimmer. The design contract forbids it, and a pulse is a loop, which costs battery for nothing. The blocks keep the real layout's geometry so nothing jumps when the content lands."
+    },
+    {
+      "id": "states-real",
+      "page": "page-2",
+      "x": 760,
+      "y": -300,
+      "w": 700,
+      "text": "WHAT IS AND ISN'T BUILT\n\nThe error caption exists in code as lastRefreshKind, but only ever as one small line. These full screens are new UI.\n\nThere is no loading state in the app at all yet, so the skeletons need a hydrating flag adding.\n\n\"Update required\" reads min_schema_version, which the release manifest already publishes and the app does not yet check."
     }
   ],
   "launch": {
     "view": "canvas",
-    "page": "page-1"
+    "page": "page-2"
   },
   "pages": [
     {
       "id": "page-1",
-      "name": "Onboarding"
+      "name": "Screens"
     },
     {
       "id": "page-2",
-      "name": "App"
+      "name": "States"
+    },
+    {
+      "id": "page-3",
+      "name": "Onboarding"
+    },
+    {
+      "id": "page-4",
+      "name": "Tour & components"
     }
   ]
 }

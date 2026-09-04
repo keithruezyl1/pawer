@@ -16,6 +16,8 @@ export interface BlockProps extends PropsWithChildren {
   /** Animated style for the shadow (slam snaps it in). */
   shadowStyle?: AnimatedStyle<ViewStyle>;
   accessibilityLabel?: string;
+  /** Clip children to the border radius — needed by anything drawn into a corner. */
+  clip?: boolean;
 }
 
 /**
@@ -24,7 +26,7 @@ export interface BlockProps extends PropsWithChildren {
  */
 export function Block({
   fill = color.ground, shadow = true, dashed = false, padding = layout.cardPadding,
-  style, contentStyle, shadowStyle, children, accessibilityLabel,
+  style, contentStyle, shadowStyle, children, accessibilityLabel, clip,
 }: BlockProps) {
   return (
     <View style={[styles.wrap, style]} accessibilityLabel={accessibilityLabel}>
@@ -34,6 +36,7 @@ export function Block({
           styles.content,
           { backgroundColor: fill, padding },
           dashed && styles.dashed,
+          clip && styles.clip,
           contentStyle,
         ]}
       >
@@ -57,4 +60,5 @@ const styles = StyleSheet.create({
     borderRadius: layout.radius,
   },
   dashed: { borderStyle: "dashed", borderColor: color.slate },
+  clip: { overflow: "hidden" },
 });

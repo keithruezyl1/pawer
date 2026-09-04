@@ -22,3 +22,7 @@ review/
 # Design canvas build products (working .dc.html sources ARE tracked)
 design/pawer-screens.html
 design/fonts/
+
+# Gradle output inside the local widget module (paths exceed Windows limits)
+app/modules/pawer-widget/android/build/
+app/modules/pawer-widget/android/.cxx/

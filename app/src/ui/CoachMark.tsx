@@ -64,7 +64,7 @@ export function CoachMark({ target, title, body, primary, secondary, onSkip, pas
           </View>
         </Block>
         <Pressable onPress={onSkip} accessibilityRole="button" style={styles.skip} hitSlop={8}>
-          <T v="label" tone="ground">Skip tour</T>
+          <T v="label">Skip for now</T>
         </Pressable>
       </View>
     </View>
@@ -72,7 +72,9 @@ export function CoachMark({ target, title, body, primary, secondary, onSkip, pas
 }
 
 const styles = StyleSheet.create({
-  scrim: { position: "absolute", backgroundColor: "rgba(33,36,49,0.72)" },
+  // 32%, not 72%: a recede rather than a blackout, so the user can still see the screen
+  // they are being shown. White text fails on this (1.94:1), so Skip is ink.
+  scrim: { position: "absolute", backgroundColor: "rgba(33,36,49,0.32)" },
   ring: { position: "absolute", borderWidth: layout.border, borderColor: color.accent, borderRadius: layout.radius },
   calloutWrap: { position: "absolute", left: layout.screenMargin, right: layout.screenMargin, gap: space.md },
   centered: { top: "30%" },

@@ -14,6 +14,9 @@ import { T } from "../ui/Text";
 import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
 import { Chip } from "../ui/Chip";
+import { Chevron } from "../ui/Glyph";
+import { CheckBadge, Magnifier, Plus, Warn } from "../ui/Icon";
+import { Fade, IconRow } from "../ui/Surface";
 
 /**
  * The barangay picker (PRD FR-2d–g). One screen: search across all 232, eight collapsible LGU
@@ -73,7 +76,7 @@ export default function Picker() {
       >
         <View style={[styles.box, on && styles.boxOn]}>{on && <View style={styles.tick} />}</View>
         <T v="body">{displayName(item)}</T>
-        {already && <T v="caption" muted>  already added</T>}
+        {already && <View style={styles.added}><CheckBadge size={15} tone={color.slate} /></View>}
       </Pressable>
     );
   };
@@ -81,7 +84,7 @@ export default function Picker() {
   return (
     <Screen scroll={false}>
       <T v="title" style={styles.title}>{tour === "1" ? "Which barangay?" : "Add areas"}</T>
-      <Field value={query} onChangeText={setQuery} placeholder="Search 232 barangays" autoCorrect={false} accessibilityLabel="Search barangays" />
+      <Field value={query} onChangeText={setQuery} placeholder="Search 232 barangays" autoCorrect={false} accessibilityLabel="Search barangays" leading={<Magnifier size={16} tone={color.slate} />} />
       <T v="caption" muted>Your barangay is printed on your Visayan Electric bill.</T>
 
       {picked.length > 0 && (
@@ -89,7 +92,11 @@ export default function Picker() {
           {picked.map((slug) => { const b = barangays.find((x) => x.slug === slug)!; return <Chip key={slug} barangay={b} onRemove={toggle} />; })}
         </View>
       )}
-      {total >= 5 && <T v="caption" muted>You'll get alerts for {total} areas, which may be frequent.</T>}
+      {total >= 5 && (
+        <IconRow icon={<Warn size={13} tone={color.slate} />} v="caption" muted>
+          You'll get alerts for {total} areas, which may be frequent.
+        </IconRow>
+      )}
 
       <SectionList
         sections={sections}
@@ -107,13 +114,21 @@ export default function Picker() {
             style={styles.sectionHead}
           >
             <T v="headline">{section.lgu.display}</T>
-            {!q && <T v="label">{open[section.lgu.slug] ? "–" : "+"}</T>}
+            {!q && <Chevron size={14} direction={open[section.lgu.slug] ? "up" : "down"} />}
           </Pressable>
         )}
       />
 
+      {q !== "" && sections.length === 0 && (
+        <View style={styles.noMatch}>
+          <Magnifier size={34} tone={color.slate} />
+          <T v="headline" style={styles.centre}>No barangay matches that</T>
+          <T v="body" muted style={styles.centre}>Try fewer letters, or check the spelling against your VECO bill.</T>
+        </View>
+      )}
+
       <Animated.View style={[styles.actions, judder.style]}>
-        <Button variant="primary" label={tour === "1" ? "Continue" : `Add ${picked.length || ""}`.trim()} onPress={confirm} />
+        <Button variant="primary" label={tour === "1" ? "Continue" : `Add ${picked.length || ""}`.trim()} icon={<Plus size={15} />} onPress={confirm} disabled={picked.length === 0 && sections.length === 0} />
         <Button variant="ghost" label="Cancel" onPress={() => router.back()} />
       </Animated.View>
     </Screen>
@@ -132,4 +147,7 @@ const styles = StyleSheet.create({
   boxOn: { backgroundColor: color.accent },
   tick: { width: 10, height: 10, backgroundColor: color.ink },
   actions: { gap: space.sm, paddingTop: space.md, paddingBottom: space.lg },
+  added: { marginLeft: "auto" },
+  noMatch: { flex: 1, alignItems: "center", justifyContent: "center", gap: space.md },
+  centre: { textAlign: "center" },
 });
