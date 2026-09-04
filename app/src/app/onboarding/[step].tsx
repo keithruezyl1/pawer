@@ -11,6 +11,7 @@ import { Block } from "../../ui/Block";
 import { Check, Cross } from "../../ui/Glyph";
 import { Dots } from "../../ui/Dots";
 import { Burst, Disc, Floater, Pill, Sparkle, Squiggle } from "../../ui/Shapes";
+import { Avatar } from "../../ui/Avatar";
 
 /**
  * Onboarding S1–S5. Copy is Keith's, edited on the design canvas — not the wording in
@@ -102,12 +103,16 @@ export default function OnboardingStep() {
         {n === 4 && (
           <>
             <T v="title">What should we call you?</T>
-            <Field value={draft} onChangeText={setDraft} placeholder="Your name" autoCapitalize="words" returnKeyType="done" maxLength={40} accessibilityLabel="Your name, optional" />
+            <View style={styles.nameRow}>
+              <Avatar seed={draft} initial={draft || undefined} size={52} />
+              <Field value={draft} onChangeText={setDraft} placeholder="Your name" autoCapitalize="words" returnKeyType="done" maxLength={40} accessibilityLabel="Your name, optional" style={styles.nameField} />
+            </View>
             <T v="caption" muted>Optional. Stays on your phone.</T>
           </>
         )}
         {n === 5 && (
           <>
+            {prefs.name ? <Avatar seed={prefs.name} initial={prefs.name} size={64} /> : null}
             <T v="title">{prefs.name ? `You're set, ${prefs.name}` : "Welcome to PAWER"}</T>
             <T v="body">Let's get started by adding your barangay.</T>
           </>
@@ -137,6 +142,8 @@ const styles = StyleSheet.create({
   body: { flex: 1, justifyContent: "center", gap: space.lg },
   point: { flexDirection: "row", alignItems: "flex-start", gap: space.md },
   pointText: { flex: 1 },
+  nameRow: { flexDirection: "row", alignItems: "center", gap: space.md },
+  nameField: { flex: 1 },
   actions: { gap: space.md, marginBottom: space.lg },
   dots: { marginBottom: space.xl },
 });

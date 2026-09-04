@@ -402,7 +402,9 @@ Motion in PAWER is a **vocabulary**, not a polish layer. Every animation has one
 
 **Forbidden:** fades · crossfades · springs with more than one overshoot · parallax · skeleton shimmer · pulsing · anything in the widget · animating colour.
 
-**Two narrow exceptions to "nothing on a loop" (D-31).** Onboarding's background shapes `drift`, `bob` and `turn` on slow transform-only loops, and the tour arrow-free highlight is static but the onboarding dots animate `width`. Both are confined to screens seen once, both run on the UI thread, and both stop dead under reduce-motion. Nothing on the dashboard, in a list, or in the widget may loop or animate layout.
+**Three narrow exceptions to "nothing on a loop" (D-31, D-34).** The loader (`ui/Spinner.tsx`) loops for as long as the app is waiting and no longer — opacity only, so it stays on the compositor and keeps moving while the JS thread is blocked.
+
+**The other two:** Onboarding's background shapes `drift`, `bob` and `turn` on slow transform-only loops, and the tour arrow-free highlight is static but the onboarding dots animate `width`. Both are confined to screens seen once, both run on the UI thread, and both stop dead under reduce-motion. Nothing on the dashboard, in a list, or in the widget may loop or animate layout.
 
 **Implementation contract.** Each entry is a single hook in `app/src/theme/motion.ts` (`useStamp`, `useSlam`, `usePress`, …) built on Reanimated worklets. Every hook reads the reduce-motion setting once and sets its duration to 0 when enabled. No screen defines its own animation; it composes these ten.
 

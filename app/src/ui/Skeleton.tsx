@@ -6,8 +6,8 @@
 import { StyleSheet, View, type DimensionValue } from "react-native";
 import { color, layout, space } from "../theme/tokens";
 import { Block } from "./Block";
-import { IconRow } from "./Surface";
-import { Refresh } from "./Icon";
+import { T } from "./Text";
+import { Spinner } from "./Spinner";
 
 export function Bar({ width, height = 14 }: { width: DimensionValue; height?: number }) {
   return <View style={[styles.bar, { width, height }]} />;
@@ -40,12 +40,13 @@ export function CardSkeleton({ widths = ["46%", "70%", "54%"] as DimensionValue[
   );
 }
 
-/** Says it is working rather than stuck. */
+/** Says it is working rather than stuck. The grid is the loader everywhere in the app. */
 export function FetchingNote() {
   return (
-    <IconRow icon={<Refresh size={14} tone={color.slate} />} v="caption" muted>
-      Fetching this week's advisories
-    </IconRow>
+    <View style={styles.fetching}>
+      <Spinner scale={2} />
+      <T v="caption" muted>Fetching this week's advisories</T>
+    </View>
   );
 }
 
@@ -54,4 +55,5 @@ const styles = StyleSheet.create({
   stack: { gap: space.md - 2 },
   hero: { marginHorizontal: layout.screenMargin, marginBottom: layout.shadow, minHeight: 210 },
   card: { marginBottom: layout.shadow },
+  fetching: { flexDirection: "row", alignItems: "center", gap: space.md },
 });

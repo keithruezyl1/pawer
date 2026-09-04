@@ -13,6 +13,8 @@ import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
 import { Chip } from "../ui/Chip";
 import { Bell, Bolt, Clock, Info, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
+import { Spinner } from "../ui/Spinner";
+import { Avatar } from "../ui/Avatar";
 import { Fade, IconRow, SectionLabel } from "../ui/Surface";
 
 const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string; icon: ReactNode }> = [
@@ -74,11 +76,27 @@ export default function Settings() {
       <IconRow icon={<Clock size={15} />}>
         {fetchedAtMs ? `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}` : "Not checked yet"}
       </IconRow>
-      <Button label={refreshing ? "Checking…" : "Refresh now"} icon={<Refresh size={15} />} onPress={() => void refresh()} disabled={refreshing} />
+      <Button
+        label={refreshing ? "Checking" : "Refresh now"}
+        icon={refreshing ? <Spinner scale={2} /> : <Refresh size={15} />}
+        onPress={() => void refresh()}
+        disabled={refreshing}
+      />
       <Button label="Run the tour again" onPress={() => { resetTour(); router.replace("/"); }} />
 
       <T v="label" style={styles.section}>YOUR NAME</T>
-      <Field value={nameDraft} onChangeText={setNameDraft} onEndEditing={() => setName(nameDraft)} placeholder="Optional" maxLength={40} accessibilityLabel="Your name, optional" />
+      <View style={styles.nameRow}>
+        <Avatar seed={prefs.name ?? ""} initial={prefs.name ?? undefined} size={48} />
+        <Field
+          value={nameDraft}
+          onChangeText={setNameDraft}
+          onEndEditing={() => setName(nameDraft)}
+          placeholder="Optional"
+          maxLength={40}
+          accessibilityLabel="Your name, optional"
+          style={styles.nameField}
+        />
+      </View>
       <T v="caption" muted>Your name never leaves your phone. It isn't sent anywhere.</T>
 
       <T v="label" style={styles.section}>UPDATE</T>
@@ -99,4 +117,6 @@ const styles = StyleSheet.create({
   section: { marginTop: space.xl },
   row: { flexDirection: "row", alignItems: "center", justifyContent: "space-between", minHeight: layout.touchTarget, borderBottomWidth: layout.border, borderColor: color.surface2, paddingVertical: space.sm, gap: space.md },
   rowText: { flex: 1 },
+  nameRow: { flexDirection: "row", alignItems: "center", gap: space.md },
+  nameField: { flex: 1 },
 });
