@@ -2,7 +2,7 @@
   "name": "pawer",
   "private": true,
   "version": "0.1.0",
-  "description": "PAWER — scheduled power-interruption alerts for Visayan Electric's Metro Cebu franchise",
+  "description": "PAWER \u2014 scheduled power-interruption alerts for Visayan Electric's Metro Cebu franchise",
   "license": "MIT",
   "workspaces": [
     "packages/*",
@@ -22,10 +22,5 @@
   },
   "engines": {
     "node": ">=20"
-  },
-  "dependencies": {
-    "expo": "~57.0.19",
-    "react": "19.2.3",
-    "react-native": "0.86.3"
   }
 }
