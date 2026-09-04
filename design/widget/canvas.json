@@ -73,17 +73,33 @@
       "h": 170
     },
     {
-      "file": "Unconfigured.dc.html",
-      "title": "No barangay yet",
+      "file": "StaleCounting.dc.html",
+      "title": "Stale \u00b7 still counting down",
       "x": 1000,
       "y": 300,
       "w": 170,
       "h": 170
     },
     {
+      "file": "Unconfigured.dc.html",
+      "title": "No barangay yet",
+      "x": 0,
+      "y": 600,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "LongCountdown.dc.html",
+      "title": "Widest countdown",
+      "x": 250,
+      "y": 600,
+      "w": 170,
+      "h": 170
+    },
+    {
       "file": "Longest.dc.html",
       "title": "Worst case \u00b7 longest strings",
-      "x": 0,
+      "x": 500,
       "y": 600,
       "w": 170,
       "h": 170

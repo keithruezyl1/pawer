@@ -38,8 +38,8 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     shadow_col = SLATE if dashed else INK
     border = f"{BORDER}px {'dashed' if dashed else 'solid'} {SLATE if dashed else INK}"
     big = ("font-family:'Getai Grotesk Black',Impact,sans-serif;"
-           f"font-size:{20 if countdown else 17}px;"
-           + ("" if countdown else "line-height:0.95;"))
+           f"font-size:{16 if countdown else 13}px;"
+           + ("" if countdown else "line-height:1.14;"))   # 0.95 x Getai's 1.20em natural line
     # The area chip, as on the dashboard card. The stale notice is not a place, so it keeps the
     # plain slate line rather than being dressed up as one.
     if not line4:
@@ -47,7 +47,7 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     elif pill:
         four = (f'<div style="align-self: flex-start; margin-top: 4px; background: {GROUND}; '
                 f'border: {BORDER}px solid {INK}; border-radius: 9px; padding: 2px 6px; '
-                f'font-size: 9px; color: {INK}; {clamp(1)}">{line4}</div>')
+                f'font-size: 9px; color: {INK}; {clamp(2)}">{line4}</div>')
     else:
         four = (f'<div style="align-self: flex-start; margin-top: 4px; font-size: 9px; '
                 f'color: {SLATE}; {clamp(1)}">{line4}</div>')
@@ -75,9 +75,9 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
   <div style="width: {CARD}px; height: {CARD}px; box-sizing: border-box; background: {FILL[state]}; border: {border}; border-radius: {RADIUS}px; box-shadow: {SHADOW}px {SHADOW}px 0 {shadow_col}; padding: {PAD_T}px {PAD_L}px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden;">
     <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
     <div style="flex: 1; margin-top: 3px; display: flex; align-items: center;">
-      <div style="width: 100%; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
+      <div style="width: 100%; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
     </div>
-    <div style="margin-top: 5px; font-size: 10px; color: {INK}; {clamp(1)}">{line3}</div>
+    <div style="margin-top: 5px; font-size: 7px; color: {INK}; {clamp(1)}">{line3}</div>
     {four}
   </div>
 </div>
@@ -90,18 +90,25 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
 BOARDS = [
     ("Main",         "Upcoming · counting down", "upcoming", "TODAY",     "3:20:00",     "until 3:00 PM",         "Lahug",  True),
     ("UpcomingSoon", "Upcoming · countdown run out", "upcoming", "TODAY", "Soon",        "until 3:00 PM",         "Lahug",  False),
-    ("Ongoing",      "Ongoing · counting down", "ongoing",  "TODAY",     "0:42:00",     "until 3:00 PM",         "Lahug",  True),
+    # DateUtils.formatElapsedTime drops the hour field under an hour, so this really is "42:00".
+    ("Ongoing",      "Ongoing · counting down", "ongoing",  "TODAY",     "42:00",       "until 3:00 PM",         "Lahug",  True),
     ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "TODAY",     "Outage in-progress", "until 3:00 PM",  "Lahug",  False),
     ("Ended",        "Ended today",             "ended",    "TODAY",     "Restored",    "Should be back by now", "Lahug",  False),
-    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "Clear",       "No scheduled outage",   "Lahug",  False),
+    # No outage at all means no affected areas, so area_label is "" and the chip is hidden.
+    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "Clear",       "No scheduled outage",   "",       False),
     ("ClearNext",    "Clear · next one known",  "clear",    "NEXT",      "Fri",         "9:00 AM – 5:00 PM",     "Lahug",  False),
     ("TwoToday",     "Two outages today",       "upcoming", "TODAY 1/2", "3:20:00",     "until 3:00 PM",         "2 areas", True),
     ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "Clear",       "No scheduled outage",   "Data may be outdated", False),
+    # Stale is an overlay on ANY state, not just a clear one: the background swaps, the text does not.
+    ("StaleCounting","Stale · still counting down", "stale", "TODAY",    "3:20:00",     "until 3:00 PM",         "Data may be outdated", True),
     ("Unconfigured", "No barangay yet",         "clear",    "PAWER",     "Open PAWER",  "Add your barangay",     "",       False),
-    # Worst case in every slot at once: the longest display name in the registry, the longest
-    # window, a cross-midnight time, and the two-outage tag. If anything clips, it clips here.
-    ("Longest",      "Worst case · longest strings", "ended", "TODAY 1/2", "Restored", "10:00 PM – 6:00 AM", "San Isidro, San Fernando", False),
+    # The longest countdown reachable: an outage later today, read just after midnight.
+    ("LongCountdown","Widest countdown",        "upcoming", "TODAY",     "22:55:00",    "until 11:00 PM",        "Lahug",  True),
+    # Worst case in every slot AT ONCE, and reachable: only NONE_TODAY puts a window on line 3, so
+    # the tag is NEXT and the headline is the day. formatWindow keeps both weekdays across midnight.
+    ("Longest",      "Worst case · longest strings", "clear", "NEXT",   "Tomorrow",    "10:00 PM Fri – 6:00 AM Sat", "San Isidro, San Fernando", False),
 ]
+
 
 for name, _title, state, tag, display, line3, line4, cd in BOARDS:
     (HERE / f"{name}.dc.html").write_text(

@@ -8,7 +8,8 @@
 
   NOTHING ELLIPSISES. Every text slot autosizes within a capped number of lines, so at a 2x2 the
   type shrinks to fit instead of cutting a word off. autoSizeTextType needs API 26, so each
-  android:textSize is set at the SMALL end of its range and doubles as the API 24-25 fallback.
+  android:textSize is the size that fits the WIDEST string that slot can hold, unaided, and
+  doubles as the API 24-25 fallback; autosize only ever grows it from there.
 
   The right and bottom padding carry an extra 4 dp because the background insets the card by that
   much to make room for its own shadow, and padding applies to the whole view.
@@ -45,7 +46,7 @@
     android:layout_weight="1"
     android:gravity="center_vertical"
     android:layout_marginTop="3dp"
-    android:textSize="17sp"
+    android:textSize="13sp"
     android:fontFamily="@font/getai_black"
     android:textColor="@color/pawer_ink"
     android:maxLines="2"
@@ -55,8 +56,9 @@
     android:autoSizeMaxTextSize="23sp"
     android:text="Clear" />
 
-  <!-- Fixed size, deliberately: this text changes every second, and an autosizing Chronometer
-       rescales itself as the digit count drops. The strings are short enough not to need it. -->
+  <!-- Autosizes like the rest. A countdown runs up to 23:59:59, which at a fixed 20sp overruns
+       the 84dp content box by 14dp and gets cut off. The size steps only when the digit count
+       changes, not on every tick. The 16sp base fits the widest countdown unaided, for API 24-25. -->
   <Chronometer
     android:id="@+id/pawer_countdown"
     android:layout_width="match_parent"
@@ -64,10 +66,13 @@
     android:layout_weight="1"
     android:gravity="center_vertical"
     android:layout_marginTop="3dp"
-    android:textSize="20sp"
+    android:textSize="16sp"
     android:fontFamily="@font/getai_black"
     android:textColor="@color/pawer_ink"
     android:maxLines="1"
+    android:autoSizeTextType="uniform"
+    android:autoSizeMinTextSize="12sp"
+    android:autoSizeMaxTextSize="22sp"
     android:visibility="gone" />
 
   <TextView
@@ -75,11 +80,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
-    android:textSize="10sp"
+    android:textSize="7sp"
     android:textColor="@color/pawer_ink"
     android:maxLines="1"
     android:autoSizeTextType="uniform"
-    android:autoSizeMinTextSize="7sp"
+    android:autoSizeMinTextSize="6sp"
     android:autoSizeMaxTextSize="12sp"
     android:text="No scheduled outage" />
 
@@ -95,9 +100,9 @@
     android:paddingBottom="2dp"
     android:textSize="9sp"
     android:textColor="@color/pawer_ink"
-    android:maxLines="1"
+    android:maxLines="2"
     android:autoSizeTextType="uniform"
-    android:autoSizeMinTextSize="6sp"
+    android:autoSizeMinTextSize="7sp"
     android:autoSizeMaxTextSize="10sp"
     android:text="" />
 </LinearLayout>
