@@ -13,8 +13,8 @@ export const color = {
   status: palette.status,
   /** Decorative card fills. Never a saturated status hue — see palette.ts. */
   tint: palette.tint,
-  /** The checkerboard ground: ink at 4.5%, drawn as 12 dp squares. */
-  checker: "rgba(33, 36, 49, 0.045)",
+  /** The ground grid: the accent at 9%, so the hint of warmth is the brand's own orange (D-43). */
+  gridLine: "rgba(234, 92, 31, 0.09)",
   /** §4.3 notice: slate at 15% over ground. Precomputed so no runtime alpha blending. */
   noticeFill: "#DDE0E6",
 } as const;
@@ -57,8 +57,8 @@ export const layout = {
   shadow: 4,
   radius: 5,
   touchTarget: 48,
-  /** One checkerboard square. Two of these make the repeating tile. */
-  checkerSquare: 12,
+  /** One grid cell. The tile is a single cell, drawn as two hairlines. */
+  gridSquare: 26,
 } as const;
 
 /**

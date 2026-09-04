@@ -1,5 +1,5 @@
 /**
- * The surface layer: the checkerboard ground, the fade that ends every scrolling list, the hatch
+ * The surface layer: the grid ground, the hatch
  * in a card's corner, and the row helpers that keep an icon glued to its value.
  *
  * All of it is geometry — Rects and Lines — so nothing animates and nothing blurs (NFR-4).
@@ -11,21 +11,25 @@ import { color, layout, space, type } from "../theme/tokens";
 import { T } from "./Text";
 
 /**
- * Checkerboard ground. An SVG <Pattern> tiles two squares of ink at 4.5%, so the whole screen
- * costs one draw call rather than hundreds of Views.
+ * The ground: a hairline grid, tinted with the accent so it reads as a warm hint rather than a
+ * grey mesh. One SVG <Pattern>, so the whole screen is a single draw call.
+ *
+ * It replaces the checkerboard (D-43). A checker at this scale competed with the cards for
+ * attention; a grid sits behind them and is barely there until you look for it.
  */
-export function Checker() {
-  const s = layout.checkerSquare;
+export function Grid() {
+  const s = layout.gridSquare;
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
       <Svg width="100%" height="100%">
         <Defs>
-          <Pattern id="chk" width={s * 2} height={s * 2} patternUnits="userSpaceOnUse">
-            <Rect x={0} y={0} width={s} height={s} fill={color.checker} />
-            <Rect x={s} y={s} width={s} height={s} fill={color.checker} />
+          <Pattern id="grd" width={s} height={s} patternUnits="userSpaceOnUse">
+            {/* Two edges per tile is all a grid needs; drawing four would double every line. */}
+            <Line x1={0} y1={0} x2={s} y2={0} stroke={color.gridLine} strokeWidth={1} />
+            <Line x1={0} y1={0} x2={0} y2={s} stroke={color.gridLine} strokeWidth={1} />
           </Pattern>
         </Defs>
-        <Rect x={0} y={0} width="100%" height="100%" fill="url(#chk)" />
+        <Rect x={0} y={0} width="100%" height="100%" fill="url(#grd)" />
       </Svg>
     </View>
   );

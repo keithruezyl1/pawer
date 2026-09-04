@@ -18,7 +18,7 @@ import { Avatar } from "../../ui/Avatar";
  * ONBOARDING-AND-TOUR. The call-to-action buttons are Cebuano (D-30); every status line and all
  * quoted VECO text stays English, so nothing carrying a time, a place or a warning is translated.
  *
- * Typographic screens on the checkerboard ground with shapes drifting behind. S3 is not skippable.
+ * Typographic screens on the grid ground with shapes drifting behind. S3 is not skippable.
  */
 export default function OnboardingStep() {
   const { step } = useLocalSearchParams<{ step: string }>();

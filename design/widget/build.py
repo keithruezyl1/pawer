@@ -10,22 +10,20 @@ Every number here is lifted from the shipped native source, not eyeballed:
 1 CSS px == 1 dp == 1 sp, so anything Keith edits on the canvas is already the
 Android value. The canvas pans and zooms, so it does not need scaling up.
 """
-import base64, json, pathlib
+import json, pathlib
 
 HERE = pathlib.Path(__file__).parent
 RES = HERE / "../../app/modules/pawer-widget/android/src/main/res"
 
-CELL, SHADOW, RADIUS, BORDER = 110, 4, 14, 2
+CELL, SHADOW, RADIUS, BORDER = 110, 4, 22, 2
 CARD = CELL - SHADOW                      # the layer-list insets the card by the shadow offset
 PAD_T, PAD_L = 10 - BORDER, 11 - BORDER   # android:padding is from the view edge, inside the stroke
 INK, SLATE, GROUND = "#212431", "#4F5D75", "#F5F5F5"
 FILL = {"clear": "#9BF06B", "upcoming": "#FF90E8", "ongoing": "#FF5C5C",
         "ended": "#FFD93D", "stale": "#E9E9E7"}
 
-GETAI = base64.b64encode((RES / "font/getai_black.ttf").read_bytes()).decode()
-
-# The display slot and the countdown are the only things using the app's own face; the native
-# layout sets no fontFamily on the other three, so those are the platform default (Roboto).
+# The headline is sans-serif-black, the platform's heaviest Roboto; the other three slots set no
+# fontFamily at all, so they are the platform default. Both are Roboto, at 900 and 400.
 SYS = "Roboto, 'Helvetica Neue', system-ui, sans-serif"
 
 def clamp(lines):
@@ -37,7 +35,7 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     dashed = state == "stale"
     shadow_col = SLATE if dashed else INK
     border = f"{BORDER}px {'dashed' if dashed else 'solid'} {SLATE if dashed else INK}"
-    big = ("font-family:'Getai Grotesk Black',Impact,sans-serif;"
+    big = (f"font-family:{SYS};font-weight:900;"
            f"font-size:{16 if countdown else 13}px;"
            + ("" if countdown else "line-height:1.14;"))   # 0.95 x Getai's 1.20em natural line
     # The area chip, as on the dashboard card. The stale notice is not a place, so it keeps the
@@ -60,13 +58,8 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
 <body>
 <x-dc>
 <helmet>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap">
   <style>
-    @font-face {{
-      font-family: 'Getai Grotesk Black';
-      src: url(data:font/ttf;base64,{GETAI}) format('truetype');
-      font-weight: 400; font-display: block;
-    }}
     body {{ margin: 0; background: transparent; font-family: {SYS}; color: {INK}; }}
     a {{ color: #EA5C1F; }} a:hover {{ color: #C24A16; }}
   </style>
@@ -151,4 +144,4 @@ canvas = {
 (HERE / "canvas.json").write_text(json.dumps(canvas, indent=2) + "\n", encoding="utf-8")
 print(f"{len(BOARDS)} artboards + canvas.json")
 print(f"  cell {CELL}dp · card {CARD}dp · radius {RADIUS}dp · shadow {SHADOW}dp · padding {PAD_T}/{PAD_L}dp inside the stroke")
-print(f"  Getai subset inlined: {len(GETAI)/1024:.0f} KB base64 per board")
+print("  headline: sans-serif-black (Roboto 900), no bundled font")

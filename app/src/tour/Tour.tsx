@@ -25,6 +25,15 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
   const { prefs, tourPending, setTourPending, addBarangay, completeTour } = useApp();
   const [step, setStep] = useState<Step>(prefs.barangays.length ? "T6" : "T1");
   const [mapOk, setMapOk] = useState(true);
+  // The map slot stays collapsed until the image actually decodes, so a missing map shows nothing
+  // at all rather than an empty grey box that hangs about and then vanishes.
+  const [mapLoaded, setMapLoaded] = useState(false);
+  /**
+   * The area just added. T5 used to name prefs.barangays[0], which is the FIRST area ever added,
+   * so adding a second one congratulated you on the wrong barangay. tourPending is cleared before
+   * T5 renders, so the name has to be captured on the way through.
+   */
+  const [addedName, setAddedName] = useState<string | null>(null);
   const sounds = useSounds();
 
   // T2 → T3: the picker returned a selection.
@@ -69,18 +78,27 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
           body=""
           primary={{
             label: "Yes, add it",
-            onPress: () => { tourPending?.forEach(addBarangay); sounds.areaAdded(); setTourPending(null); setStep("T5"); },
+            onPress: () => {
+              setAddedName(pendingName);
+              tourPending?.forEach(addBarangay);
+              sounds.areaAdded();
+              setTourPending(null);
+              setStep("T5");
+            },
           }}
           secondary={{ label: "Pick another", onPress: () => { setTourPending(null); router.push("/picker?tour=1"); } }}
           onSkip={skip}
         >
           {mapUri && mapOk && (
-            <Image
-              source={{ uri: mapUri }}
-              onError={() => setMapOk(false)} // no image → the slot collapses; confirmation proceeds on the name (§4.2)
-              style={styles.map}
-              accessibilityLabel={`Map of ${pendingName}`}
-            />
+            <View style={mapLoaded ? styles.mapWrap : styles.mapPending}>
+              <Image
+                source={{ uri: mapUri }}
+                onLoad={() => setMapLoaded(true)}
+                onError={() => setMapOk(false)} // no image → the slot collapses; confirm on the name (§4.2)
+                style={styles.map}
+                accessibilityLabel={`Map of ${pendingName}`}
+              />
+            </View>
           )}
           <T v="headline">{pending ? `${pending.display}, ${pendingLgu(pending.lgu)}` : ""}</T>
           <T v="caption" muted>Approximate centre. Outages often affect only part of a barangay.</T>
@@ -92,7 +110,7 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
       return (
         <CoachMark
           target={null}
-          title={`${firstName} is yours now.`}
+          title={`${addedName ?? firstName} is yours now.`}
           body="We'll tell you before the power goes."
           primary={{ label: "Continue", onPress: () => setStep("T6") }}
           onSkip={skip}
@@ -134,7 +152,7 @@ export function Tour({ addAreaRect }: { addAreaRect: Rect | null }) {
         <CoachMark
           target={null}
           title="You're all set."
-          body={`PAWER will speak up when part of ${firstName} is scheduled to lose power. Change anything in Settings.`}
+          body={`PAWER will speak up when part of ${prefs.barangays.length > 1 ? "your areas" : firstName} is scheduled to lose power. Change anything in Settings.`}
           primary={{ label: "Done", onPress: completeTour }}
           onSkip={completeTour}
         />
@@ -147,5 +165,9 @@ function pendingLgu(slug: string): string {
 }
 
 const styles = StyleSheet.create({
-  map: { width: "100%", aspectRatio: 1.6, borderWidth: layout.border, borderColor: color.ink, borderRadius: layout.radius, marginBottom: space.md, backgroundColor: color.surface2 },
+  mapWrap: { marginBottom: space.md },
+  // Zero-height and clipped, not unmounted: the request still runs, it just takes no space and
+  // shows nothing until onLoad. No fill colour, so there is never a grey placeholder.
+  mapPending: { height: 0, overflow: "hidden" },
+  map: { width: "100%", aspectRatio: 1.6, borderWidth: layout.border, borderColor: color.ink, borderRadius: layout.radius },
 });

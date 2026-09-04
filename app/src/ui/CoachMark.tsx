@@ -1,6 +1,7 @@
 import { useEffect, type PropsWithChildren } from "react";
-import { Pressable, StyleSheet, View, useWindowDimensions } from "react-native";
+import { Pressable, StyleSheet, View, useWindowDimensions, type StyleProp, type ViewStyle } from "react-native";
 import Animated from "react-native-reanimated";
+import { BlurView } from "expo-blur";
 import { color, layout, space } from "../theme/tokens";
 import { useStamp } from "../theme/motion";
 import { Block } from "./Block";
@@ -22,10 +23,28 @@ export interface CoachMarkProps extends PropsWithChildren {
 }
 
 /**
- * Tour overlay. Flat ink scrim drawn as four rectangles around the target — no blur, no mask —
- * with a 2 dp accent ring on the target (one of accent's three permitted homes). Repositioning
- * is a hard cut (`spot`), then the ring `stamp`s.
+ * Tour overlay. The scrim is four rectangles around the target, so the highlighted control stays
+ * sharp while everything else both dims and blurs (D-44), with a 2 dp accent ring on the target
+ * (one of accent's three permitted homes). Repositioning is a hard cut (`spot`), then the ring
+ * `stamp`s.
  */
+
+/**
+ * One panel of the scrim: blur behind, then the calibrated 32% ink over the top.
+ *
+ * The blur is the ONE place NFR-4's no-blur rule is relaxed. It exists only while the tour is on
+ * screen, it is never on a surface the user lives in, and it is what makes "everything except
+ * this" read as background rather than as a tinted copy of the same screen. Android needs
+ * `experimentalBlurMethod` to blur for real; without it the view is a plain translucent wash,
+ * which is exactly the old behaviour, so an unsupported device degrades to what shipped before.
+ */
+function Scrim({ style }: { style: StyleProp<ViewStyle> }) {
+  return (
+    <BlurView intensity={14} tint="dark" experimentalBlurMethod="dimezisBlurView" style={[styles.scrim, style]}>
+      <View style={styles.dim} />
+    </BlurView>
+  );
+}
 export function CoachMark({ target, title, body, primary, secondary, onSkip, passThroughTarget, children }: CoachMarkProps) {
   const { width: W, height: H } = useWindowDimensions();
   const stamp = useStamp();
@@ -40,17 +59,17 @@ export function CoachMark({ target, title, body, primary, secondary, onSkip, pas
       {/* scrim as four rects so the target stays fully visible and (optionally) tappable */}
       {t ? (
         <>
-          <View style={[styles.scrim, { left: 0, top: 0, width: W, height: t.y }]} />
-          <View style={[styles.scrim, { left: 0, top: t.y, width: t.x, height: t.h }]} />
-          <View style={[styles.scrim, { left: t.x + t.w, top: t.y, width: W - t.x - t.w, height: t.h }]} />
-          <View style={[styles.scrim, { left: 0, top: t.y + t.h, width: W, height: H - t.y - t.h }]} />
+          <Scrim style={{ left: 0, top: 0, width: W, height: t.y }} />
+          <Scrim style={{ left: 0, top: t.y, width: t.x, height: t.h }} />
+          <Scrim style={{ left: t.x + t.w, top: t.y, width: W - t.x - t.w, height: t.h }} />
+          <Scrim style={{ left: 0, top: t.y + t.h, width: W, height: H - t.y - t.h }} />
           <Animated.View
             pointerEvents={passThroughTarget ? "none" : "auto"}
             style={[styles.ring, { left: t.x, top: t.y, width: t.w, height: t.h }, stamp.style]}
           />
         </>
       ) : (
-        <View style={[styles.scrim, StyleSheet.absoluteFill]} />
+        <Scrim style={StyleSheet.absoluteFill} />
       )}
 
       <View style={[styles.calloutWrap, t ? (calloutBelow ? { top: t.y + t.h + space.xl } : { bottom: H - t.y + space.xl }) : styles.centered]} pointerEvents="box-none">
@@ -72,9 +91,11 @@ export function CoachMark({ target, title, body, primary, secondary, onSkip, pas
 }
 
 const styles = StyleSheet.create({
+  scrim: { position: "absolute", overflow: "hidden" },
   // 32%, not 72%: a recede rather than a blackout, so the user can still see the screen
-  // they are being shown. White text fails on this (1.94:1), so Skip is ink.
-  scrim: { position: "absolute", backgroundColor: "rgba(33,36,49,0.32)" },
+  // they are being shown. White text fails on this (1.94:1), so Skip is ink. Painted as a child
+  // of the BlurView rather than as its backgroundColor, so the blur stays behind the tint.
+  dim: { flex: 1, backgroundColor: "rgba(33,36,49,0.32)" },
   ring: { position: "absolute", borderWidth: layout.border, borderColor: color.accent, borderRadius: layout.radius },
   calloutWrap: { position: "absolute", left: layout.screenMargin, right: layout.screenMargin, gap: space.md },
   centered: { top: "30%" },
