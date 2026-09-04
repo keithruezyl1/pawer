@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
 import { Redirect, Stack, usePathname } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { color } from "../theme/tokens";
@@ -9,6 +11,13 @@ import { registerBackgroundHandler } from "../platform/push";
 
 // Headless FCM handler must be registered at module load, before any render (ARCH §7.3).
 try { registerBackgroundHandler(); } catch { /* not available in Expo Go */ }
+
+/**
+ * Hold the orange PWR splash until the fonts are in. Expo requires this at global scope and
+ * unawaited — inside a component it can lose the race with the first frame. Without it the splash
+ * hides the moment React mounts, showing the empty ground for as long as the fonts take.
+ */
+void SplashScreen.preventAutoHideAsync().catch(() => { /* already hidden; not worth failing over */ });
 
 export default function RootLayout() {
   /**
@@ -21,6 +30,12 @@ export default function RootLayout() {
     "Aspekta-500": require("../../assets/fonts/Aspekta-Medium.ttf"),
     "Aspekta-700": require("../../assets/fonts/Aspekta-Bold.ttf"),
   });
+
+  // Hand the screen over only once there is something worth showing. A font that fails to load
+  // still lifts the splash — a fallback face beats a splash that never goes away.
+  useEffect(() => {
+    if (fontsReady || fontError) void SplashScreen.hideAsync().catch(() => {});
+  }, [fontsReady, fontError]);
 
   // Hold the first frame rather than paint the system face and reflow. If a font is unreadable
   // we render anyway — a fallback face beats a screen that never appears.
