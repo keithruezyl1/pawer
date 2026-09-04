@@ -52,7 +52,7 @@ describe("deriveWidgetState — the precomputed blob the Kotlin widget reads (AR
     const now = fromManila(2026, 9, 2, 10);
     const w = deriveWidgetState(resolveStatus([], SEL, now, fresh(now)), SEL, now, fresh(now), label);
     expect(w.boundaries_ms).toEqual([fromManila(2026, 9, 3, 0)]);
-    expect(w.secondary).toBe("No scheduled outage");
+    expect(w.secondary).toBe("You're all good for today!");
     expect(w.label).toBe("TODAY");
   });
 

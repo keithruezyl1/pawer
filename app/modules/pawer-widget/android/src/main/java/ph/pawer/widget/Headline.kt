@@ -22,8 +22,9 @@ import android.text.TextPaint
  */
 internal object Headline {
 
-  /** Matches the layout's autosize range for the slot this replaces. */
-  private const val MAX_SP = 23f
+  /** Up to the dashboard card's own display size, so a launcher that gives the widget more room
+   *  gets a headline that grows into it instead of a small one adrift in a big card. */
+  private const val MAX_SP = 40f
   private const val MIN_SP = 9f
 
   fun render(ctx: Context, text: String, boxDp: Int, maxHeightDp: Int, maxLines: Int, colorInt: Int): Bitmap? {

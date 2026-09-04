@@ -37,7 +37,7 @@
     android:maxLines="1"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="7sp"
-    android:autoSizeMaxTextSize="10sp"
+    android:autoSizeMaxTextSize="13sp"
     android:text="TODAY" />
 
   <!-- Either the headline or the countdown is visible, never both. The headline is an ImageView
@@ -64,7 +64,7 @@
     android:maxLines="1"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="12sp"
-    android:autoSizeMaxTextSize="22sp"
+    android:autoSizeMaxTextSize="40sp"
     android:visibility="gone" />
 
   <TextView
@@ -78,7 +78,7 @@
     android:maxLines="1"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="6sp"
-    android:autoSizeMaxTextSize="9sp"
+    android:autoSizeMaxTextSize="15sp"
     android:text="No scheduled outage" />
 
   <!-- The slack sits HERE, between the subtitle and the area chip: the tag, value and subtitle
@@ -109,6 +109,6 @@
     android:maxLines="2"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="7sp"
-    android:autoSizeMaxTextSize="10sp"
+    android:autoSizeMaxTextSize="14sp"
     android:text="" />
 </LinearLayout>

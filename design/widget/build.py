@@ -95,10 +95,10 @@ BOARDS = [
     ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "TODAY",     "Outage in-progress", "until 3:00 PM",  "Lahug",  False),
     ("Ended",        "Ended today",             "ended",    "TODAY",     "Restored",    "Should be back by now", "Lahug",  False),
     # No outage at all means no affected areas, so area_label is "" and the chip is hidden.
-    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "No outages today", "No scheduled outage", "",  False),
+    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "No outages today", "You're all good for today!", "",  False),
     ("ClearNext",    "Clear · next one known",  "clear",    "NEXT",      "Fri",         "9:00 AM – 5:00 PM",     "Lahug",  False),
     ("TwoToday",     "Two outages today",       "upcoming", "TODAY 1/2", "3:20:00",     "until 3:00 PM",         "2 areas", True),
-    ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "No outages today", "No scheduled outage", "",  False),
+    ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "No outages today", "You're all good for today!", "",  False),
     # Stale is an overlay on ANY state, not just a clear one: the background swaps, the text does not.
     ("StaleCounting","Stale · still counting down", "stale", "TODAY",    "3:20:00",     "until 3:00 PM",         "Lahug",  True),
     ("Unconfigured", "No barangay yet",         "clear",    "PAWER",     "No location set in app", "Add your barangay", "", False),

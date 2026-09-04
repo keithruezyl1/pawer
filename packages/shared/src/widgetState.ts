@@ -32,7 +32,7 @@ export function deriveWidgetState(
         // Date short gives "Thu, Sep 3" — the widget has ~4 lines, keep the weekday only.
         secondary = `${shortDay(start, nowMs)} · ${formatWindow(start, end)}`;
       } else {
-        secondary = "No scheduled outage";
+        secondary = "You're all good for today!";
       }
       break;
     case "UPCOMING_TODAY":
