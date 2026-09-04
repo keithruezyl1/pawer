@@ -12,7 +12,7 @@
   "minglanilla.poblacion-ward-i": "2026-08-16T09:00:00+08:00",
   "minglanilla.poblacion-ward-ii": "2026-08-16T09:00:00+08:00",
   "minglanilla.poblacion-ward-iii": "2026-08-16T09:00:00+08:00",
-  "minglanilla.poblacion-ward-iv": "2026-08-16T09:00:00+08:00",
+  "minglanilla.poblacion-ward-iv": "2026-09-12T09:00:00+08:00",
   "cebu-city.pit-os": "2026-08-29T08:00:00+08:00",
   "cebu-city.pulangbato": "2026-09-05T10:00:00+08:00",
   "cebu-city.sawang-calero": "2026-08-17T09:00:00+08:00",
@@ -121,5 +121,6 @@
   "consolacion.tolotolo": "2026-09-11T09:00:00+08:00",
   "cebu-city.guba": "2026-09-09T13:00:00+08:00",
   "cebu-city.punta-princesa": "2026-09-10T08:00:00+08:00",
-  "talisay-city.biasong": "2026-09-11T09:00:00+08:00"
+  "talisay-city.biasong": "2026-09-11T09:00:00+08:00",
+  "cebu-city.san-nicolas-central": "2026-08-17T09:00:00+08:00"
 }

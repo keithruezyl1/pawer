@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-04T09:00:25.738Z",
+  "generated_at": "2026-09-04T09:23:53.672Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
     {
@@ -154,14 +154,13 @@
         "cebu-city"
       ],
       "barangays": [
+        "cebu-city.san-nicolas-central",
         "cebu-city.sawang-calero"
       ],
-      "unknown_area_tokens": [
-        "San Nicolas Proper"
-      ],
+      "unknown_area_tokens": [],
       "areas_raw": "Portion of San Nicolas Proper & Sawang Calero, Cebu City, along Tupas St. & Magsaysay St.",
       "purpose_raw": "To increase the capacity of the distribution system serving Brgy. San Nicolas Proper & Sawang Calero by facilitating upgrading of distribution transformer",
-      "parse_status": "partial",
+      "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-august-16-22-2026",
       "source_published_at": "2026-08-13T10:38:45.000Z"
     },
@@ -788,12 +787,10 @@
       "barangays": [
         "naga.tangke"
       ],
-      "unknown_area_tokens": [
-        "Tangke Brgy. Rd"
-      ],
+      "unknown_area_tokens": [],
       "areas_raw": "Portion of Tangke, City of Naga Portion of Tangke Brgy. Rd",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tangke by facilitating reconstruction of primary lines",
-      "parse_status": "partial",
+      "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-august-16-22-2026",
       "source_published_at": "2026-08-13T10:38:45.000Z"
     },
@@ -1961,14 +1958,10 @@
       "barangays": [
         "mandaue-city.alang-alang"
       ],
-      "unknown_area_tokens": [
-        "R. Colina St",
-        "R. Colina Extn",
-        "Marciano Quizon Road"
-      ],
+      "unknown_area_tokens": [],
       "areas_raw": "Portion of Alang-Alang, Mandaue City, R. Colina St., R. Colina Extn., and Marciano Quizon Road.",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Alang-Alang by facilitating installation of automatic reclosing device (recloser).",
-      "parse_status": "partial",
+      "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
       "source_published_at": "2026-09-03T09:02:24.000Z"
     },
@@ -2085,15 +2078,10 @@
         "consolacion.polog",
         "consolacion.tolotolo"
       ],
-      "unknown_area_tokens": [
-        "Cabangahan Road",
-        "Polog Road",
-        "going to Panoypoy Road",
-        "Polog-Garing Road"
-      ],
+      "unknown_area_tokens": [],
       "areas_raw": "Portion of Cabangahan, Danglag, Garing, Panoypoy, Polog & Tolotolo, Consolacion, Cabangahan Road, Polog Road, going to Panoypoy Road and Polog-Garing Road.",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Cabangahan, Danglag, Garing, Panoypoy, Polog & Tolotolo by facilitating primary line maintenance.",
-      "parse_status": "partial",
+      "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
       "source_published_at": "2026-09-03T09:02:24.000Z"
     },
@@ -2414,14 +2402,13 @@
         "minglanilla"
       ],
       "barangays": [
+        "minglanilla.poblacion-ward-iv",
         "minglanilla.tunghaan"
       ],
-      "unknown_area_tokens": [
-        "Ward IV"
-      ],
+      "unknown_area_tokens": [],
       "areas_raw": "Portion of Ward IV & Tunghaan, Minglanilla, along portions of Tres de Mayo St.",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Ward IV & Tunghaan by facilitating replacement of primary pole.",
-      "parse_status": "partial",
+      "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
       "source_published_at": "2026-09-03T09:02:24.000Z"
     },
