@@ -77,8 +77,8 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
     <div style="margin-top: 2px; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
     <div style="margin-top: 1px; font-size: 7px; font-weight: 700; color: {INK}; {clamp(1)}">{line3}</div>
-    {four}
     <div style="flex: 1;"></div>
+    {four}
   </div>
 </div>
 </x-dc>

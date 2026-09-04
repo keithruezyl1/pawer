@@ -81,6 +81,14 @@
     android:autoSizeMaxTextSize="9sp"
     android:text="No scheduled outage" />
 
+  <!-- The slack sits HERE, between the subtitle and the area chip: the tag, value and subtitle
+       group tight at the top, and the chip stays pinned to the bottom of the card. Putting this
+       after the chip instead pulled the chip up with the value block. -->
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
+
   <TextView
     android:id="@+id/pawer_line4"
     android:layout_width="wrap_content"
@@ -99,12 +107,4 @@
     android:autoSizeMinTextSize="7sp"
     android:autoSizeMaxTextSize="10sp"
     android:text="" />
-
-  <!-- Every slot above is wrap_content and grouped at the top, as the dashboard card groups its
-       own tag / value / detail / area. This Space takes whatever room is left, which is what puts
-       the subtitle directly under the value instead of a centred value with gaps either side. -->
-  <Space
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1" />
 </LinearLayout>
