@@ -189,3 +189,20 @@ export function ClearMark({ size = 58 }: { size?: number }) {
     </Svg>
   );
 }
+
+/**
+ * LinkedIn. The only glyph here drawn as a filled badge rather than a 2 dp outline, because the
+ * mark is only recognisable that way — an outlined "in" reads as noise at this size. The letters
+ * are knocked out in the ground colour so it still sits on the page like the rest of the set.
+ */
+export function LinkedIn({ size = 16, tone = color.ink }: IconProps) {
+  return (
+    <Box size={size}>
+      <Rect x={0.5} y={0.5} width={15} height={15} rx={3.4} fill={tone} />
+      <Circle cx={4.5} cy={4.7} r={1.3} fill={color.ground} />
+      <Path d="M4.5 7.5v4.8" stroke={color.ground} strokeWidth={2.2} strokeLinecap="square" />
+      <Path d="M8.1 12.3V7.5" stroke={color.ground} strokeWidth={2.2} strokeLinecap="square" />
+      <Path d="M8.1 9.8a2.2 2.2 0 0 1 4.4 0v2.5" stroke={color.ground} strokeWidth={2.2} strokeLinecap="square" />
+    </Box>
+  );
+}

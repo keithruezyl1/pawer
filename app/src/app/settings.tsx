@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { StyleSheet, Switch, View } from "react-native";
+import { Linking, Pressable, StyleSheet, Switch, View } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { formatDateShort, formatTime12h } from "@pawer/shared";
@@ -12,10 +12,12 @@ import { T } from "../ui/Text";
 import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
 import { Chip } from "../ui/Chip";
-import { Bell, Bolt, Clock, Info, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
+import { Bell, Bolt, Clock, Info, LinkedIn, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
 import { Spinner } from "../ui/Spinner";
 import { Avatar } from "../ui/Avatar";
 import { Fade, IconRow, SectionLabel } from "../ui/Surface";
+
+const CREATOR_URL = "https://www.linkedin.com/in/keith-tagarao/";
 
 const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string; icon: ReactNode }> = [
   { key: "newAdvisory", label: "New advisory", hint: "A new outage is scheduled for your area", icon: <Bell size={16} /> },
@@ -73,8 +75,7 @@ export default function Settings() {
         <Switch value={prefs.sounds} onValueChange={setSounds} trackColor={{ false: color.surface2, true: color.ink }} thumbColor={color.ground} accessibilityLabel="Sounds" />
       </View>
 
-      <SectionLabel icon={<Refresh size={13} />} style={styles.section}>DATA</SectionLabel>
-      <IconRow icon={<Clock size={15} />}>
+      <IconRow icon={<Clock size={15} />} style={styles.section}>
         {fetchedAtMs ? `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}` : "Not checked yet"}
       </IconRow>
       <Button
@@ -98,16 +99,26 @@ export default function Settings() {
           style={styles.nameField}
         />
       </View>
-      <T v="caption" muted>Your name never leaves your phone. It isn't sent anywhere.</T>
+      <T v="caption" muted>Stays on your phone. Never sent anywhere.</T>
 
       <T v="label" style={styles.section}>UPDATE</T>
       <T v="body">Version {Constants.expoConfig?.version ?? "dev"}</T>
-      <T v="caption" muted>PAWER is installed as an APK, so it checks for its own updates when it starts.</T>
 
       <SectionLabel icon={<Info size={13} />} style={styles.section}>ABOUT</SectionLabel>
-      {/* The ONLY place the full position appears now — the per-screen lines were cut (D-29). */}
-      <T v="body" muted>PAWER reads Visayan Electric's public advisories. It isn't made by them and isn't affiliated with them. It covers scheduled outages only, and shows the published schedule rather than the real state of the grid, so don't rely on it for anything medical or safety critical.</T>
-      <T v="caption" muted style={styles.section}>No accounts. No location. Nothing about you is stored on any server.</T>
+      <T v="body">Nobody likes having their power cut. What's worse is not knowing it was coming, even when it was announced days ahead.</T>
+      <T v="body" style={styles.para}>PAWER does one thing and tries to do it well. It tells you when Visayan Electric has scheduled an interruption for your area, instead of leaving it buried in a social media feed.</T>
+      <T v="body" style={styles.para}>Pero bitaw VECO, kanusa mani mahuman?</T>
+
+      <T v="body" style={styles.section}>Follow PWR's creator</T>
+      <Pressable
+        onPress={() => void Linking.openURL(CREATOR_URL)}
+        accessibilityRole="link"
+        accessibilityLabel="Follow PWR's creator on LinkedIn"
+        style={styles.link}
+      >
+        <LinkedIn size={16} />
+        <T v="body" style={styles.linkText}>linkedin.com/in/keith-tagarao</T>
+      </Pressable>
     </Screen>
     <Fade />
     </View>
@@ -123,4 +134,8 @@ const styles = StyleSheet.create({
   rowText: { flex: 1 },
   nameRow: { flexDirection: "row", alignItems: "center", gap: space.md },
   nameField: { flex: 1 },
+  para: { marginTop: space.md },
+  link: { flexDirection: "row", alignItems: "center", gap: space.sm + 2, minHeight: layout.touchTarget },
+  // Accent's fifth home, and the same treatment as the advisory link: both point off the app.
+  linkText: { color: color.accent, textDecorationLine: "underline" },
 });
