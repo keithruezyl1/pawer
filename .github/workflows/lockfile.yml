@@ -1,0 +1,32 @@
+# Fails fast when package.json and package-lock.json drift apart.
+#
+# `npm ci` refuses an out-of-sync lockfile, and the ingest cron is the only thing that runs it —
+# so a desync stayed invisible until a scheduled run died and mailed a failure. That happened
+# twice on 2026-09-04: the root lockfile lives one level above app/package.json, so installing an
+# app dependency and then staging only app/ leaves the tree broken. This catches it in seconds, on
+# the push that causes it, instead of up to half an hour later by email.
+name: lockfile
+
+on:
+  push:
+    paths:
+      - "**/package.json"
+      - "package-lock.json"
+  pull_request:
+    paths:
+      - "**/package.json"
+      - "package-lock.json"
+
+jobs:
+  in-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # --dry-run resolves and validates without writing node_modules: it is the lockfile check,
+      # not an install, so it finishes in seconds.
+      - name: npm ci must accept the lockfile
+        run: npm ci --dry-run --no-audit --no-fund
