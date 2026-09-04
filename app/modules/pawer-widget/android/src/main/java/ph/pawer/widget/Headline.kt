@@ -23,13 +23,12 @@ import android.text.TextPaint
 internal object Headline {
 
   /**
-   * 30, not the card's own 40. Measured across every headline the renderer can produce: a cap of
-   * 40 let two-word strings ("Restored", "Soon") reach 40sp while "No outages today" was held to
-   * 21 by its third word, a near-2x swing between states on the same widget. At 30 with three
-   * lines allowed the spread is 5sp. A 2x2 is unaffected either way — the height budget there
-   * pins everything to 13sp long before the cap matters.
+   * 24. Measured across every headline the renderer can produce, on a widget the size Keith's
+   * launcher actually makes: 40 let two-word strings run away from three-word ones, 30 over three
+   * lines was simply too big, and 24 over two lines holds every state within 3sp of the others.
+   * A 2x2 is unaffected — its height budget pins everything to 13sp long before the cap matters.
    */
-  private const val MAX_SP = 30f
+  private const val MAX_SP = 24f
   private const val MIN_SP = 9f
 
   fun render(ctx: Context, text: String, boxDp: Int, maxHeightDp: Int, maxLines: Int, colorInt: Int): Bitmap? {
@@ -48,9 +47,10 @@ internal object Headline {
     // anyone can see, coarse enough to be quick. Fitting the HEIGHT here rather than letting the
     // ImageView scale it down is what stops the headline being squeezed to nothing on a 2x2.
     val maxHeightPx = (maxHeightDp * density).toInt()
+    val words = text.split(" ").filter { it.isNotEmpty() }
     var layout = measure(paint, text, widthPx, MAX_SP * density)
     var sp = MAX_SP
-    while ((layout.lineCount > maxLines || layout.height > maxHeightPx) && sp > MIN_SP) {
+    while ((layout.lineCount > maxLines || layout.height > maxHeightPx || !wordsFit(paint, words, widthPx)) && sp > MIN_SP) {
       sp -= 0.5f
       layout = measure(paint, text, widthPx, sp * density)
     }
@@ -62,6 +62,17 @@ internal object Headline {
     layout.draw(Canvas(bmp))
     return bmp
   }
+
+  /**
+   * True when every word fits the line on its own.
+   *
+   * StaticLayout does not overflow a word too wide for the line, it BREAKS it — which rendered
+   * "No outages today" as "No / outage / s today" on a real widget. Nothing about line count or
+   * height catches that, because a broken word still fits both. Refusing any size where a single
+   * word would not fit is what keeps words whole.
+   */
+  private fun wordsFit(paint: TextPaint, words: List<String>, widthPx: Int): Boolean =
+    words.all { paint.measureText(it) <= widthPx }
 
   private fun measure(paint: TextPaint, text: String, widthPx: Int, sizePx: Float): StaticLayout {
     paint.textSize = sizePx

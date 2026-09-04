@@ -75,7 +75,7 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
 <div style="width: {CELL}px; height: {CELL}px; display: flex; align-items: flex-start; justify-content: flex-start;">
   <div style="width: {CARD}px; height: {CARD}px; box-sizing: border-box; background: {FILL[state]}; border: {border}; border-radius: {RADIUS}px; box-shadow: {SHADOW}px {SHADOW}px 0 {shadow_col}; padding: {PAD_T}px {PAD_L}px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden;">
     <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
-    <div style="margin-top: 2px; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 3)}">{display}</div>
+    <div style="margin-top: 2px; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
     <div style="margin-top: 1px; font-size: 7px; font-weight: 700; color: {INK}; {clamp(1)}">{line3}</div>
     <div style="flex: 1;"></div>
     {four}

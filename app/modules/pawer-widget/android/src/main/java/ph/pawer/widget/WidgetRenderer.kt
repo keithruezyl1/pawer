@@ -93,7 +93,7 @@ object WidgetRenderer {
     if (display != null) {
       v.setViewVisibility(R.id.pawer_display, View.VISIBLE)
       // Two rows, and the same 84dp content box the layout's padding leaves.
-      val bmp = Headline.render(ctx, display, contentDp, headlineDp, maxLines = 3, colorInt = ctx.getColor(R.color.pawer_ink))
+      val bmp = Headline.render(ctx, display, contentDp, headlineDp, maxLines = 2, colorInt = ctx.getColor(R.color.pawer_ink))
       if (bmp != null) v.setImageViewBitmap(R.id.pawer_display, bmp)
       v.setContentDescription(R.id.pawer_display, display)
     } else {
