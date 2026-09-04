@@ -10,7 +10,7 @@ import { Block } from "../../ui/Block";
 import { barangayLabel } from "../../ui/OutageCard";
 import { Chevron } from "../../ui/Glyph";
 import { Clock, ExternalLink, Note, Pin, Warn } from "../../ui/Icon";
-import { IconRow } from "../../ui/Surface";
+import { Fade, IconRow } from "../../ui/Surface";
 
 /** Detail sheet (DG §6.3): structured summary, then VECO's text verbatim under an accent rule. */
 export default function Detail() {
@@ -44,6 +44,7 @@ export default function Detail() {
   const unreadable = o.parse_status === "failed";
 
   return (
+    <View style={styles.root}>
     <Screen>
       <View style={styles.head}>
         <T v="title">{unreadable ? "Advisory" : formatDateShort(start, nowMs)}</T>
@@ -95,10 +96,13 @@ export default function Detail() {
         style={styles.mtLg}
       />
     </Screen>
+    <Fade />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: color.ground },
   head: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   back: { width: layout.touchTarget, height: layout.touchTarget, alignItems: "flex-end", justifyContent: "center" },
   chips: { flexDirection: "row", flexWrap: "wrap", gap: space.sm },

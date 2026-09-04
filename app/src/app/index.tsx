@@ -10,7 +10,7 @@ import { Screen } from "../ui/Screen";
 import { T } from "../ui/Text";
 import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
-import { StatusField } from "../ui/StatusField";
+import { StatusField, freshnessLabel } from "../ui/StatusField";
 import { OutageCard } from "../ui/OutageCard";
 import { LatestAdvisory } from "../ui/LatestAdvisory";
 import { Chevron } from "../ui/Glyph";
@@ -93,14 +93,14 @@ export default function Dashboard() {
             </Block>
           </View>
         ) : (
-          <StatusField status={status} selected={selected} nowMs={nowMs} fetchedAtMs={fetchedAtMs} />
+          <StatusField status={status} selected={selected} nowMs={nowMs} />
         )}
 
         {!hydrating && selected.length > 0 && (
           <View style={styles.pad}>
             <View style={styles.meta}>
               <IconRow icon={<Clock size={12} tone={color.slate} />} v="caption" muted gap={6}>
-                {status.isStale ? "Data may be outdated" : "Up to date"}
+                {freshnessLabel(nowMs, fetchedAtMs)}
               </IconRow>
               <Animated.View style={[tick.style, bump.style]}>
                 <T v="caption" muted>

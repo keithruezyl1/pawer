@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { StyleSheet, View } from "react-native";
 import {
   formatDateShort, formatDuration, formatTime12h, formatWindow,
@@ -33,7 +33,18 @@ export interface StatusFieldProps {
   status: StatusResult;
   selected: readonly string[];
   nowMs: number;
-  fetchedAtMs: number;
+}
+
+/**
+ * How long ago the feed was last checked. Lives here beside the state machine but renders in the
+ * dashboard's meta row, which is the only place the canvas puts it — the hero carries the schedule,
+ * not the plumbing.
+ */
+export function freshnessLabel(nowMs: number, fetchedAtMs: number): string {
+  const m = Math.round((nowMs - fetchedAtMs) / 60000);
+  if (m < 1) return "Checked just now";
+  if (m < 60) return `Checked ${m} min ago`;
+  return `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}`;
 }
 
 /**
@@ -41,7 +52,7 @@ export interface StatusFieldProps {
  * copy discipline: the schedule, never the grid (DG §2.1). `stamp`s on every state change.
  * The countdown is plain text updated by the parent's clock; `count` is deliberately no animation.
  */
-export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFieldProps) {
+export function StatusField({ status, selected, nowMs }: StatusFieldProps) {
   const stamp = useStamp();
   const sounds = useSounds();
   const prev = useRef<WidgetStateName | null>(null);
@@ -90,12 +101,6 @@ export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFiel
   }
   if (status.todayCount > 1 && status.todayIndex) tag = `${tag} ${status.todayIndex}/${status.todayCount}`;
 
-  const [ago, setAgo] = useState("");
-  useEffect(() => {
-    const m = Math.round((nowMs - fetchedAtMs) / 60000);
-    setAgo(m < 1 ? "Checked just now" : m < 60 ? `Checked ${m} min ago` : `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}`);
-  }, [nowMs, fetchedAtMs]);
-
   const a11y = `${tag}. ${display}. ${detail}. ${sub}`.replace(/\.\s*\./g, ".");
 
   return (
@@ -115,12 +120,9 @@ export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFiel
         {sub ? (
           <IconRow icon={<Pin size={14} />} v="label" style={styles.sub}>{sub}</IconRow>
         ) : null}
-        <View style={styles.spacer} />
         {status.isStale ? (
-          <IconRow icon={<Warn size={13} />} v="caption">Data may be outdated</IconRow>
-        ) : (
-          <T v="caption">{ago}</T>
-        )}
+          <IconRow icon={<Warn size={13} />} v="caption" style={styles.staleNote}>Data may be outdated</IconRow>
+        ) : null}
       </View>
     </Block>
   );
@@ -129,9 +131,9 @@ export function StatusField({ status, selected, nowMs, fetchedAtMs }: StatusFiel
 const styles = StyleSheet.create({
   hero: { marginHorizontal: layout.screenMargin, marginBottom: layout.shadow },
   stale: { opacity: 0.85 },
-  inner: { minHeight: 240, justifyContent: "flex-start", gap: space.sm },
+  inner: { minHeight: 210, justifyContent: "flex-start", gap: space.sm },
   tag: { letterSpacing: 0 },
   display: { marginTop: space.xs },
   sub: { marginTop: space.xs },
-  spacer: { flex: 1, minHeight: space.lg },
+  staleNote: { marginTop: space.sm },
 });

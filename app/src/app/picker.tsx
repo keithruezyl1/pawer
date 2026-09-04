@@ -98,6 +98,7 @@ export default function Picker() {
         </IconRow>
       )}
 
+      <View style={styles.listWrap}>
       <SectionList
         sections={sections}
         keyExtractor={(b) => b.slug}
@@ -118,6 +119,8 @@ export default function Picker() {
           </Pressable>
         )}
       />
+      <Fade height={56} />
+      </View>
 
       {q !== "" && sections.length === 0 && (
         <View style={styles.noMatch}>
@@ -138,6 +141,7 @@ export default function Picker() {
 const styles = StyleSheet.create({
   title: { marginTop: space.sm },
   chips: { flexDirection: "row", flexWrap: "wrap", gap: space.sm },
+  listWrap: { flex: 1, position: "relative" },
   list: { flex: 1, marginTop: space.sm },
   listContent: { paddingBottom: space.lg },
   sectionHead: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", minHeight: layout.touchTarget, borderBottomWidth: layout.border, borderColor: color.ink, marginTop: space.sm },

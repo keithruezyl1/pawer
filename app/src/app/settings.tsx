@@ -31,6 +31,7 @@ export default function Settings() {
   const [nameDraft, setNameDraft] = useState(prefs.name ?? "");
 
   return (
+    <View style={styles.root}>
     <Screen>
       <View style={styles.head}>
         <T v="title">Settings</T>
@@ -108,10 +109,13 @@ export default function Settings() {
       <T v="body" muted>PAWER reads Visayan Electric's public advisories. It isn't made by them and isn't affiliated with them. It covers scheduled outages only, and shows the published schedule rather than the real state of the grid, so don't rely on it for anything medical or safety critical.</T>
       <T v="caption" muted style={styles.section}>No accounts. No location. Nothing about you is stored on any server.</T>
     </Screen>
+    <Fade />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  root: { flex: 1, backgroundColor: color.ground },
   head: { flexDirection: "row", justifyContent: "space-between", alignItems: "center" },
   chips: { flexDirection: "row", flexWrap: "wrap", gap: space.sm },
   section: { marginTop: space.xl },
