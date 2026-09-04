@@ -26,7 +26,7 @@ internal object Headline {
   private const val MAX_SP = 23f
   private const val MIN_SP = 9f
 
-  fun render(ctx: Context, text: String, boxDp: Int, maxLines: Int, colorInt: Int): Bitmap? {
+  fun render(ctx: Context, text: String, boxDp: Int, maxHeightDp: Int, maxLines: Int, colorInt: Int): Bitmap? {
     if (text.isBlank()) return null
     val density = ctx.resources.displayMetrics.density
     val widthPx = (boxDp * density).toInt()
@@ -37,11 +37,14 @@ internal object Headline {
       color = colorInt
     }
 
-    // Shrink until it fits in maxLines, which is what autoSizeTextType does for the slots that
-    // are still TextViews. Half-point steps: finer than anyone can see, coarse enough to be quick.
+    // Shrink until it fits in maxLines AND inside the height it is allowed, which is what
+    // autoSizeTextType does for the slots that are still TextViews. Half-point steps: finer than
+    // anyone can see, coarse enough to be quick. Fitting the HEIGHT here rather than letting the
+    // ImageView scale it down is what stops the headline being squeezed to nothing on a 2x2.
+    val maxHeightPx = (maxHeightDp * density).toInt()
     var layout = measure(paint, text, widthPx, MAX_SP * density)
     var sp = MAX_SP
-    while (layout.lineCount > maxLines && sp > MIN_SP) {
+    while ((layout.lineCount > maxLines || layout.height > maxHeightPx) && sp > MIN_SP) {
       sp -= 0.5f
       layout = measure(paint, text, widthPx, sp * density)
     }
@@ -60,7 +63,7 @@ internal object Headline {
       .setAlignment(Layout.Alignment.ALIGN_NORMAL)
       // 0.95, as the layout had: the display face's natural line box is loose for a stacked headline.
       .setLineSpacing(0f, 0.95f)
-      .setIncludePad(false)
+      .setIncludePad(true)
       .build()
   }
 

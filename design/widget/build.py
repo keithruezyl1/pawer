@@ -53,10 +53,10 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     elif pill:
         four = (f'<div style="align-self: flex-start; margin-top: 4px; background: {GROUND}; '
                 f'border: {BORDER}px solid {INK}; border-radius: 9px; padding: 2px 6px; '
-                f'font-size: 9px; color: {INK}; {clamp(2)}">{line4}</div>')
+                f'font-size: 9px; font-weight: 700; color: {INK}; {clamp(2)}">{line4}</div>')
     else:
         four = (f'<div style="align-self: flex-start; margin-top: 4px; font-size: 9px; '
-                f'color: {SLATE}; {clamp(1)}">{line4}</div>')
+                f'font-weight: 700; color: {SLATE}; {clamp(1)}">{line4}</div>')
     return f"""<!doctype html>
 <html>
 <head>
@@ -75,11 +75,10 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
 <div style="width: {CELL}px; height: {CELL}px; display: flex; align-items: flex-start; justify-content: flex-start;">
   <div style="width: {CARD}px; height: {CARD}px; box-sizing: border-box; background: {FILL[state]}; border: {border}; border-radius: {RADIUS}px; box-shadow: {SHADOW}px {SHADOW}px 0 {shadow_col}; padding: {PAD_T}px {PAD_L}px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden;">
     <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
-    <div style="flex: 1; margin-top: 3px; display: flex; align-items: center;">
-      <div style="width: 100%; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
-    </div>
-    <div style="margin-top: 5px; font-size: 7px; color: {INK}; {clamp(1)}">{line3}</div>
+    <div style="margin-top: 2px; overflow-wrap: anywhere; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
+    <div style="margin-top: 1px; font-size: 7px; font-weight: 700; color: {INK}; {clamp(1)}">{line3}</div>
     {four}
+    <div style="flex: 1;"></div>
   </div>
 </div>
 </x-dc>
@@ -96,13 +95,13 @@ BOARDS = [
     ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "TODAY",     "Outage in-progress", "until 3:00 PM",  "Lahug",  False),
     ("Ended",        "Ended today",             "ended",    "TODAY",     "Restored",    "Should be back by now", "Lahug",  False),
     # No outage at all means no affected areas, so area_label is "" and the chip is hidden.
-    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "Clear",       "No scheduled outage",   "",       False),
+    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "No outages today", "No scheduled outage", "",  False),
     ("ClearNext",    "Clear · next one known",  "clear",    "NEXT",      "Fri",         "9:00 AM – 5:00 PM",     "Lahug",  False),
     ("TwoToday",     "Two outages today",       "upcoming", "TODAY 1/2", "3:20:00",     "until 3:00 PM",         "2 areas", True),
-    ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "Clear",       "No scheduled outage",   "Data may be outdated", False),
+    ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "No outages today", "No scheduled outage", "",  False),
     # Stale is an overlay on ANY state, not just a clear one: the background swaps, the text does not.
-    ("StaleCounting","Stale · still counting down", "stale", "TODAY",    "3:20:00",     "until 3:00 PM",         "Data may be outdated", True),
-    ("Unconfigured", "No barangay yet",         "clear",    "PAWER",     "Open PAWER",  "Add your barangay",     "",       False),
+    ("StaleCounting","Stale · still counting down", "stale", "TODAY",    "3:20:00",     "until 3:00 PM",         "Lahug",  True),
+    ("Unconfigured", "No barangay yet",         "clear",    "PAWER",     "No location set in app", "Add your barangay", "", False),
     # The longest countdown reachable: an outage later today, read just after midnight.
     ("LongCountdown","Widest countdown",        "upcoming", "TODAY",     "22:55:00",    "until 11:00 PM",        "Lahug",  True),
     # Worst case in every slot AT ONCE, and reachable: only NONE_TODAY puts a window on line 3, so
@@ -129,6 +128,7 @@ canvas = {
         {"id": "scale", "x": 0, "y": -210, "w": 430,
          "text": "1 px here = 1 dp on the phone, so every size you change is already the Android "
                  "value. Zoom the canvas in to work; the widget really is this small.\n\n"
+                 "The widget is fixed at 2x2 and cannot be resized.\n\n"
                  "The cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard "
                  "shadow lands inside the cell and no launcher clips it.\n\n"
                  "Nothing else is painted. The strip past the shadow and the two small corners are "

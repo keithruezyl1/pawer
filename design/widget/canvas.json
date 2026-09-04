@@ -111,7 +111,7 @@
       "x": 0,
       "y": -210,
       "w": 430,
-      "text": "1 px here = 1 dp on the phone, so every size you change is already the Android value. Zoom the canvas in to work; the widget really is this small.\n\nThe cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard shadow lands inside the cell and no launcher clips it.\n\nNothing else is painted. The strip past the shadow and the two small corners are transparent, so your wallpaper shows through. The chip is the only part of the widget that is really white."
+      "text": "1 px here = 1 dp on the phone, so every size you change is already the Android value. Zoom the canvas in to work; the widget really is this small.\n\nThe widget is fixed at 2x2 and cannot be resized.\n\nThe cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard shadow lands inside the cell and no launcher clips it.\n\nNothing else is painted. The strip past the shadow and the two small corners are transparent, so your wallpaper shows through. The chip is the only part of the widget that is really white."
     },
     {
       "id": "autosize",

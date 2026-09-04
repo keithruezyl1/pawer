@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- One widget, one size: 2x2 (PRD FR-22). updatePeriodMillis="0" disables the framework's
+<!-- One widget, one size: 2x2 (PRD FR-22), pinned from both ends — min and max resize are
+     the same 110dp and resizeMode is none, so a launcher has nothing to stretch. updatePeriodMillis="0" disables the framework's
      periodic refresh entirely (FR-25); redraws come only from boundary alarms (FR-26). -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
   android:minWidth="110dp"
   android:minHeight="110dp"
   android:maxResizeWidth="110dp"
   android:maxResizeHeight="110dp"
+  android:minResizeWidth="110dp"
+  android:minResizeHeight="110dp"
   android:targetCellWidth="2"
   android:targetCellHeight="2"
   android:resizeMode="none"

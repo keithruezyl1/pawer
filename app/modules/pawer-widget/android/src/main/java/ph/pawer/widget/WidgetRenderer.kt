@@ -15,8 +15,19 @@ import android.widget.RemoteViews
  */
 object WidgetRenderer {
 
+  /* Line 4 is the area, in every state. It used to be taken over by "Data may be outdated" when
+     the feed was over 48h old; that was removed on 2026-09-04, so the dashed slate card is now
+     the only thing that says the data is stale. */
+
   /** The card is 106dp wide; 2dp of stroke each side and 9dp of padding each side leave this. */
   private const val CONTENT_DP = 84
+
+  /**
+   * What the headline may take of the 86dp content height, once the tag, the subtitle, the area
+   * chip and their margins have had theirs. Capping it here rather than letting the ImageView
+   * shrink the bitmap is what keeps the value legible at 2x2 and the chip on screen.
+   */
+  private const val HEADLINE_MAX_DP = 30
 
   fun render(ctx: Context, s: WidgetState?, nowMs: Long): RemoteViews {
     val v = RemoteViews(ctx.packageName, R.layout.pawer_widget)
@@ -25,7 +36,7 @@ object WidgetRenderer {
     if (s == null) {
       // Not configured yet: the app has never written a blob.
       v.setInt(R.id.pawer_root, "setBackgroundResource", R.drawable.pawer_bg_clear)
-      text(ctx, v, "PAWER", "Open PAWER", "Add your barangay", "", false)
+      text(ctx, v, "PAWER", "No location set in app", "Add your barangay", "", false)
       hideCountdown(v)
       return v
     }
@@ -38,23 +49,23 @@ object WidgetRenderer {
         val until = s.primaryUntilMs
         if (until != null && until > nowMs) {
           showCountdown(v, until, nowMs)
-          text(ctx, v, s.label, null, s.secondary, line4(s, stale), !stale)
+          text(ctx, v, s.label, null, s.secondary, s.areaLabel, true)
         } else {
           hideCountdown(v)
-          text(ctx, v, s.label, if (s.state == "ONGOING") "Outage in-progress" else "Soon", s.secondary, line4(s, stale), !stale)
+          text(ctx, v, s.label, if (s.state == "ONGOING") "Outage in-progress" else "Soon", s.secondary, s.areaLabel, true)
         }
       }
       "ENDED_TODAY" -> {
         hideCountdown(v)
-        text(ctx, v, s.label, "Restored", s.secondary, line4(s, stale), !stale) // qualified by line 3: "Should be back by now"
+        text(ctx, v, s.label, "Restored", s.secondary, s.areaLabel, true) // qualified by line 3: "Should be back by now"
       }
       else -> { // NONE_TODAY
         hideCountdown(v)
         if (s.nextStartMs != null && s.secondary.contains(" · ")) {
           // "Fri · 9:00 AM – 5:00 PM" → display the day, window on line 3
-          text(ctx, v, s.label, s.secondary.substringBefore(" · "), s.secondary.substringAfter(" · "), line4(s, stale), !stale)
+          text(ctx, v, s.label, s.secondary.substringBefore(" · "), s.secondary.substringAfter(" · "), s.areaLabel, true)
         } else {
-          text(ctx, v, s.label, "Clear", s.secondary, line4(s, stale), !stale)
+          text(ctx, v, s.label, "No outages today", s.secondary, s.areaLabel, true)
         }
       }
     }
@@ -68,10 +79,6 @@ object WidgetRenderer {
     else -> R.drawable.pawer_bg_clear
   }
 
-  /** Line 4 is the first thing dropped for space, and STALE takes it over (DG §7.5, §4.5). */
-  private fun line4(s: WidgetState, stale: Boolean): String =
-    if (stale) "Data may be outdated" else s.areaLabel
-
   private fun dp(ctx: Context, v: Float): Int = (v * ctx.resources.displayMetrics.density).toInt()
 
   /**
@@ -84,7 +91,7 @@ object WidgetRenderer {
     if (display != null) {
       v.setViewVisibility(R.id.pawer_display, View.VISIBLE)
       // Two rows, and the same 84dp content box the layout's padding leaves.
-      val bmp = Headline.render(ctx, display, CONTENT_DP, maxLines = 2, colorInt = ctx.getColor(R.color.pawer_ink))
+      val bmp = Headline.render(ctx, display, CONTENT_DP, HEADLINE_MAX_DP, maxLines = 2, colorInt = ctx.getColor(R.color.pawer_ink))
       if (bmp != null) v.setImageViewBitmap(R.id.pawer_display, bmp)
       v.setContentDescription(R.id.pawer_display, display)
     } else {

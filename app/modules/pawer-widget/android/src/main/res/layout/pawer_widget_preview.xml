@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  PICKER PREVIEW ONLY, never inflated by the provider. Kept in step with pawer_widget.xml.
+  PICKER PREVIEW ONLY, never inflated by the provider. Regenerated from pawer_widget.xml.
 
   The dashboard status card, at widget scale (DG §7.1 grid, §5 surface).
 
@@ -42,19 +42,20 @@
     android:autoSizeMaxTextSize="10sp"
     android:text="TODAY" />
 
+  <!-- Either the headline or the countdown is visible, never both. The headline is an ImageView
+       because the text is drawn in the app's process (see Headline.kt) so that no launcher or OEM
+       skin can substitute the face. Its size and wrapping are decided there, not here. -->
   <!-- Preview only. The real layout draws this as a bitmap, which nothing fills in the picker,
        so the preview would show an empty headline. Text here, in the heaviest platform weight. -->
   <TextView
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_marginTop="3dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
     android:textSize="13sp"
     android:fontFamily="sans-serif-black"
     android:textColor="@color/pawer_ink"
     android:maxLines="2"
-    android:text="Clear" />
+    android:text="No outages today" />
 
   <!-- Autosizes like the rest. A countdown runs up to 23:59:59, which at a fixed 20sp overruns
        the 84dp content box by 14dp and gets cut off. The size steps only when the digit count
@@ -62,10 +63,8 @@
   <Chronometer
     android:id="@+id/pawer_preview_countdown"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1"
-    android:gravity="center_vertical"
-    android:layout_marginTop="3dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
     android:textSize="16sp"
     android:fontFamily="sans-serif-black"
     android:textColor="@color/pawer_ink"
@@ -79,30 +78,40 @@
     android:id="@+id/pawer_preview_line3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="1dp"
     android:textSize="7sp"
+    android:textStyle="bold"
     android:textColor="@color/pawer_ink"
     android:maxLines="1"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="6sp"
-    android:autoSizeMaxTextSize="12sp"
+    android:autoSizeMaxTextSize="9sp"
     android:text="No scheduled outage" />
 
   <TextView
     android:id="@+id/pawer_preview_line4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
+    android:layout_marginTop="3dp"
     android:background="@drawable/pawer_pill"
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
     android:paddingTop="2dp"
     android:paddingBottom="2dp"
     android:textSize="9sp"
+    android:textStyle="bold"
     android:textColor="@color/pawer_ink"
     android:maxLines="2"
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="7sp"
     android:autoSizeMaxTextSize="10sp"
     android:text="Lahug" />
+
+  <!-- Every slot above is wrap_content and grouped at the top, as the dashboard card groups its
+       own tag / value / detail / area. This Space takes whatever room is left, which is what puts
+       the subtitle directly under the value instead of a centred value with gaps either side. -->
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1" />
 </LinearLayout>
