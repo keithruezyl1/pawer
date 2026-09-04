@@ -191,6 +191,21 @@ export function ClearMark({ size = 58 }: { size?: number }) {
 }
 
 /**
+ * The 2x2 widget. Drawn as four filled squares rather than four outlines, because a 2 dp stroke
+ * on a 5 dp box closes up into a blob at this size. The shape is the widget's own footprint.
+ */
+export function Grid({ size = 15, tone = color.ink }: IconProps) {
+  return (
+    <Box size={size}>
+      <Rect x={2.2} y={2.2} width={5} height={5} rx={1} fill={tone} />
+      <Rect x={8.8} y={2.2} width={5} height={5} rx={1} fill={tone} />
+      <Rect x={2.2} y={8.8} width={5} height={5} rx={1} fill={tone} />
+      <Rect x={8.8} y={8.8} width={5} height={5} rx={1} fill={tone} />
+    </Box>
+  );
+}
+
+/**
  * LinkedIn. The only glyph here drawn as a filled badge rather than a 2 dp outline, because the
  * mark is only recognisable that way — an outlined "in" reads as noise at this size. The letters
  * are knocked out in the ground colour so it still sits on the page like the rest of the set.

@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { Linking, Pressable, StyleSheet, Switch, View } from "react-native";
+import { Linking, Platform, Pressable, StyleSheet, Switch, View } from "react-native";
 import { useRouter } from "expo-router";
 import Constants from "expo-constants";
 import { formatDateShort, formatTime12h } from "@pawer/shared";
@@ -12,10 +12,11 @@ import { T } from "../ui/Text";
 import { Button } from "../ui/Button";
 import { Field } from "../ui/Field";
 import { Chip } from "../ui/Chip";
-import { Bell, Bolt, Clock, Info, LinkedIn, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
+import { Bell, Bolt, Clock, Grid, Info, LinkedIn, Moon, Pin, Plus, Refresh, Speaker } from "../ui/Icon";
 import { Spinner } from "../ui/Spinner";
 import { Avatar } from "../ui/Avatar";
-import { Fade, IconRow, SectionLabel } from "../ui/Surface";
+import { IconRow, SectionLabel } from "../ui/Surface";
+import { widget } from "../platform/widget";
 
 const CREATOR_URL = "https://www.linkedin.com/in/keith-tagarao/";
 
@@ -31,6 +32,10 @@ export default function Settings() {
   const router = useRouter();
   const { prefs, removeBarangay, setAlert, setName, setSounds, fetchedAtMs, nowMs, refresh, refreshing, resetTour } = useApp();
   const [nameDraft, setNameDraft] = useState(prefs.name ?? "");
+  // Same test the tour uses at T7: API 26+ AND a launcher that honours requestPinAppWidget.
+  const [canPin] = useState(
+    () => Platform.OS === "android" && Number(Platform.Version) >= 26 && widget.isPinSupported(),
+  );
 
   return (
     <View style={styles.root}>
@@ -86,6 +91,18 @@ export default function Settings() {
       />
       <Button label="Run the tour again" onPress={() => { resetTour(); router.replace("/"); }} />
 
+      <SectionLabel icon={<Grid size={13} />} style={styles.section}>WIDGET</SectionLabel>
+      {canPin ? (
+        <>
+          <Button label="Add widget" icon={<Plus size={15} />} onPress={() => void widget.requestPin()} />
+          <T v="caption" muted>Puts today's status on your home screen. Your launcher will ask where to place it.</T>
+        </>
+      ) : (
+        <T v="caption" muted>
+          Add it the usual way instead, by long pressing your home screen and looking for PAWER in the widget list.
+        </T>
+      )}
+
       <T v="label" style={styles.section}>YOUR NAME</T>
       <View style={styles.nameRow}>
         <Avatar seed={prefs.name ?? ""} initial={prefs.name ?? undefined} size={48} />
@@ -108,6 +125,9 @@ export default function Settings() {
       <T v="body">Nobody likes having their power cut. What's worse is not knowing it was coming, even when it was announced days ahead.</T>
       <T v="body" style={styles.para}>PAWER does one thing and tries to do it well. It tells you when Visayan Electric has scheduled an interruption for your area, instead of leaving it buried in a social media feed.</T>
       <T v="body" style={styles.para}>Pero bitaw VECO, kanusa mani mahuman?</T>
+      {/* D-29: the legal position depends on this disclosure existing and being reachable, so it
+          survives the copy pass even though the paragraph around it was replaced. */}
+      <T v="caption" muted style={styles.para}>PAWER reads Visayan Electric's public advisories and isn't affiliated with them. It shows the published schedule, not the live state of the grid.</T>
 
       <T v="body" style={styles.section}>Follow PWR's creator</T>
       <Pressable
@@ -120,7 +140,6 @@ export default function Settings() {
         <T v="body" style={styles.linkText}>linkedin.com/in/keith-tagarao</T>
       </Pressable>
     </Screen>
-    <Fade />
     </View>
   );
 }

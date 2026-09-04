@@ -11,7 +11,6 @@ import { Field } from "../ui/Field";
 import { OutageCard } from "../ui/OutageCard";
 import { Chevron } from "../ui/Glyph";
 import { ClearMark, Magnifier } from "../ui/Icon";
-import { Fade } from "../ui/Surface";
 
 /**
  * All areas (PRD FR-7a–c, DG §6.4): every parsed interruption across the franchise, searchable by
@@ -84,7 +83,6 @@ export default function AllAreas() {
           </View>
         )}
       </Screen>
-      <Fade />
     </View>
   );
 }

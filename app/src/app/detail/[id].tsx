@@ -10,7 +10,7 @@ import { Block } from "../../ui/Block";
 import { barangayLabel } from "../../ui/OutageCard";
 import { Chevron } from "../../ui/Glyph";
 import { Clock, ExternalLink, Note, Pin, Warn } from "../../ui/Icon";
-import { Fade, IconRow } from "../../ui/Surface";
+import { IconRow } from "../../ui/Surface";
 
 /** Detail sheet (DG §6.3): structured summary, then VECO's text verbatim under an accent rule. */
 export default function Detail() {
@@ -96,7 +96,6 @@ export default function Detail() {
         style={styles.mtLg}
       />
     </Screen>
-    <Fade />
     </View>
   );
 }

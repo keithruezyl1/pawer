@@ -15,7 +15,7 @@ import { OutageCard } from "../ui/OutageCard";
 import { LatestAdvisory } from "../ui/LatestAdvisory";
 import { Chevron } from "../ui/Glyph";
 import { Clock, Plus } from "../ui/Icon";
-import { Fade, IconRow } from "../ui/Surface";
+import { IconRow } from "../ui/Surface";
 import { CardSkeleton, FetchingNote, HeroSkeleton } from "../ui/Skeleton";
 import { OfflineState } from "../ui/states";
 import { Tour, type Rect } from "../tour/Tour";
@@ -98,16 +98,13 @@ export default function Dashboard() {
 
         {!hydrating && selected.length > 0 && (
           <View style={styles.pad}>
-            <View style={styles.meta}>
+            {/* `tick` and `bump` (DG §11) ride the freshness line now that the count is gone —
+                which is where they belonged anyway, since both are about the fetch. */}
+            <Animated.View style={[styles.meta, tick.style, bump.style]}>
               <IconRow icon={<Clock size={12} tone={color.slate} />} v="caption" muted gap={6}>
                 {freshnessLabel(nowMs, fetchedAtMs)}
               </IconRow>
-              <Animated.View style={[tick.style, bump.style]}>
-                <T v="caption" muted>
-                  {lastRefreshKind === "error" ? "Couldn't check. Showing saved data." : `${mine.length} scheduled`}
-                </T>
-              </Animated.View>
-            </View>
+            </Animated.View>
             <T v="label" style={styles.sectionTop}>UPCOMING</T>
             {mine.length === 0 && (
               <Block fill={color.tint.clear} padding={space.lg} style={styles.nothing}>
@@ -141,7 +138,6 @@ export default function Dashboard() {
         </View>
       </Screen>
 
-      <Fade />
       {showTour && <Tour addAreaRect={addRect} />}
     </View>
   );

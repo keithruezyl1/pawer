@@ -29,7 +29,6 @@ export function deriveWidgetState(
     case "NONE_TODAY":
       if (o && start !== null && end !== null) {
         label = "NEXT";
-        secondary = `${formatDateShort(start, nowMs).replace("Tomorrow", "Tomorrow")} · ${formatWindow(start, end)}`;
         // Date short gives "Thu, Sep 3" — the widget has ~4 lines, keep the weekday only.
         secondary = `${shortDay(start, nowMs)} · ${formatWindow(start, end)}`;
       } else {

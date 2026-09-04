@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { formatDateShort, formatDuration, formatWindow, type Outage } from "@pawer/shared";
 import { findBarangay, findLgu } from "@pawer/registry";
-import { color, layout, space } from "../theme/tokens";
+import { color, layout, space, font } from "../theme/tokens";
 import { useSlam } from "../theme/motion";
 import { Block } from "./Block";
 import { T } from "./Text";
@@ -69,7 +69,7 @@ export function OutageCard({ outage: o, nowMs, onPress, alwaysLgu, following, en
       >
         {!unreadable && !incomplete && <Hatch />}
         <View style={styles.row}>
-          <T v="headline">{unreadable ? "Advisory" : formatDateShort(start, nowMs)}</T>
+          <T v="headline" style={styles.day}>{unreadable ? "Advisory" : formatDateShort(start, nowMs)}</T>
           {following && <Pin size={13} filled />}
         </View>
         {unreadable ? (
@@ -95,6 +95,8 @@ export function OutageCard({ outage: o, nowMs, onPress, alwaysLgu, following, en
 }
 
 const styles = StyleSheet.create({
+  // Aspekta-700 was already the bold cut, so "bolder" means stepping up to the display face.
+  day: { fontFamily: font.title },
   card: { marginBottom: layout.shadow },
   row: { flexDirection: "row", justifyContent: "space-between", alignItems: "center", marginBottom: space.xs + 2 },
   note: { marginTop: space.xs + 2 },

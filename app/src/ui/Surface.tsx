@@ -31,29 +31,6 @@ export function Checker() {
   );
 }
 
-/**
- * A scrolling list never ends on a hard edge. Eight stacked bands rather than a gradient
- * dependency — at this height the steps are invisible and it costs no native module.
- */
-export function Fade({ height = 72 }: { height?: number }) {
-  const bands = 8;
-  return (
-    <View pointerEvents="none" style={[styles.fade, { height }]}>
-      {Array.from({ length: bands }, (_, i) => (
-        <View
-          key={i}
-          style={{
-            flex: 1,
-            backgroundColor: color.ground,
-            // eased so the top band is nearly invisible and the last is solid
-            opacity: Math.pow((i + 1) / bands, 1.6),
-          }}
-        />
-      ))}
-    </View>
-  );
-}
-
 /** Neobrutalist hatch, bottom-right of a card. Fixed 45° lines, no mask, no motion. */
 export function Hatch({ width = 128, height = 82 }: { width?: number; height?: number }) {
   const step = 9;
@@ -120,7 +97,6 @@ export function SectionLabel({ icon, children, style }: PropsWithChildren<{ icon
 }
 
 const styles = StyleSheet.create({
-  fade: { position: "absolute", left: 0, right: 0, bottom: 0 },
   hatch: { position: "absolute", right: 0, bottom: 0 },
   flex: { flex: 1 },
 });

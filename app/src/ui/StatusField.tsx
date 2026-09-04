@@ -44,7 +44,10 @@ export function freshnessLabel(nowMs: number, fetchedAtMs: number): string {
   const m = Math.round((nowMs - fetchedAtMs) / 60000);
   if (m < 1) return "Checked just now";
   if (m < 60) return `Checked ${m} min ago`;
-  return `Last checked ${formatDateShort(fetchedAtMs, nowMs)}, ${formatTime12h(fetchedAtMs)}`;
+  const h = Math.round(m / 60);
+  if (h < 24) return `Checked ${h} hour${h === 1 ? "" : "s"} ago`;
+  const d = Math.round(h / 24);
+  return `Checked ${d} day${d === 1 ? "" : "s"} ago`;
 }
 
 /**
