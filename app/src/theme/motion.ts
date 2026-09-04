@@ -166,23 +166,9 @@ export function useJudder() {
 }
 
 // ---------------------------------------------------------------------------------------------
-// wipe — moving to the next step (ink block sweeps left→right; the next screen is already behind it)
 
-export function useWipe(screenWidth: number) {
-  const reduce = useReduceMotion();
-  const x = useSharedValue(-screenWidth);
-  const style = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
-  /** Resolves at the midpoint (block fully covering), so the caller can swap content under it. */
-  const run = () =>
-    new Promise<void>((resolve) => {
-      if (reduce) { resolve(); return; }
-      const half = duration.wipe / 2;
-      x.value = -screenWidth;
-      x.value = withSequence(withTiming(0, { duration: half, ...LINEAR }), withTiming(screenWidth, { duration: half, ...LINEAR }));
-      setTimeout(resolve, half);
-    });
-  return { style, run };
-}
+// slide — moving between screens: the NATIVE stack animation (see app/_layout.tsx). Not a hook;
+// the platform owns its timing and decelerate curve, and it replaces the old `wipe`.
 
 // spot — look here: a hard cut (0 ms) to the new target, then the target receives a `stamp`.
 // Implemented by CoachMark repositioning without animation and calling useStamp().run on the target.

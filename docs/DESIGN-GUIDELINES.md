@@ -88,18 +88,26 @@ Onboarding wording for the third, or close to it:
 
 ## 3. Typography
 
-System typeface only — Roboto on Android, San Francisco on iOS. No font files ship. Hierarchy is built from size and weight alone, which means the steps between levels must be decisive; timid type scales are what make constrained designs look unfinished.
+**Two families ship with the app** (D-27). Hierarchy is carried by the family as much as by size, so the steps between levels are unmistakable.
 
-| Token | Size | Weight | Line height | Use |
+**Getai Grotesk Display Black** (`Getai-Black`, weight 900) takes `display`, `title` and the PAWER logo — the text meant to shout. It is a 135-glyph display cut with **no `·`, `›`, `✓` or `✗`**, which is precisely why it never descends to the smaller sizes where those characters live.
+
+**Aspekta** carries everything else, in three static instances cut from its variable `wght` axis: 400, 500, 700. It is SIL OFL licensed.
+
+**Weight is expressed by the family, never by `fontWeight`.** React Native does not synthesize weights for custom fonts; asking Android for a weight it has no file for drops silently back to the system face. One file per weight, referenced by name.
+
+| Token | Family | Size | Line height | Use |
 |---|---|---|---|---|
-| `display` | 40 sp | 700 | 1.05 | Widget countdown, dashboard hero status |
-| `title` | 24 sp | 600 | 1.15 | Hero secondary line, screen titles |
-| `headline` | 18 sp | 600 | 1.25 | Card time windows, section headers |
-| `body` | 15 sp | 400 | 1.40 | Verbatim advisory text, descriptions |
-| `label` | 13 sp | 500 | 1.30 | Barangay chips, buttons, list metadata |
-| `caption` | 11 sp | 400 | 1.30 | Freshness, attribution, disclaimers |
+| `display` | Getai Grotesk Black | 40 sp | 42 | Widget countdown, dashboard hero status |
+| `title` | Getai Grotesk Black | 24 sp | 28 | Screen titles, the PAWER logo |
+| `headline` | Aspekta 700 | 18 sp | 23 | Card time windows, buttons, section headers |
+| `body` | Aspekta 400 | 15 sp | 21 | Verbatim advisory text, descriptions |
+| `label` | Aspekta 500 | 13 sp | 17 | Barangay chips, list metadata, tags |
+| `caption` | Aspekta 400 | 11 sp | 14 | Freshness, attribution, disclaimers |
 
-**Rules.** Sizes in `sp`, never `dp` — user font scaling must work. Never more than three levels on one screen. Weight 700 is reserved for `display`, and `title` may go to 800 for neobrutalist heads on onboarding and the hero — the one place the style wants type to shout. No letter-spacing adjustments, no all-caps except the meridiem. Verbatim VECO text always renders at `body` weight 400, never emphasised or restyled, so quotation stays visually honest.
+**Rules.** Sizes in `sp`, never `dp` — user font scaling must work. Never more than three levels on one screen. Getai is capped at the two largest tokens; nothing below `title` may use it. Negative tracking is permitted on Getai only (`display` −0.8, `title` −0.4) because a display cut sets loose at size; Aspekta takes no tracking adjustment. No all-caps except the meridiem and section labels. Verbatim VECO text always renders at `body` 400, never emphasised or restyled, so quotation stays visually honest.
+
+**Characters neither family carries.** `›`, `✓` and `✗` are drawn as bordered Views in `ui/Glyph.tsx` — never typed as text, where they would render as tofu.
 
 **Font scaling to 200% (NFR-12).** Every layout must survive it. Cards grow vertically and never clip; the dashboard hero allows its status word to wrap to two lines; horizontal barangay chip rows wrap rather than scroll. The widget is the hard case — see §7.5.
 
@@ -388,7 +396,7 @@ Motion in PAWER is a **vocabulary**, not a polish layer. Every animation has one
 | **`tick`** | *Checking for data* | Refresh begins | Freshness caption rotateX 0 → −90 → 0, 120 ms — a card flip |
 | **`bump`** | *Data changed* | Refresh returned new content | The changed number or text jumps translateY −6 → 0 in **2 frames** |
 | **`judder`** | *That didn't work* | Fetch failed; invalid input; permission denied | translateX ±3 dp, three cycles, 240 ms |
-| **`wipe`** | *Moving to the next step* | Onboarding and tour forward navigation | Full-width `ink` block sweeps left → right over 200 ms; new screen is already in place behind it; hard cut at the end |
+| **`slide`** | *Moving between screens* | Every stack navigation | The **native** stack animation: a pushed screen enters from the right and settles left, back reverses it. The platform owns the timing and its decelerate (ease-out) curve, so it runs on the UI thread at no cost to us (NFR-4). Not a hook — set once in `app/_layout.tsx`. Replaces the former `wipe`. |
 | **`spot`** | *Look here* | Tour coach mark moves to a new target | Spotlight **hard-cuts** (0 ms) to the new target, then the target receives a `stamp` |
 | **`count`** | *Live countdown* | Hero countdown | **No animation.** Text updates once per second, mirroring the widget's Chronometer |
 

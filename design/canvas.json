@@ -1,0 +1,109 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — ongoing"
+    },
+    {
+      "file": "DashboardEmpty.dc.html",
+      "x": 490,
+      "y": 0,
+      "w": 390,
+      "h": 980,
+      "title": "Dashboard — no areas"
+    },
+    {
+      "file": "StatusStates.dc.html",
+      "x": 980,
+      "y": 0,
+      "w": 390,
+      "h": 1180,
+      "title": "Hero states"
+    },
+    {
+      "file": "Picker.dc.html",
+      "x": 0,
+      "y": 1240,
+      "w": 390,
+      "h": 980,
+      "title": "Add areas"
+    },
+    {
+      "file": "AllAreas.dc.html",
+      "x": 490,
+      "y": 1240,
+      "w": 390,
+      "h": 980,
+      "title": "All areas"
+    },
+    {
+      "file": "Detail.dc.html",
+      "x": 980,
+      "y": 1240,
+      "w": 390,
+      "h": 980,
+      "title": "Outage detail"
+    },
+    {
+      "file": "Settings.dc.html",
+      "x": 0,
+      "y": 2340,
+      "w": 390,
+      "h": 980,
+      "title": "Settings"
+    },
+    {
+      "file": "Onboarding.dc.html",
+      "x": 490,
+      "y": 2340,
+      "w": 390,
+      "h": 980,
+      "title": "Onboarding S3"
+    },
+    {
+      "file": "Tour.dc.html",
+      "x": 980,
+      "y": 2340,
+      "w": 390,
+      "h": 980,
+      "title": "Tour T1"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "how-to-use",
+      "x": 1450,
+      "y": 0,
+      "w": 320,
+      "text": "Real screens, rebuilt from the app's own tokens.\n\nEdit anything: drag, retype, restyle in the properties panel. Save keeps your version.\n\nThen tell Claude Code what changed."
+    },
+    {
+      "id": "type",
+      "x": 1450,
+      "y": 280,
+      "w": 320,
+      "text": "TYPE\n\nGetai Grotesk Black — display 40, title 24, logo. It has no · › ✓ ✗ glyphs, so it stays on the big stuff.\n\nAspekta — headline 18/700, body 15/400, label 13/500, caption 11/400."
+    },
+    {
+      "id": "system",
+      "x": 1450,
+      "y": 620,
+      "w": 320,
+      "text": "SYSTEM\n\nground #F5F5F5 · ink #212431 · slate #4F5D75 · accent #EA5C1F · notice #DDE0E6\nstatus: clear #9BF06B · upcoming #FF90E8 · ongoing #FF5C5C · ended #FFD93D\n\nborder 2px · shadow 4px hard · radius 5 (was 2)"
+    },
+    {
+      "id": "accent",
+      "x": 1450,
+      "y": 980,
+      "w": 320,
+      "text": "Accent orange has three homes only: the primary button, the tour ring, and the quote rule on Detail. Least used, most noticed."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

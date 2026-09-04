@@ -18,3 +18,7 @@ app/google-services.json
 out/
 review/
 /android/
+
+# Design canvas build products (working .dc.html sources ARE tracked)
+design/pawer-screens.html
+design/fonts/

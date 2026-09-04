@@ -3,12 +3,12 @@ import { StyleSheet, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { color, layout, space } from "../../theme/tokens";
 import { useApp } from "../../state/AppState";
-import { useNavFx } from "../../state/NavFx";
 import { Screen } from "../../ui/Screen";
 import { T } from "../../ui/Text";
 import { Button } from "../../ui/Button";
 import { Field } from "../../ui/Field";
 import { Block } from "../../ui/Block";
+import { Check, Cross } from "../../ui/Glyph";
 
 /**
  * Onboarding S1–S5 — copy verbatim from ONBOARDING-AND-TOUR.md §2. Typographic screens on
@@ -18,15 +18,14 @@ export default function OnboardingStep() {
   const { step } = useLocalSearchParams<{ step: string }>();
   const n = Math.min(5, Math.max(1, Number(step) || 1));
   const router = useRouter();
-  const { wipeTo } = useNavFx();
   const { prefs, setName, completeOnboarding, completeTour } = useApp();
   const [draft, setDraft] = useState(prefs.name ?? "");
 
-  const go = (to: number) => wipeTo(`/onboarding/${to}`);
+  const go = (to: number) => router.replace(`/onboarding/${to}`);
   const finish = async (skipTour: boolean) => {
     completeOnboarding();
     if (skipTour) completeTour();
-    await wipeTo("/");
+    router.replace("/");
   };
 
   return (
@@ -48,10 +47,10 @@ export default function OnboardingStep() {
         {n === 3 && (
           <>
             <T v="title">What PAWER can and can't tell you</T>
-            <T v="body">✓  Scheduled outages, days ahead</T>
-            <T v="body">✓  When one is underway, and when power should return</T>
+            <View style={styles.point}><Check /><T v="body" style={styles.pointText}>Scheduled outages, days ahead</T></View>
+            <View style={styles.point}><Check /><T v="body" style={styles.pointText}>When one is underway, and when power should return</T></View>
             <Block fill={color.noticeFill} shadow={false} padding={space.lg}>
-              <T v="body">✗  Sudden or emergency outages. Visayan Electric doesn't publish these in advance, so PAWER can't warn you about them.</T>
+              <View style={styles.point}><Cross /><T v="body" style={styles.pointText}>Sudden or emergency outages. Visayan Electric doesn't publish these in advance, so PAWER can't warn you about them.</T></View>
             </Block>
             <T v="body" muted>PAWER reads Visayan Electric's public advisories. It isn't made by them and isn't affiliated with them. It shows the published schedule — not the real state of the grid — so don't rely on it for anything medical or safety-critical.</T>
           </>
@@ -91,6 +90,8 @@ export default function OnboardingStep() {
 
 const styles = StyleSheet.create({
   body: { flex: 1, justifyContent: "center", gap: space.lg },
+  point: { flexDirection: "row", alignItems: "flex-start", gap: space.md },
+  pointText: { flex: 1 },
   actions: { gap: space.md, marginBottom: space.lg },
   step: { textAlign: "center", marginBottom: layout.screenMargin },
 });

@@ -12,6 +12,7 @@ import { Button } from "../ui/Button";
 import { Block } from "../ui/Block";
 import { StatusField } from "../ui/StatusField";
 import { OutageCard } from "../ui/OutageCard";
+import { Chevron } from "../ui/Glyph";
 import { Tour, type Rect } from "../tour/Tour";
 
 export default function Dashboard() {
@@ -87,7 +88,7 @@ export default function Dashboard() {
         <View style={[styles.pad, styles.foot]}>
           <Link href="/all-areas" asChild>
             <Pressable accessibilityRole="link" style={styles.browse}>
-              <T v="label">Browse all areas</T><T v="label">›</T>
+              <T v="label">Browse all areas</T><Chevron />
             </Pressable>
           </Link>
           <T v="caption" muted>Source: Visayan Electric's published advisories</T>
