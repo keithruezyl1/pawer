@@ -2,7 +2,7 @@
   "name": "pawer",
   "private": true,
   "version": "0.1.0",
-  "description": "PAWER \u2014 scheduled power-interruption alerts for Visayan Electric's Metro Cebu franchise",
+  "description": "PAWER — scheduled power-interruption alerts for Visayan Electric's Metro Cebu franchise",
   "license": "MIT",
   "workspaces": [
     "packages/*",
@@ -10,6 +10,8 @@
     "app"
   ],
   "scripts": {
+    "start": "npm start -w @pawer/app",
+    "android": "npm run android -w @pawer/app",
     "build:registry": "npm run build -w @pawer/registry",
     "test": "npm run test -w @pawer/shared -w @pawer/registry -w @pawer/parser -w @pawer/pipeline",
     "typecheck": "npm run typecheck --workspaces --if-present",
