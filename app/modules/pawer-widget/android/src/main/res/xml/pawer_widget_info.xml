@@ -11,6 +11,6 @@
   android:resizeMode="none"
   android:updatePeriodMillis="0"
   android:initialLayout="@layout/pawer_widget"
-  android:previewLayout="@layout/pawer_widget"
+  android:previewLayout="@layout/pawer_widget_preview"
   android:description="@string/pawer_widget_description"
   android:widgetCategory="home_screen" />

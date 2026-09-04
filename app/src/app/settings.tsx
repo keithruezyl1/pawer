@@ -30,7 +30,7 @@ const ALERTS: Array<{ key: keyof Prefs["alerts"]; label: string; hint: string; i
 /** Flat list, no nesting (DG §6.5). The only two things to configure: which areas, which alerts. */
 export default function Settings() {
   const router = useRouter();
-  const { prefs, removeBarangay, setAlert, setName, setSounds, fetchedAtMs, nowMs, refresh, refreshing, resetTour } = useApp();
+  const { prefs, removeBarangay, setAlert, setName, setSounds, fetchedAtMs, nowMs, refresh, refreshing } = useApp();
   const [nameDraft, setNameDraft] = useState(prefs.name ?? "");
   // Same test the tour uses at T7: API 26+ AND a launcher that honours requestPinAppWidget.
   const [canPin] = useState(
@@ -89,7 +89,6 @@ export default function Settings() {
         onPress={() => void refresh()}
         disabled={refreshing}
       />
-      <Button label="Run the tour again" onPress={() => { resetTour(); router.replace("/"); }} />
 
       <SectionLabel icon={<Grid size={13} />} style={styles.section}>WIDGET</SectionLabel>
       {canPin ? (

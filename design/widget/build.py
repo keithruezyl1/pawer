@@ -10,7 +10,7 @@ Every number here is lifted from the shipped native source, not eyeballed:
 1 CSS px == 1 dp == 1 sp, so anything Keith edits on the canvas is already the
 Android value. The canvas pans and zooms, so it does not need scaling up.
 """
-import json, pathlib
+import base64, json, pathlib
 
 HERE = pathlib.Path(__file__).parent
 RES = HERE / "../../app/modules/pawer-widget/android/src/main/res"
@@ -22,9 +22,11 @@ INK, SLATE, GROUND = "#212431", "#4F5D75", "#F5F5F5"
 FILL = {"clear": "#9BF06B", "upcoming": "#FF90E8", "ongoing": "#FF5C5C",
         "ended": "#FFD93D", "stale": "#E9E9E7"}
 
-# The headline is sans-serif-black, the platform's heaviest Roboto; the other three slots set no
-# fontFamily at all, so they are the platform default. Both are Roboto, at 900 and 400.
+# The headline is drawn as a bitmap in the app's process, so it is genuinely Getai Grotesk Black.
+# The countdown cannot be a bitmap and still tick for free, so it stays a Chronometer in the
+# platform's heaviest weight. The other three slots set no fontFamily, so they are the default.
 SYS = "Roboto, 'Helvetica Neue', system-ui, sans-serif"
+GETAI = base64.b64encode((RES / "font/getai_black.ttf").read_bytes()).decode()
 
 def clamp(lines):
     """maxLines, faithfully: clips at N lines with no ellipsis, because the layout sets none."""
@@ -35,9 +37,15 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
     dashed = state == "stale"
     shadow_col = SLATE if dashed else INK
     border = f"{BORDER}px {'dashed' if dashed else 'solid'} {SLATE if dashed else INK}"
-    big = (f"font-family:{SYS};font-weight:900;"
-           f"font-size:{16 if countdown else 13}px;"
-           + ("" if countdown else "line-height:1.14;"))   # 0.95 x Getai's 1.20em natural line
+    big = ((f"font-family:{SYS};font-weight:900;font-size:16px;") if countdown else
+           # 1.14 = the layout's 0.95 multiplier x Getai's 1.20em natural line box.
+           ("font-family:'Getai Grotesk Black',Impact,sans-serif;font-size:13px;line-height:1.14;"))
+    face = "" if countdown else f"""
+    @font-face {{{{
+      font-family: 'Getai Grotesk Black';
+      src: url(data:font/ttf;base64,{GETAI}) format('truetype');
+      font-weight: 400; font-display: block;
+    }}}}"""
     # The area chip, as on the dashboard card. The stale notice is not a place, so it keeps the
     # plain slate line rather than being dressed up as one.
     if not line4:
@@ -59,7 +67,7 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
 <x-dc>
 <helmet>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap">
-  <style>
+  <style>{face}
     body {{ margin: 0; background: transparent; font-family: {SYS}; color: {INK}; }}
     a {{ color: #EA5C1F; }} a:hover {{ color: #C24A16; }}
   </style>
@@ -144,4 +152,4 @@ canvas = {
 (HERE / "canvas.json").write_text(json.dumps(canvas, indent=2) + "\n", encoding="utf-8")
 print(f"{len(BOARDS)} artboards + canvas.json")
 print(f"  cell {CELL}dp · card {CARD}dp · radius {RADIUS}dp · shadow {SHADOW}dp · padding {PAD_T}/{PAD_L}dp inside the stroke")
-print("  headline: sans-serif-black (Roboto 900), no bundled font")
+print("  headline: Getai (drawn as pixels on device) · countdown: platform heaviest")

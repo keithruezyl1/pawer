@@ -15,6 +15,9 @@ import android.widget.RemoteViews
  */
 object WidgetRenderer {
 
+  /** The card is 106dp wide; 2dp of stroke each side and 9dp of padding each side leave this. */
+  private const val CONTENT_DP = 84
+
   fun render(ctx: Context, s: WidgetState?, nowMs: Long): RemoteViews {
     val v = RemoteViews(ctx.packageName, R.layout.pawer_widget)
     v.setOnClickPendingIntent(R.id.pawer_root, launchIntent(ctx))
@@ -80,7 +83,10 @@ object WidgetRenderer {
     v.setTextViewText(R.id.pawer_tag, tag)
     if (display != null) {
       v.setViewVisibility(R.id.pawer_display, View.VISIBLE)
-      v.setTextViewText(R.id.pawer_display, display)
+      // Two rows, and the same 84dp content box the layout's padding leaves.
+      val bmp = Headline.render(ctx, display, CONTENT_DP, maxLines = 2, colorInt = ctx.getColor(R.color.pawer_ink))
+      if (bmp != null) v.setImageViewBitmap(R.id.pawer_display, bmp)
+      v.setContentDescription(R.id.pawer_display, display)
     } else {
       v.setViewVisibility(R.id.pawer_display, View.GONE)
     }

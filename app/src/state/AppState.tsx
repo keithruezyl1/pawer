@@ -22,7 +22,6 @@ export interface AppStateValue {
   setAlert: (key: keyof Prefs["alerts"], on: boolean) => void;
   completeOnboarding: () => void;
   completeTour: () => void;
-  resetTour: () => void;
   setSounds: (on: boolean) => void;
 
   /** Tour T2→T4 hand-off: the picker's selection, awaiting map/name confirmation before it is added. */
@@ -96,7 +95,6 @@ export function AppStateProvider({ children }: PropsWithChildren) {
     setAlert: (key, on) => persistPrefs({ ...prefs, alerts: { ...prefs.alerts, [key]: on } }),
     completeOnboarding: () => persistPrefs({ ...prefs, onboardingDone: true }),
     completeTour: () => persistPrefs({ ...prefs, tourDone: true }),
-    resetTour: () => persistPrefs({ ...prefs, tourDone: false }),
     setSounds: (on) => persistPrefs({ ...prefs, sounds: on }),
     tourPending,
     setTourPending,

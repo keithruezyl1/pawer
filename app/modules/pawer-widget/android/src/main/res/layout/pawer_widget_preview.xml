@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
+  PICKER PREVIEW ONLY, never inflated by the provider. Kept in step with pawer_widget.xml.
+
   The dashboard status card, at widget scale (DG §7.1 grid, §5 surface).
 
   Same four slots in the same order as StatusField: tag / display-or-countdown / line 3 / line 4,
@@ -17,7 +19,7 @@
   much to make room for its own shadow, and padding applies to the whole view.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/pawer_root"
+  android:id="@+id/pawer_preview_root"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical"
@@ -28,7 +30,7 @@
   android:background="@drawable/pawer_bg_clear">
 
   <TextView
-    android:id="@+id/pawer_tag"
+    android:id="@+id/pawer_preview_tag"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:textSize="9sp"
@@ -40,24 +42,25 @@
     android:autoSizeMaxTextSize="10sp"
     android:text="TODAY" />
 
-  <!-- Either the headline or the countdown is visible, never both. The headline is an ImageView
-       because the text is drawn in the app's process (see Headline.kt) so that no launcher or OEM
-       skin can substitute the face. Its size and wrapping are decided there, not here. -->
-  <ImageView
-    android:id="@+id/pawer_display"
+  <!-- Preview only. The real layout draws this as a bitmap, which nothing fills in the picker,
+       so the preview would show an empty headline. Text here, in the heaviest platform weight. -->
+  <TextView
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
     android:layout_marginTop="3dp"
-    android:scaleType="centerInside"
-    android:adjustViewBounds="false" />
+    android:textSize="13sp"
+    android:fontFamily="sans-serif-black"
+    android:textColor="@color/pawer_ink"
+    android:maxLines="2"
+    android:text="Clear" />
 
   <!-- Autosizes like the rest. A countdown runs up to 23:59:59, which at a fixed 20sp overruns
        the 84dp content box by 14dp and gets cut off. The size steps only when the digit count
        changes, not on every tick. The 16sp base fits the widest countdown unaided, for API 24-25. -->
   <Chronometer
-    android:id="@+id/pawer_countdown"
+    android:id="@+id/pawer_preview_countdown"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
@@ -73,7 +76,7 @@
     android:visibility="gone" />
 
   <TextView
-    android:id="@+id/pawer_line3"
+    android:id="@+id/pawer_preview_line3"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
@@ -86,7 +89,7 @@
     android:text="No scheduled outage" />
 
   <TextView
-    android:id="@+id/pawer_line4"
+    android:id="@+id/pawer_preview_line4"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
@@ -101,5 +104,5 @@
     android:autoSizeTextType="uniform"
     android:autoSizeMinTextSize="7sp"
     android:autoSizeMaxTextSize="10sp"
-    android:text="" />
+    android:text="Lahug" />
 </LinearLayout>
