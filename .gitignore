@@ -26,3 +26,6 @@ design/fonts/
 # Gradle output inside the local widget module (paths exceed Windows limits)
 app/modules/pawer-widget/android/build/
 app/modules/pawer-widget/android/.cxx/
+
+# Seeded design canvases carry a ~2 MB editor payload; the working files rebuild them.
+design/widget/pawer-widget-states.html

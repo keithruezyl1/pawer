@@ -1,0 +1,118 @@
+{
+  "artboards": [
+    {
+      "file": "Main.dc.html",
+      "title": "Upcoming \u00b7 counting down",
+      "x": 0,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "UpcomingSoon.dc.html",
+      "title": "Upcoming \u00b7 countdown run out",
+      "x": 250,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "Ongoing.dc.html",
+      "title": "Ongoing \u00b7 counting down",
+      "x": 500,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "OngoingNow.dc.html",
+      "title": "Ongoing \u00b7 no countdown",
+      "x": 750,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "Ended.dc.html",
+      "title": "Ended today",
+      "x": 1000,
+      "y": 0,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "ClearToday.dc.html",
+      "title": "Clear \u00b7 nothing ahead",
+      "x": 0,
+      "y": 300,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "ClearNext.dc.html",
+      "title": "Clear \u00b7 next one known",
+      "x": 250,
+      "y": 300,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "TwoToday.dc.html",
+      "title": "Two outages today",
+      "x": 500,
+      "y": 300,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "Stale.dc.html",
+      "title": "Stale \u00b7 over 48h old",
+      "x": 750,
+      "y": 300,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "Unconfigured.dc.html",
+      "title": "No barangay yet",
+      "x": 1000,
+      "y": 300,
+      "w": 170,
+      "h": 170
+    },
+    {
+      "file": "Longest.dc.html",
+      "title": "Worst case \u00b7 longest strings",
+      "x": 0,
+      "y": 600,
+      "w": 170,
+      "h": 170
+    }
+  ],
+  "annotations": [
+    {
+      "id": "scale",
+      "x": 0,
+      "y": -210,
+      "w": 430,
+      "text": "1 px here = 1 dp on the phone, so every size you change is already the Android value. Zoom the canvas in to work; the widget really is this small.\n\nThe cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard shadow lands inside the cell and no launcher clips it."
+    },
+    {
+      "id": "autosize",
+      "x": 500,
+      "y": -210,
+      "w": 430,
+      "text": "Text here is drawn at the BASE size, which is what Android 8.0 and older use. On newer phones each slot can grow a little to fill the space.\n\nSo if a line looks cut off on one of these boards, it is genuinely too long. If it fits here, it fits everywhere."
+    },
+    {
+      "id": "faces",
+      "x": 1000,
+      "y": -210,
+      "w": 430,
+      "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other three lines are the phone's own font, which is what the widget actually uses.\n\nExported PNGs and PDFs fall back to a substitute for that one, so judge the small text here on the canvas rather than in an export."
+    }
+  ],
+  "launch": {
+    "view": "canvas"
+  }
+}

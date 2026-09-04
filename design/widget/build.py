@@ -1,0 +1,128 @@
+"""
+Generates the widget state artboards for the design canvas.
+
+Every number here is lifted from the shipped native source, not eyeballed:
+  layout/pawer_widget.xml            paddings, text sizes, margins, maxLines
+  drawable/pawer_bg_*.xml            fills, border, 14dp radius, 4dp hard shadow
+  xml/pawer_widget_info.xml          the 110dp cell
+  WidgetRenderer.kt + widgetState.ts every string, per state
+
+1 CSS px == 1 dp == 1 sp, so anything Keith edits on the canvas is already the
+Android value. The canvas pans and zooms, so it does not need scaling up.
+"""
+import base64, json, pathlib
+
+HERE = pathlib.Path(__file__).parent
+RES = HERE / "../../app/modules/pawer-widget/android/src/main/res"
+
+CELL, SHADOW, RADIUS, BORDER = 110, 4, 14, 2
+CARD = CELL - SHADOW                      # the layer-list insets the card by the shadow offset
+PAD_T, PAD_L = 10 - BORDER, 11 - BORDER   # android:padding is from the view edge, inside the stroke
+INK, SLATE, GROUND = "#212431", "#4F5D75", "#F5F5F5"
+FILL = {"clear": "#9BF06B", "upcoming": "#FF90E8", "ongoing": "#FF5C5C",
+        "ended": "#FFD93D", "stale": "#E9E9E7"}
+
+GETAI = base64.b64encode((RES / "font/getai_black.ttf").read_bytes()).decode()
+
+# The display slot and the countdown are the only things using the app's own face; the native
+# layout sets no fontFamily on the other three, so those are the platform default (Roboto).
+SYS = "Roboto, 'Helvetica Neue', system-ui, sans-serif"
+
+def clamp(lines):
+    """maxLines, faithfully: clips at N lines with no ellipsis, because the layout sets none."""
+    return (f"display:-webkit-box;-webkit-line-clamp:{lines};-webkit-box-orient:vertical;"
+            "overflow:hidden;")
+
+def board(state, tag, display, line3, line4, *, countdown=False):
+    dashed = state == "stale"
+    shadow_col = SLATE if dashed else INK
+    border = f"{BORDER}px {'dashed' if dashed else 'solid'} {SLATE if dashed else INK}"
+    big = ("font-family:'Getai Grotesk Black',Impact,sans-serif;"
+           f"font-size:{20 if countdown else 17}px;"
+           + ("" if countdown else "line-height:0.95;"))
+    return f"""<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap">
+  <style>
+    @font-face {{
+      font-family: 'Getai Grotesk Black';
+      src: url(data:font/ttf;base64,{GETAI}) format('truetype');
+      font-weight: 400; font-display: block;
+    }}
+    body {{ margin: 0; background: {GROUND}; font-family: {SYS}; color: {INK}; }}
+    a {{ color: #EA5C1F; }} a:hover {{ color: #C24A16; }}
+  </style>
+</helmet>
+<div style="width: {CELL}px; height: {CELL}px; display: flex; align-items: flex-start; justify-content: flex-start;">
+  <div style="width: {CARD}px; height: {CARD}px; box-sizing: border-box; background: {FILL[state]}; border: {border}; border-radius: {RADIUS}px; box-shadow: {SHADOW}px {SHADOW}px 0 {shadow_col}; padding: {PAD_T}px {PAD_L}px; display: flex; flex-direction: column; align-items: stretch; overflow: hidden;">
+    <div style="font-size: 9px; letter-spacing: 0.06em; color: {INK}; {clamp(1)}">{tag}</div>
+    <div style="margin-top: 3px; {big} color: {INK}; {clamp(1 if countdown else 2)}">{display}</div>
+    <div style="margin-top: 5px; font-size: 10px; line-height: 1.0; color: {INK}; {clamp(2)}">{line3}</div>
+    <div style="margin-top: 3px; font-size: 9px; color: {SLATE}; {clamp(2)}">{line4}</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
+"""
+
+# Every state WidgetRenderer.render can produce, with the strings deriveWidgetState feeds it.
+BOARDS = [
+    ("Main",         "Upcoming · counting down", "upcoming", "TODAY",     "3:20:00",     "until 3:00 PM",         "Lahug",  True),
+    ("UpcomingSoon", "Upcoming · countdown run out", "upcoming", "TODAY", "Soon",        "until 3:00 PM",         "Lahug",  False),
+    ("Ongoing",      "Ongoing · counting down", "ongoing",  "NOW",       "0:42:00",     "until 3:00 PM",         "Lahug",  True),
+    ("OngoingNow",   "Ongoing · no countdown",  "ongoing",  "NOW",       "Now",         "until 3:00 PM",         "Lahug",  False),
+    ("Ended",        "Ended today",             "ended",    "TODAY",     "Restored",    "Should be back by now", "Lahug",  False),
+    ("ClearToday",   "Clear · nothing ahead",   "clear",    "TODAY",     "Clear",       "No scheduled outage",   "Lahug",  False),
+    ("ClearNext",    "Clear · next one known",  "clear",    "NEXT",      "Fri",         "9:00 AM – 5:00 PM",     "Lahug",  False),
+    ("TwoToday",     "Two outages today",       "upcoming", "TODAY 1/2", "3:20:00",     "until 3:00 PM",         "2 areas", True),
+    ("Stale",        "Stale · over 48h old",    "stale",    "TODAY",     "Clear",       "No scheduled outage",   "Data may be outdated", False),
+    ("Unconfigured", "No barangay yet",         "clear",    "PAWER",     "Open PAWER",  "Add your barangay",     "",       False),
+    # Worst case in every slot at once: the longest display name in the registry, the longest
+    # window, a cross-midnight time, and the two-outage tag. If anything clips, it clips here.
+    ("Longest",      "Worst case · longest strings", "ended", "TODAY 1/2", "Restored", "10:00 PM – 6:00 AM", "San Isidro, San Fernando", False),
+]
+
+for name, _title, state, tag, display, line3, line4, cd in BOARDS:
+    (HERE / f"{name}.dc.html").write_text(board(state, tag, display, line3, line4, countdown=cd), encoding="utf-8")
+
+FRAME, GAP_X, GAP_Y, PER_ROW = 170, 80, 130, 5
+artboards, titles = [], {n: t for n, t, *_ in BOARDS}
+for i, (name, *_rest) in enumerate(BOARDS):
+    artboards.append({"file": f"{name}.dc.html", "title": titles[name],
+                      "x": (i % PER_ROW) * (FRAME + GAP_X),
+                      "y": (i // PER_ROW) * (FRAME + GAP_Y),
+                      "w": FRAME, "h": FRAME})
+
+canvas = {
+    "artboards": artboards,
+    "annotations": [
+        {"id": "scale", "x": 0, "y": -210, "w": 430,
+         "text": "1 px here = 1 dp on the phone, so every size you change is already the Android "
+                 "value. Zoom the canvas in to work; the widget really is this small.\n\n"
+                 "The cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard "
+                 "shadow lands inside the cell and no launcher clips it."},
+        {"id": "autosize", "x": 500, "y": -210, "w": 430,
+         "text": "Text here is drawn at the BASE size, which is what Android 8.0 and older use. "
+                 "On newer phones each slot can grow a little to fill the space.\n\n"
+                 "So if a line looks cut off on one of these boards, it is genuinely too long. If "
+                 "it fits here, it fits everywhere."},
+        {"id": "faces", "x": 1000, "y": -210, "w": 430,
+         "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other three "
+                 "lines are the phone's own font, which is what the widget actually uses.\n\n"
+                 "Exported PNGs and PDFs fall back to a substitute for that one, so judge the "
+                 "small text here on the canvas rather than in an export."},
+    ],
+    "launch": {"view": "canvas"},
+}
+(HERE / "canvas.json").write_text(json.dumps(canvas, indent=2) + "\n", encoding="utf-8")
+print(f"{len(BOARDS)} artboards + canvas.json")
+print(f"  cell {CELL}dp · card {CARD}dp · radius {RADIUS}dp · shadow {SHADOW}dp · padding {PAD_T}/{PAD_L}dp inside the stroke")
+print(f"  Getai subset inlined: {len(GETAI)/1024:.0f} KB base64 per board")
