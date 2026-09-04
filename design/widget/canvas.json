@@ -5,104 +5,104 @@
       "title": "Upcoming \u00b7 counting down",
       "x": 0,
       "y": 0,
-      "w": 170,
-      "h": 170
+      "w": 110,
+      "h": 110
     },
     {
       "file": "UpcomingSoon.dc.html",
       "title": "Upcoming \u00b7 countdown run out",
-      "x": 250,
+      "x": 190,
       "y": 0,
-      "w": 170,
-      "h": 170
+      "w": 110,
+      "h": 110
     },
     {
       "file": "Ongoing.dc.html",
       "title": "Ongoing \u00b7 counting down",
-      "x": 500,
+      "x": 380,
       "y": 0,
-      "w": 170,
-      "h": 170
+      "w": 110,
+      "h": 110
     },
     {
       "file": "OngoingNow.dc.html",
       "title": "Ongoing \u00b7 no countdown",
-      "x": 750,
+      "x": 570,
       "y": 0,
-      "w": 170,
-      "h": 170
+      "w": 110,
+      "h": 110
     },
     {
       "file": "Ended.dc.html",
       "title": "Ended today",
-      "x": 1000,
+      "x": 760,
       "y": 0,
-      "w": 170,
-      "h": 170
+      "w": 110,
+      "h": 110
     },
     {
       "file": "ClearToday.dc.html",
       "title": "Clear \u00b7 nothing ahead",
       "x": 0,
-      "y": 300,
-      "w": 170,
-      "h": 170
+      "y": 240,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "ClearNext.dc.html",
       "title": "Clear \u00b7 next one known",
-      "x": 250,
-      "y": 300,
-      "w": 170,
-      "h": 170
+      "x": 190,
+      "y": 240,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "TwoToday.dc.html",
       "title": "Two outages today",
-      "x": 500,
-      "y": 300,
-      "w": 170,
-      "h": 170
+      "x": 380,
+      "y": 240,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "Stale.dc.html",
       "title": "Stale \u00b7 over 48h old",
-      "x": 750,
-      "y": 300,
-      "w": 170,
-      "h": 170
+      "x": 570,
+      "y": 240,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "StaleCounting.dc.html",
       "title": "Stale \u00b7 still counting down",
-      "x": 1000,
-      "y": 300,
-      "w": 170,
-      "h": 170
+      "x": 760,
+      "y": 240,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "Unconfigured.dc.html",
       "title": "No barangay yet",
       "x": 0,
-      "y": 600,
-      "w": 170,
-      "h": 170
+      "y": 480,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "LongCountdown.dc.html",
       "title": "Widest countdown",
-      "x": 250,
-      "y": 600,
-      "w": 170,
-      "h": 170
+      "x": 190,
+      "y": 480,
+      "w": 110,
+      "h": 110
     },
     {
       "file": "Longest.dc.html",
       "title": "Worst case \u00b7 longest strings",
-      "x": 500,
-      "y": 600,
-      "w": 170,
-      "h": 170
+      "x": 380,
+      "y": 480,
+      "w": 110,
+      "h": 110
     }
   ],
   "annotations": [
@@ -111,21 +111,21 @@
       "x": 0,
       "y": -210,
       "w": 430,
-      "text": "1 px here = 1 dp on the phone, so every size you change is already the Android value. Zoom the canvas in to work; the widget really is this small.\n\nThe cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard shadow lands inside the cell and no launcher clips it."
+      "text": "1 px here = 1 dp on the phone, so every size you change is already the Android value. Zoom the canvas in to work; the widget really is this small.\n\nThe cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard shadow lands inside the cell and no launcher clips it.\n\nNothing else is painted. The strip past the shadow and the two small corners are transparent, so your wallpaper shows through. The chip is the only part of the widget that is really white."
     },
     {
       "id": "autosize",
       "x": 500,
       "y": -210,
       "w": 430,
-      "text": "Text here is drawn at the BASE size, which is what Android 8.0 and older use. On newer phones each slot can grow a little to fill the space.\n\nSo if a line looks cut off on one of these boards, it is genuinely too long. If it fits here, it fits everywhere."
+      "text": "Each size here is the one that fits the longest text that slot can ever hold, with no help. That is why the time looks small.\n\nAndroid 9 and up resizes each slot to fit the space, up or down, so short text grows back and nothing is ever cut off. Only Android 8 and older see exactly these sizes.\n\nSo treat these as the floor, not the finished look."
     },
     {
       "id": "faces",
       "x": 1000,
       "y": -210,
       "w": 430,
-      "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines are lines are the phone's own font, which is what the widget actually uses.\n\nExported PNGs and PDFs fall back to a substitute for that one, so judge the small text here on the canvas rather than in an export."
+      "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines use the phone's own font, which is what the widget actually does.\n\nExported PNGs and PDFs substitute a different face for the small text, so judge that here on the canvas rather than in an export."
     }
   ],
   "launch": {

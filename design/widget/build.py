@@ -67,7 +67,7 @@ def board(state, tag, display, line3, line4, *, countdown=False, pill=True):
       src: url(data:font/ttf;base64,{GETAI}) format('truetype');
       font-weight: 400; font-display: block;
     }}
-    body {{ margin: 0; background: {GROUND}; font-family: {SYS}; color: {INK}; }}
+    body {{ margin: 0; background: transparent; font-family: {SYS}; color: {INK}; }}
     a {{ color: #EA5C1F; }} a:hover {{ color: #C24A16; }}
   </style>
 </helmet>
@@ -114,7 +114,7 @@ for name, _title, state, tag, display, line3, line4, cd in BOARDS:
     (HERE / f"{name}.dc.html").write_text(
         board(state, tag, display, line3, line4, countdown=cd, pill=(state != "stale")), encoding="utf-8")
 
-FRAME, GAP_X, GAP_Y, PER_ROW = 170, 80, 130, 5
+FRAME, GAP_X, GAP_Y, PER_ROW = 110, 80, 130, 5   # the frame IS the 110dp cell now
 artboards, titles = [], {n: t for n, t, *_ in BOARDS}
 for i, (name, *_rest) in enumerate(BOARDS):
     artboards.append({"file": f"{name}.dc.html", "title": titles[name],
@@ -129,17 +129,22 @@ canvas = {
          "text": "1 px here = 1 dp on the phone, so every size you change is already the Android "
                  "value. Zoom the canvas in to work; the widget really is this small.\n\n"
                  "The cell is 110x110 dp. The card is 106 and sits top-left, so its 4 dp hard "
-                 "shadow lands inside the cell and no launcher clips it."},
+                 "shadow lands inside the cell and no launcher clips it.\n\n"
+                 "Nothing else is painted. The strip past the shadow and the two small corners are "
+                 "transparent, so your wallpaper shows through. The chip is the only part of the "
+                 "widget that is really white."},
         {"id": "autosize", "x": 500, "y": -210, "w": 430,
-         "text": "Text here is drawn at the BASE size, which is what Android 8.0 and older use. "
-                 "On newer phones each slot can grow a little to fill the space.\n\n"
-                 "So if a line looks cut off on one of these boards, it is genuinely too long. If "
-                 "it fits here, it fits everywhere."},
+         "text": "Each size here is the one that fits the longest text that slot can ever hold, "
+                 "with no help. That is why the time looks small.\n\n"
+                 "Android 9 and up resizes each slot to fit the space, up or down, so short text "
+                 "grows back and nothing is ever cut off. Only Android 8 and older see exactly "
+                 "these sizes.\n\n"
+                 "So treat these as the floor, not the finished look."},
         {"id": "faces", "x": 1000, "y": -210, "w": 430,
-         "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines are "
-                 "lines are the phone's own font, which is what the widget actually uses.\n\n"
-                 "Exported PNGs and PDFs fall back to a substitute for that one, so judge the "
-                 "small text here on the canvas rather than in an export."},
+         "text": "The big line is Getai Grotesk Black, same as the dashboard card. The other lines "
+                 "use the phone's own font, which is what the widget actually does.\n\n"
+                 "Exported PNGs and PDFs substitute a different face for the small text, so judge "
+                 "that here on the canvas rather than in an export."},
     ],
     "launch": {"view": "canvas"},
 }
