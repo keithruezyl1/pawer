@@ -22,9 +22,14 @@ import android.text.TextPaint
  */
 internal object Headline {
 
-  /** Up to the dashboard card's own display size, so a launcher that gives the widget more room
-   *  gets a headline that grows into it instead of a small one adrift in a big card. */
-  private const val MAX_SP = 40f
+  /**
+   * 30, not the card's own 40. Measured across every headline the renderer can produce: a cap of
+   * 40 let two-word strings ("Restored", "Soon") reach 40sp while "No outages today" was held to
+   * 21 by its third word, a near-2x swing between states on the same widget. At 30 with three
+   * lines allowed the spread is 5sp. A 2x2 is unaffected either way — the height budget there
+   * pins everything to 13sp long before the cap matters.
+   */
+  private const val MAX_SP = 30f
   private const val MIN_SP = 9f
 
   fun render(ctx: Context, text: String, boxDp: Int, maxHeightDp: Int, maxLines: Int, colorInt: Int): Bitmap? {
