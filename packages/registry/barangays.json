@@ -262,7 +262,8 @@
       "display": "Central",
       "lgu": "cebu-city",
       "aliases": [
-        "central (pob.)"
+        "central (pob.)",
+        "sto. niño"
       ],
       "psgc": "072217022",
       "psgc_name": "Central (Pob.)",
@@ -692,7 +693,9 @@
       "slug": "cebu-city.pung-ol-sibugay",
       "display": "Pung-ol-Sibugay",
       "lgu": "cebu-city",
-      "aliases": [],
+      "aliases": [
+        "pung-ol sibugay"
+      ],
       "psgc": "072217060",
       "psgc_name": "Pung-ol-Sibugay",
       "psgc_old_name": "",
@@ -1874,7 +1877,9 @@
       "slug": "minglanilla.linao",
       "display": "Linao",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "lipata"
+      ],
       "psgc": "072232007",
       "psgc_name": "Linao",
       "psgc_old_name": "",

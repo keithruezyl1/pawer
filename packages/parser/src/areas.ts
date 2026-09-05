@@ -49,6 +49,8 @@ function escapeRe(s: string): string {
 interface Prepared {
   lguAliases: Array<{ slug: string; alias: string; re: RegExp }>;
   byLgu: Map<string, Array<{ slug: string; keys: string[]; fold: string }>>;
+  /** Every name and alias across all 232, to the slugs that answer to it. */
+  byName: Map<string, Array<{ slug: string; lgu: string }>>;
 }
 
 const cache = new WeakMap<Registry, Prepared>();
@@ -63,13 +65,18 @@ function prepare(reg: Registry): Prepared {
     // No "g" flag: a global regex keeps lastIndex between .test() calls and these are cached.
     .map((x) => ({ ...x, re: new RegExp(`(?<![a-z0-9])${escapeRe(x.alias)}(?![a-z0-9])`, "i") }));
   const byLgu = new Map<string, Array<{ slug: string; keys: string[]; fold: string }>>();
+  const byName = new Map<string, Array<{ slug: string; lgu: string }>>();
   for (const b of reg.barangays) {
     const fold = foldForMatch(b.display);
     const keys = [fold, ...b.aliases.map(foldForMatch)];
     if (!byLgu.has(b.lgu)) byLgu.set(b.lgu, []);
     byLgu.get(b.lgu)!.push({ slug: b.slug, keys, fold });
+    for (const k of keys) {
+      if (!byName.has(k)) byName.set(k, []);
+      if (!byName.get(k)!.some((x) => x.slug === b.slug)) byName.get(k)!.push({ slug: b.slug, lgu: b.lgu });
+    }
   }
-  const prepared = { lguAliases, byLgu };
+  const prepared = { lguAliases, byLgu, byName };
   cache.set(reg, prepared);
   return prepared;
 }
@@ -81,7 +88,7 @@ export function splitHeadTail(text: string): { head: string; tail: string } {
 }
 
 export function resolveAreas(areasText: string, reg: Registry = defaultRegistry): AreaResolution {
-  const { lguAliases, byLgu } = prepare(reg);
+  const { lguAliases, byLgu, byName } = prepare(reg);
   const { head: rawHead } = splitHeadTail(normalizeText(areasText));
 
   // 1. LGUs — match on the folded head, remove matched spans from a parallel display-cased copy.
@@ -143,6 +150,26 @@ export function resolveAreas(areasText: string, reg: Registry = defaultRegistry)
     if (loose.length > 0) {
       add(loose[0]!.c.slug);
       report(token);
+      continue;
+    }
+
+    /**
+     * VECO labels a group by its DOMINANT LGU when the circuit crosses a boundary. Real example:
+     * "Portion of Talisay City: Camp 7, Camp 8, Lawaan I, II, III, & Lipata" — Camp 7, Camp 8 and
+     * Lipata are Minglanilla, only the Lawaans are Talisay. Scoped matching gets the Lawaans and
+     * silently drops the rest, which is an outage reaching nobody.
+     *
+     * So: scope first, and only if that fails, accept a name that is unique across all 232.
+     * Ambiguity is what makes this safe rather than a loophole — every name that MUST stay scoped
+     * (San Roque in 3 LGUs, Basak, Tayud, Poblacion, Linao, Cadulawan, San Isidro, Bulacao) has
+     * more than one owner and can never resolve here, while every mislabelled name observed in the
+     * corpus has exactly one. Checked against the registry, not assumed.
+     */
+    const global = byName.get(key) ?? [];
+    if (global.length === 1) {
+      const hit = global[0]!;
+      add(hit.slug);
+      if (!lgus.includes(hit.lgu)) lgus.push(hit.lgu); // the entry really does span that LGU
       continue;
     }
 

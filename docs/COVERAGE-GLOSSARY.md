@@ -182,6 +182,9 @@ Harvested from the advisories examined so far, including the Facebook rotational
 | `Duljo Fatima` | `cebu-city.duljo` | PSGC is bare `Duljo`. Also seen parenthesised, `Duljo (Duljo Fatima)` |
 | `Poblacion Pardo` | `cebu-city.pardo` | PSGC is bare `Pardo` |
 | `Buot` | `cebu-city.buot-taup-pardo` | VECO drops the compound suffix |
+| `Lipata` | `minglanilla.linao` | Minglanilla's barangay is locally **`Linao-Lipata`**; PSGC records only `Linao`. VECO uses either half, sometimes both in one advisory, so `Lipata` alone would otherwise match nothing. Confirmed against PhilAtlas and the municipal list, not inferred |
+| `Sto. Niño` | `cebu-city.central` | PSGC and this registry call it `Central`; Cebu City lists it as **`Santo Niño (Central)`** and everyone local calls it Santo Niño. A downtown barangay whose advisories would silently have matched nothing. `foldForMatch` already expands `Sto.` to `Santo`, so both spellings resolve |
+| `Pung-ol Sibugay` | `cebu-city.pung-ol-sibugay` | PSGC hyphenates both halves (`Pung-ol-Sibugay`); VECO hyphenates only the first |
 
 **`Sta.` → `Santa` normalisation is required, not optional.** VECO writes `Sta. Cruz`; both registry entries are `Santa Cruz`. Without expansion, every `Santa Cruz` advisory silently fails to match — a false negative, the failure class this product cannot tolerate. The same applies to `Sto.`, `Gen.`, and any other honorific abbreviation encountered.
 
