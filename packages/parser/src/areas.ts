@@ -96,7 +96,11 @@ export function resolveAreas(areasText: string, reg: Registry = defaultRegistry)
   // 3. tokens
   const tokens = head
     .replace(/\bportions?\s+o[fd]\b/gi, " ") // "od" is a real VECO typo for "of"
-    .split(/[,&()]|\band\b/i)
+    // A colon separates the LGU from its list in VECO's Facebook grammar
+    // ("Portion of Cebu City: Apas, Kasambagan, & Lahug"). Without it, the LGU scan leaves
+    // ": Apas" glued together and the FIRST barangay of every group is silently lost. The
+    // website grammar contains no colons, so this costs it nothing.
+    .split(/[,&():]|\band\b/i)
     .map((t) => t.replace(/^[\s.;:]+|[\s.;:]+$/g, ""))
     .filter((t) => !STOP_TOKENS.has(t.toLowerCase()));
 

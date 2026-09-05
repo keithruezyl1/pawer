@@ -143,7 +143,7 @@ Balud · Balungag · Basak **⚠** · Bugho · Cabatbatan · Greenhills · Ilaya
 
 ## 5. Aliases observed in VECO's own text
 
-Harvested from the two advisories examined so far. This list will grow — every auto-filed unknown-area issue (ARCHITECTURE §4.5) adds to it.
+Harvested from the advisories examined so far, including the Facebook rotational-brownout corpus of 5 September 2026 (`packages/parser/corpus/facebook/`), which contributed the numeral and hyphen variants below. This list will grow — every auto-filed unknown-area issue (ARCHITECTURE §4.5) adds to it.
 
 | VECO writes | Registry slug | Note |
 |---|---|---|
@@ -161,6 +161,27 @@ Harvested from the two advisories examined so far. This list will grow — every
 | `Ward III` | `minglanilla.poblacion-ward-iii` | as above |
 | `Ward IV` | `minglanilla.poblacion-ward-iv` | as above. Observed 2026-09-04: `Portion of Ward IV & Tunghaan, Minglanilla` matched Tunghaan only |
 | `San Nicolas Proper` | `cebu-city.san-nicolas-central` | PSGC's *current* name is `San Nicolas Central`; `Proper` is the older local form, the same pattern as `Lorega-San Miguel`. **Inferred, wants confirming** — Cebu City has three other San Nicolas barangays, and the observed advisory (`San Nicolas Proper & Sawang Calero … along Tupas St. & Magsaysay St.`) points at Central by adjacency, not by name |
+| `Sambag 1` | `cebu-city.sambag-i` | Arabic for PSGC's Roman. §3.2 predicted this |
+| `Sambag 2` | `cebu-city.sambag-ii` | as above |
+| `Lawaan 1` | `talisay-city.lawaan-i` | as above |
+| `Lawaan 2` | `talisay-city.lawaan-ii` | as above |
+| `Lawaan 3` | `talisay-city.lawaan-iii` | as above |
+| `Camp 4` | `talisay-city.camp-iv` | as above, and the exact case §3.2 names |
+| `Ward 1` | `minglanilla.poblacion-ward-i` | Arabic form; the Roman `Ward I` was added 2026-09-04 |
+| `Ward 2` | `minglanilla.poblacion-ward-ii` | as above |
+| `Ward 3` | `minglanilla.poblacion-ward-iii` | as above |
+| `Ward 4` | `minglanilla.poblacion-ward-iv` | as above |
+| `Tabunok` | `talisay-city.tabunoc` | PSGC ends it `-c`, VECO `-k`. A silent false negative on Talisay's busiest barangay |
+| `Candulawan` | `talisay-city.cadulawan` | VECO inserts an `n`. PSGC has no `Candulawan` in any LGU |
+| `Tugbungan` | `consolacion.tugbongan` | `u` for PSGC's `o` |
+| `Paknaan` | `mandaue-city.pakna-an` | VECO drops the hyphen |
+| `Tolo-tolo` | `consolacion.tolotolo` | VECO adds one |
+| `Tagba-o` | `cebu-city.tagbao` | VECO adds one |
+| `Calajoan` | `minglanilla.calajo-an` | VECO drops one |
+| `Toong` | `cebu-city.to-ong-pardo` | Drops the hyphen AND the suffix; the existing `To-ong` alias covers only the suffix |
+| `Duljo Fatima` | `cebu-city.duljo` | PSGC is bare `Duljo`. Also seen parenthesised, `Duljo (Duljo Fatima)` |
+| `Poblacion Pardo` | `cebu-city.pardo` | PSGC is bare `Pardo` |
+| `Buot` | `cebu-city.buot-taup-pardo` | VECO drops the compound suffix |
 
 **`Sta.` → `Santa` normalisation is required, not optional.** VECO writes `Sta. Cruz`; both registry entries are `Santa Cruz`. Without expansion, every `Santa Cruz` advisory silently fails to match — a false negative, the failure class this product cannot tolerate. The same applies to `Sto.`, `Gen.`, and any other honorific abbreviation encountered.
 

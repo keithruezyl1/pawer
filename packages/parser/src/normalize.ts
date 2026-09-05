@@ -13,10 +13,17 @@ const DASHES = /[‐-―−]/g; // ‐ ‑ ‒ – — ― −
 const ODD_SPACES = /[   ]/g; // nbsp, figure space, narrow nbsp
 const ZERO_WIDTH = /[​‌‍﻿]/g;
 
+/** Emoji and dingbats VECO decorates its Facebook posts with. Never present in website HTML. */
+const PICTOGRAPHS = /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}]/gu;
+
 export function normalizeText(input: string): string {
   return input
     .normalize("NFKC")
     .replace(ZERO_WIDTH, "")
+    // VECO's Facebook posts lead every line with a pin, a clock or a status dot. They mean
+    // something to a reader and nothing to the matcher, and left in they glue themselves to the
+    // first name in the list.
+    .replace(PICTOGRAPHS, " ")
     .replace(DASHES, "-")
     .replace(ODD_SPACES, " ")
     .replace(/\s+/g, " ")

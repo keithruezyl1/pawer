@@ -168,7 +168,9 @@
       "slug": "cebu-city.buot-taup-pardo",
       "display": "Buot-Taup Pardo",
       "lgu": "cebu-city",
-      "aliases": [],
+      "aliases": [
+        "buot"
+      ],
       "psgc": "072217016",
       "psgc_name": "Buot-Taup Pardo",
       "psgc_old_name": "",
@@ -315,7 +317,8 @@
       "display": "Duljo",
       "lgu": "cebu-city",
       "aliases": [
-        "duljo (pob.)"
+        "duljo (pob.)",
+        "duljo fatima"
       ],
       "psgc": "072217027",
       "psgc_name": "Duljo (Pob.)",
@@ -608,7 +611,8 @@
       "display": "Pardo",
       "lgu": "cebu-city",
       "aliases": [
-        "pardo (pob.)"
+        "pardo (pob.)",
+        "poblacion pardo"
       ],
       "psgc": "072217053",
       "psgc_name": "Pardo (Pob.)",
@@ -725,6 +729,7 @@
       "display": "Sambag I",
       "lgu": "cebu-city",
       "aliases": [
+        "sambag 1",
         "sambag i (pob.)"
       ],
       "psgc": "072217064",
@@ -741,6 +746,7 @@
       "display": "Sambag II",
       "lgu": "cebu-city",
       "aliases": [
+        "sambag 2",
         "sambag ii (pob.)"
       ],
       "psgc": "072217065",
@@ -937,7 +943,9 @@
       "slug": "cebu-city.tagbao",
       "display": "Tagbao",
       "lgu": "cebu-city",
-      "aliases": [],
+      "aliases": [
+        "tagba-o"
+      ],
       "psgc": "072217080",
       "psgc_name": "Tagbao",
       "psgc_old_name": "",
@@ -1012,7 +1020,8 @@
       "display": "To-ong Pardo",
       "lgu": "cebu-city",
       "aliases": [
-        "to-ong"
+        "to-ong",
+        "toong"
       ],
       "psgc": "072217086",
       "psgc_name": "To-ong Pardo",
@@ -1265,7 +1274,9 @@
       "slug": "consolacion.tolotolo",
       "display": "Tolotolo",
       "lgu": "consolacion",
-      "aliases": [],
+      "aliases": [
+        "tolo-tolo"
+      ],
       "psgc": "072219020",
       "psgc_name": "Tolotolo",
       "psgc_old_name": "",
@@ -1277,7 +1288,9 @@
       "slug": "consolacion.tugbongan",
       "display": "Tugbongan",
       "lgu": "consolacion",
-      "aliases": [],
+      "aliases": [
+        "tugbungan"
+      ],
       "psgc": "072219021",
       "psgc_name": "Tugbongan",
       "psgc_old_name": "",
@@ -1701,7 +1714,9 @@
       "slug": "mandaue-city.pakna-an",
       "display": "Pakna-an",
       "lgu": "mandaue-city",
-      "aliases": [],
+      "aliases": [
+        "paknaan"
+      ],
       "psgc": "072230020",
       "psgc_name": "Pakna-an",
       "psgc_old_name": "",
@@ -1797,7 +1812,9 @@
       "slug": "minglanilla.calajo-an",
       "display": "Calajo-an",
       "lgu": "minglanilla",
-      "aliases": [],
+      "aliases": [
+        "calajoan"
+      ],
       "psgc": "072232002",
       "psgc_name": "Calajo-an",
       "psgc_old_name": "",
@@ -1894,6 +1911,7 @@
       "display": "Poblacion Ward I",
       "lgu": "minglanilla",
       "aliases": [
+        "ward 1",
         "ward i"
       ],
       "psgc": "072232010",
@@ -1912,6 +1930,7 @@
       "display": "Poblacion Ward II",
       "lgu": "minglanilla",
       "aliases": [
+        "ward 2",
         "ward ii"
       ],
       "psgc": "072232011",
@@ -1928,6 +1947,7 @@
       "display": "Poblacion Ward III",
       "lgu": "minglanilla",
       "aliases": [
+        "ward 3",
         "ward iii"
       ],
       "psgc": "072232012",
@@ -1942,6 +1962,7 @@
       "display": "Poblacion Ward IV",
       "lgu": "minglanilla",
       "aliases": [
+        "ward 4",
         "ward iv"
       ],
       "psgc": "072232013",
@@ -2643,7 +2664,9 @@
       "slug": "talisay-city.cadulawan",
       "display": "Cadulawan",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "candulawan"
+      ],
       "psgc": "072250002",
       "psgc_name": "Cadulawan",
       "psgc_old_name": "",
@@ -2655,7 +2678,9 @@
       "slug": "talisay-city.camp-iv",
       "display": "Camp IV",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "camp 4"
+      ],
       "psgc": "072250020",
       "psgc_name": "Camp IV",
       "psgc_old_name": "",
@@ -2715,7 +2740,9 @@
       "slug": "talisay-city.lawaan-i",
       "display": "Lawaan I",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "lawaan 1"
+      ],
       "psgc": "072250007",
       "psgc_name": "Lawaan I",
       "psgc_old_name": "",
@@ -2730,7 +2757,9 @@
       "slug": "talisay-city.lawaan-ii",
       "display": "Lawaan II",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "lawaan 2"
+      ],
       "psgc": "072250021",
       "psgc_name": "Lawaan II",
       "psgc_old_name": "",
@@ -2744,7 +2773,9 @@
       "slug": "talisay-city.lawaan-iii",
       "display": "Lawaan III",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "lawaan 3"
+      ],
       "psgc": "072250022",
       "psgc_name": "Lawaan III",
       "psgc_old_name": "",
@@ -2852,7 +2883,9 @@
       "slug": "talisay-city.tabunoc",
       "display": "Tabunoc",
       "lgu": "talisay-city",
-      "aliases": [],
+      "aliases": [
+        "tabunok"
+      ],
       "psgc": "072250016",
       "psgc_name": "Tabunoc",
       "psgc_old_name": "",
