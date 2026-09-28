@@ -1,45 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-28T07:25:59.293Z",
+  "generated_at": "2026-09-28T21:42:22.586Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "065806d997172a2d",
-      "start": "2026-08-29T07:00:00+08:00",
-      "end": "2026-08-29T17:00:00+08:00",
-      "duration_minutes": 600,
-      "lgus": [
-        "liloan"
-      ],
-      "barangays": [
-        "liloan.jubay"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Jubay, Liloan, Portions along Fatima Road.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Jubay by facilitating 69kV pole installation and dressing.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-august-23-29-2026",
-      "source_published_at": "2026-08-20T07:58:30.000Z"
-    },
-    {
-      "id": "83642cadf5476a45",
-      "start": "2026-08-29T08:00:00+08:00",
-      "end": "2026-08-29T17:00:00+08:00",
-      "duration_minutes": 540,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.pit-os",
-        "cebu-city.pulangbato"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Pit-os & Pulangbato, Cebu City, along portion of Pulangbato Road, including portions of Sitios Aroma, Baliw, Burgos, Cambaog, Candarong, Dita, Kamanggahan, Kasambahan, Manguyas, Nawanao, Pasilagon, Pundok, Tayabas, & Tuburan, and Greenwoods Executive Village, Metropolis Subdivision Phase II, Sunnymede Subdivision, & Villa Del Rio II",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Pit-os & Pulangbato by facilitating primary line maintenance and primary line upgrading.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-august-23-29-2026",
-      "source_published_at": "2026-08-20T07:58:30.000Z"
-    },
     {
       "id": "3ae0223a3541ee7a",
       "start": "2026-08-30T08:00:00+08:00",
