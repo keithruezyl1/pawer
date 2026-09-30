@@ -28,9 +28,9 @@
   "cebu-city.banilad": "2026-08-19T08:00:00+08:00",
   "cebu-city.budla-an": "2026-08-19T08:00:00+08:00",
   "cebu-city.busay": "2026-09-20T08:00:00+08:00",
-  "talisay-city.mohon": "2026-08-19T09:00:00+08:00",
+  "talisay-city.mohon": "2026-10-02T04:00:00+08:00",
   "liloan.catarman": "2026-09-30T09:00:00+08:00",
-  "cebu-city.guadalupe": "2026-09-23T09:00:00+08:00",
+  "cebu-city.guadalupe": "2026-10-02T13:00:00+08:00",
   "cebu-city.labangon": "2026-09-23T09:00:00+08:00",
   "cebu-city.mabolo": "2026-10-01T08:00:00+08:00",
   "cebu-city.lahug": "2026-09-30T09:00:00+08:00",
@@ -136,7 +136,7 @@
   "san-fernando.tabionan": "2026-09-22T08:00:00+08:00",
   "san-fernando.tinubdan": "2026-09-22T08:00:00+08:00",
   "mandaue-city.tabok": "2026-09-22T09:00:00+08:00",
-  "cebu-city.calamba": "2026-09-23T09:00:00+08:00",
+  "cebu-city.calamba": "2026-10-02T09:00:00+08:00",
   "cebu-city.quiot-pardo": "2026-09-26T09:00:00+08:00",
   "talisay-city.san-roque": "2026-09-24T09:00:00+08:00",
   "cebu-city.buhisan": "2026-09-25T09:00:00+08:00",
@@ -155,5 +155,9 @@
   "naga.mainit": "2026-10-01T22:00:00+08:00",
   "naga.tinaan": "2026-10-01T22:00:00+08:00",
   "minglanilla.vito": "2026-10-02T09:00:00+08:00",
-  "cebu-city.sapangdaku": "2026-10-03T09:00:00+08:00"
+  "cebu-city.sapangdaku": "2026-10-03T09:00:00+08:00",
+  "talisay-city.lawaan-i": "2026-10-02T04:00:00+08:00",
+  "talisay-city.linao": "2026-10-02T04:00:00+08:00",
+  "cebu-city.sambag-i": "2026-10-02T09:00:00+08:00",
+  "cebu-city.sambag-ii": "2026-10-02T09:00:00+08:00"
 }
