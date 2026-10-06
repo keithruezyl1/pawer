@@ -1,64 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-05T07:32:48.392Z",
+  "generated_at": "2026-10-06T10:40:40.031Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "657cb4af4c7129e8",
-      "start": "2026-09-06T08:00:00+08:00",
-      "end": "2026-09-06T18:00:00+08:00",
-      "duration_minutes": 600,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.mambaling"
-      ],
-      "unknown_area_tokens": [
-        "South Reclamation Area"
-      ],
-      "areas_raw": "Portion of Mambaling & South Reclamation Area, Cebu City, along Candido Padilla St., F. Vestil St., SRP Back Rd., and SRP Bypass Rd., including SM Seaside and SM Arena.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Mambaling & South Reclamation Area by facilitating installation of line device hardware (DS/FCO/LBS) and reconstruction of primary lines.",
-      "parse_status": "partial",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
-      "source_published_at": "2026-09-03T09:02:24.000Z"
-    },
-    {
-      "id": "8c68ac09e034a772",
-      "start": "2026-09-06T08:00:00+08:00",
-      "end": "2026-09-06T18:00:00+08:00",
-      "duration_minutes": 600,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [],
-      "unknown_area_tokens": [
-        "South Reclamation Area"
-      ],
-      "areas_raw": "Portion of South Reclamation Area, Cebu City, along Talabong Rd., including CCTO and DOH.",
-      "purpose_raw": "To increase the capacity of the distribution system serving South Reclamation Area by facilitating extension of primary lines (line stringing).",
-      "parse_status": "partial",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
-      "source_published_at": "2026-09-03T09:02:24.000Z"
-    },
-    {
-      "id": "672ed2dc3084350d",
-      "start": "2026-09-06T08:00:00+08:00",
-      "end": "2026-09-06T18:00:00+08:00",
-      "duration_minutes": 600,
-      "lgus": [
-        "talisay-city"
-      ],
-      "barangays": [
-        "talisay-city.tangke"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Tangke, Talisay City, along Cebu South Coastal Road, including Cebu South Harbor.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tangke by facilitating reconstruction of primary lines.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
-      "source_published_at": "2026-09-03T09:02:24.000Z"
-    },
     {
       "id": "a7ccc6fc7f97042e",
       "start": "2026-09-07T09:00:00+08:00",
