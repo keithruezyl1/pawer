@@ -1,45 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-07T01:17:19.718Z",
+  "generated_at": "2026-10-08T07:09:08.381Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "a7ccc6fc7f97042e",
-      "start": "2026-09-07T09:00:00+08:00",
-      "end": "2026-09-07T12:00:00+08:00",
-      "duration_minutes": 180,
-      "lgus": [
-        "liloan"
-      ],
-      "barangays": [
-        "liloan.tayud",
-        "liloan.yati"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Tayud & Yati, Liloan, along Bayong-Yati Road.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tayud & Yati by facilitating reconstruction of primary lines.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
-      "source_published_at": "2026-09-03T09:02:24.000Z"
-    },
-    {
-      "id": "0b68be4dc56752b3",
-      "start": "2026-09-08T06:00:00+08:00",
-      "end": "2026-09-08T08:00:00+08:00",
-      "duration_minutes": 120,
-      "lgus": [
-        "mandaue-city"
-      ],
-      "barangays": [
-        "mandaue-city.ibabao-estancia"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Ibabao-Estancia, Mandaue City, along portion of M.C. Briones Street.",
-      "purpose_raw": "To prevent unnecessary interruptions due to anticipated system fault/damage Brgy. Ibabao-Estancia by facilitating Hotspot Correction.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-6-12-2026",
-      "source_published_at": "2026-09-03T09:02:24.000Z"
-    },
     {
       "id": "a292a2c2721356f1",
       "start": "2026-09-08T08:50:00+08:00",
