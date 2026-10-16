@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-16T18:57:42.452Z",
+  "generated_at": "2026-10-16T22:00:03.163Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
     {
@@ -2186,10 +2186,10 @@
       "source_published_at": "2026-10-08T08:54:25.000Z"
     },
     {
-      "id": "b75bc74a3ebb6e96",
-      "start": "2026-10-17T08:00:00+08:00",
+      "id": "73d5cbb5bb329f42",
+      "start": "2026-10-17T09:00:00+08:00",
       "end": "2026-10-17T17:00:00+08:00",
-      "duration_minutes": 540,
+      "duration_minutes": 480,
       "lgus": [
         "cebu-city"
       ],
