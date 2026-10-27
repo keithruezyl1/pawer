@@ -1,87 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-26T14:59:10.388Z",
+  "generated_at": "2026-10-27T10:49:57.828Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "4ef871e2dcf5fa1b",
-      "start": "2026-09-27T08:00:00+08:00",
-      "end": "2026-09-27T17:00:00+08:00",
-      "duration_minutes": 540,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.mabini"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Mabini, Cebu City, along portions of Brgy Mabini Rd.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Mabini by facilitating primary line maintenance.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-27-october-3-2026",
-      "source_published_at": "2026-09-24T08:36:02.000Z"
-    },
-    {
-      "id": "a8754d1a7dae46db",
-      "start": "2026-09-27T08:00:00+08:00",
-      "end": "2026-09-27T16:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.apas",
-        "cebu-city.lahug"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Apas & Lahug, Cebu City, along portion of V. Padriga St., Jose Maria del Mar. Avenue, I. Villa St., India St., & Abad Street.",
-      "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Apas & Lahug by facilitating installation of distribution transformer.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-27-october-3-2026",
-      "source_published_at": "2026-09-24T08:36:02.000Z"
-    },
-    {
-      "id": "20a8f75ba5a2d636",
-      "start": "2026-09-27T08:00:00+08:00",
-      "end": "2026-09-27T14:00:00+08:00",
-      "duration_minutes": 360,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.bacayan",
-        "cebu-city.san-jose",
-        "cebu-city.talamban"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Bacayan, San Jose & Talamban, Cebu City, along portions of A. Minoza Street, Kauswagan Road, Orhid Street, San Jose Road, & Talamban Road.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Bacayan, San Jose & Talamban by facilitating tapping of primary lines.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-27-october-3-2026",
-      "source_published_at": "2026-09-24T08:36:02.000Z"
-    },
-    {
-      "id": "0b2b9e17d6a092e1",
-      "start": "2026-09-27T08:00:00+08:00",
-      "end": "2026-09-27T17:00:00+08:00",
-      "duration_minutes": 540,
-      "lgus": [
-        "mandaue-city"
-      ],
-      "barangays": [
-        "mandaue-city.bakilid",
-        "mandaue-city.cabancalan",
-        "mandaue-city.casuntingan",
-        "mandaue-city.maguikay",
-        "mandaue-city.banilad"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Bakilid, Cabancalan, Casuntingan, Maguikay & Banilad, Mandaue City, along portions of P. Remedio St., M.L Quezon St., & M.L. Quezon Avenue.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Bakilid, Cabancalan, Casuntingan, Maguikay & Banilad by facilitating 69kV pole installation and dressing.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-27-october-3-2026",
-      "source_published_at": "2026-09-24T08:36:02.000Z"
-    },
     {
       "id": "9b793047c99b2d3e",
       "start": "2026-09-28T22:00:00+08:00",
