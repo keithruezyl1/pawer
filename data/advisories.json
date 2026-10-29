@@ -1,29 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-10-27T10:49:57.828Z",
+  "generated_at": "2026-10-29T02:42:49.339Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "9b793047c99b2d3e",
-      "start": "2026-09-28T22:00:00+08:00",
-      "end": "2026-09-29T06:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "liloan"
-      ],
-      "barangays": [
-        "liloan.calero",
-        "liloan.catarman",
-        "liloan.yati",
-        "liloan.tayud"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Calero, Catarman, Yati & Tayud, Liloan, along portions of Bagong Daan, Cebu North Coastal Road, J. Pepito, & Kapaz Road.",
-      "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Calero, Catarman, Yati & Tayud by facilitating installation of distribution transformer.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-september-27-october-3-2026",
-      "source_published_at": "2026-09-24T08:36:02.000Z"
-    },
     {
       "id": "269dc17097b787d4",
       "start": "2026-09-29T09:00:00+08:00",
@@ -2387,6 +2366,26 @@
       "unknown_area_tokens": [],
       "areas_raw": "Portion of Tuyan, City of Naga, along portion of Cebu South Road",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tuyan by facilitating 69kV pole installation and dressing",
+      "parse_status": "parsed",
+      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-25-31-2026",
+      "source_published_at": "2026-10-22T08:52:27.000Z"
+    },
+    {
+      "id": "e0f07c1e350c3ae2",
+      "start": "2026-10-31T08:00:00+08:00",
+      "end": "2026-10-31T17:00:00+08:00",
+      "duration_minutes": 540,
+      "lgus": [
+        "cebu-city"
+      ],
+      "barangays": [
+        "cebu-city.ermita",
+        "cebu-city.kalubihan",
+        "cebu-city.pahina-central"
+      ],
+      "unknown_area_tokens": [],
+      "areas_raw": "Portion of Ermita, Kalubihan & Pahina Central, Cebu City, along portions of Quezon Blvd., F. Calderon St. Extension, Leon Kilat Street, M.Escano Street, Magallanes Street, & Mc Briones Street, including portions of Sitios Bato & Warwiks Barracks, and Carbon Public Market.",
+      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Ermita, Kalubihan & Pahina Central by facilitating rerouting of primary lines",
       "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-25-31-2026",
       "source_published_at": "2026-10-22T08:52:27.000Z"
