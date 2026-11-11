@@ -1,26 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-10T09:29:17.728Z",
+  "generated_at": "2026-11-11T09:45:58.301Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "c3e008c4c922d2fc",
-      "start": "2026-10-12T13:00:00+08:00",
-      "end": "2026-10-12T15:00:00+08:00",
-      "duration_minutes": 120,
-      "lgus": [
-        "talisay-city"
-      ],
-      "barangays": [
-        "talisay-city.lawaan-i"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Lawaan I, Talisay City, along portions of Cebu South Road and the access road leading to Mona Borke Apartment.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Lawaan I by facilitating guying correction and removal of secondary pole.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
     {
       "id": "cdb6acd389971a23",
       "start": "2026-10-13T09:00:00+08:00",
