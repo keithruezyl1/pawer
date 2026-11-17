@@ -1,245 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-11-13T11:26:06.733Z",
+  "generated_at": "2026-11-17T03:32:03.203Z",
   "source_attribution": "Visayan Electric Company — public service-interruption advisories (visayanelectric.com)",
   "outages": [
-    {
-      "id": "bf0c04266e0a7f6c",
-      "start": "2026-10-15T08:00:00+08:00",
-      "end": "2026-10-15T17:00:00+08:00",
-      "duration_minutes": 540,
-      "lgus": [
-        "mandaue-city",
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.apas",
-        "mandaue-city.banilad",
-        "cebu-city.banilad",
-        "cebu-city.kasambagan",
-        "cebu-city.lahug"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Apas, Banilad, Kasambagan, Lahug, Cebu City & Mandaue City, along portions of Bauhinia Drive, Banilad Road, V. Padriga Street, and Gov. M. Cuenco Avenue, including major commercial customers in Cebu IT Park (CITP), specifically Globe, Central Bloc 10, Seda Hotel, eBloc 5, eBloc 6, Mabuhay, CJRS, and Skyrise.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Apas, Banilad, Kasambagan, Lahug by facilitating guying correction and installation of automatic reclosing device (recloser) and reconstruction of primary lines",
-      "parse_status": "partial",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "1c74c87d1bd1291b",
-      "start": "2026-10-15T09:00:00+08:00",
-      "end": "2026-10-15T15:00:00+08:00",
-      "duration_minutes": 360,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.lusaran"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Lusaran, Cebu City, along portions of Brgy. Lusaran Rd.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Lusaran by facilitating rerouting of primary lines",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "29542cd976a92f92",
-      "start": "2026-10-15T09:00:00+08:00",
-      "end": "2026-10-15T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "consolacion"
-      ],
-      "barangays": [
-        "consolacion.pulpogan"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Pulpogan, Consolacion, along portions of Brgy. Pulpogan Rd.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Pulpogan by facilitating shutdown request from a customer",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "17eb3153e0f96b8e",
-      "start": "2026-10-15T09:00:00+08:00",
-      "end": "2026-10-15T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "talisay-city"
-      ],
-      "barangays": [
-        "talisay-city.jaclupan"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Jaclupan, Talisay City, along portions of Cebu-Toledo Wharf Rd.",
-      "purpose_raw": "To prevent unnecessary interruptions due to obstruction of pole in the distribution system serving Brgy. Jaclupan by facilitating relocation of primary pole as per customer request",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "bbe95e247bf55d73",
-      "start": "2026-10-15T09:00:00+08:00",
-      "end": "2026-10-15T15:00:00+08:00",
-      "duration_minutes": 360,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.cogon-ramos"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Cogon Ramos, Cebu City, along portions of General Maxilom Avenue and F. Manalo Street.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Cogon Ramos by facilitating reconstruction of primary lines",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "d27e92e2fb08a8df",
-      "start": "2026-10-16T09:00:00+08:00",
-      "end": "2026-10-16T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "consolacion"
-      ],
-      "barangays": [
-        "consolacion.danglag"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Danglag, Consolacion, along portions of Diversion Road.",
-      "purpose_raw": "To prevent unnecessary interruptions due to obstruction of pole in the distribution system serving Brgy. Danglag by facilitating relocation of primary pole as per customer request",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "d12c5d8d732eeca2",
-      "start": "2026-10-16T09:00:00+08:00",
-      "end": "2026-10-16T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "talisay-city"
-      ],
-      "barangays": [
-        "talisay-city.tangke"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Tangke, Talisay City, along portions of Judge Leonicio P. Abarquez Street.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Tangke by facilitating replacement of primary pole",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "a6d75e83ac05afae",
-      "start": "2026-10-16T09:00:00+08:00",
-      "end": "2026-10-16T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.san-roque"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of San Roque, Cebu City, along portions of Legaspi Street and Lapu-Lapu Street.",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. San Roque by facilitating rerouting of primary lines",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "ce7b93efe624046e",
-      "start": "2026-10-17T06:00:00+08:00",
-      "end": "2026-10-17T07:00:00+08:00",
-      "duration_minutes": 60,
-      "lgus": [
-        "consolacion"
-      ],
-      "barangays": [
-        "consolacion.cansaga",
-        "consolacion.jugan",
-        "consolacion.pitogo",
-        "consolacion.lamac"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Cansaga, Jugan, Pitogo & Lamac, Consolacion, along portions of Central Nautical Highway, Laray Road, M. Pepito Street, Maglasang Road, & Semblante Street.",
-      "purpose_raw": "To ensure the safety of personnel working on the line.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "f0cb80b95415ff3f",
-      "start": "2026-10-17T06:00:00+08:00",
-      "end": "2026-10-17T16:00:00+08:00",
-      "duration_minutes": 600,
-      "lgus": [
-        "consolacion",
-        "liloan"
-      ],
-      "barangays": [
-        "consolacion.jugan",
-        "consolacion.tayud",
-        "liloan.tayud",
-        "liloan.yati"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Jugan, Tayud & Yati, Consolacion & Liloan, along portions of Bagong Daan Road & Cebu North Road, including portions of Sitios Kalubihan, Tabok, Tambis, Bayabas, Calubian, Gemilina, Kawayan, Mangga, Pagutlan, Pilapilan, & Sta. Catalina, and Cogal Compd., Dosdos Village, Montebella Residences, Adamah Homes, Apolo Homes, Bagong Daan Veneranda Homes, Catalina Subd, Ccli Subdivision, Centurvine Residence, Country Side Homes, Golden Plam Subdivision, Green Meadows Subdivision, Greenview Village, Kawayanan Villa Reyna Subdivision, Lazanthville, Lorensville Subdivision, Maglasang Subdivision, Phebz Subdivision, Pjv Homes, St. Mary Hieghts, St. Joseph Hieghts, St. Mathew Subdivision, Sta. Catalina Village, Veneranda Homes, Villa Bonita Subdivision, & Villa Leda Subdivision",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Jugan, Tayud & Yati by facilitating removal of line device hardware (DS/FCO/Insulator/LBS) and installation of automatic reclosing device (recloser)",
-      "parse_status": "partial",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "73d5cbb5bb329f42",
-      "start": "2026-10-17T09:00:00+08:00",
-      "end": "2026-10-17T17:00:00+08:00",
-      "duration_minutes": 480,
-      "lgus": [
-        "cebu-city"
-      ],
-      "barangays": [
-        "cebu-city.kalubihan",
-        "cebu-city.labangon",
-        "cebu-city.punta-princesa",
-        "cebu-city.sambag-i",
-        "cebu-city.san-jose",
-        "cebu-city.tisa",
-        "cebu-city.guadalupe"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Kalubihan, Labangon, Punta Princesa, Sambag I, San Jose, Tisa & Guadalupe, Cebu City, along portions of Almaciga Street, Apitong Street, D. Caballero Street, Diamond Street, Emerald Street, Gold Street Naya Road, Guijo Street, Jade Street Pearl Street, Kamagong Street, Katipunan Street, Lawaan Street Tangie Street, Mancono Street, Narra Street, Platinum Street, R. Arcenas Street, R. Duterte Street, Salvador Street, Sappahire Street, Silver Street, & Tomplyns Compound Road",
-      "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Kalubihan, Labangon, Punta Princesa, Sambag I, San Jose, Tisa & Guadalupe by facilitating replacement of damaged line device hardware (DS/FCO/Insulator/LBS)",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
-    {
-      "id": "b6eb4bb2d9fd1af3",
-      "start": "2026-10-17T15:00:00+08:00",
-      "end": "2026-10-17T16:00:00+08:00",
-      "duration_minutes": 60,
-      "lgus": [
-        "consolacion"
-      ],
-      "barangays": [
-        "consolacion.cansaga",
-        "consolacion.jugan",
-        "consolacion.pitogo",
-        "consolacion.lamac"
-      ],
-      "unknown_area_tokens": [],
-      "areas_raw": "Portion of Cansaga, Jugan, Pitogo & Lamac, Consolacion, along portions of Central Nautical Highway, Laray Road, M. Pepito Street, Maglasang Road, & Semblante Street.",
-      "purpose_raw": "To ensure the safety of personnel working on the line.",
-      "parse_status": "parsed",
-      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-october-11-2026-october-16-2026",
-      "source_published_at": "2026-10-08T08:54:25.000Z"
-    },
     {
       "id": "c6a9e2eb08f7fc18",
       "start": "2026-10-18T08:00:00+08:00",
@@ -2370,6 +2133,24 @@
       "unknown_area_tokens": [],
       "areas_raw": "Portion of Biasong, Pooc & Mohon, Talisay City, along portions of Maderazo Drive & Mohon Road",
       "purpose_raw": "To improve the reliability of the distribution system serving Brgy. Biasong, Pooc & Mohon by facilitating correction of low voltage of the distribution transformer",
+      "parse_status": "parsed",
+      "source_post_url": "https://www.visayanelectric.com/post/service-interruption-november-15-21-2026",
+      "source_published_at": "2026-11-12T05:42:06.000Z"
+    },
+    {
+      "id": "61e8afe5bdffa6e7",
+      "start": "2026-11-19T09:00:00+08:00",
+      "end": "2026-11-19T17:00:00+08:00",
+      "duration_minutes": 480,
+      "lgus": [
+        "cebu-city"
+      ],
+      "barangays": [
+        "cebu-city.guadalupe"
+      ],
+      "unknown_area_tokens": [],
+      "areas_raw": "Portion of Guadalupe, Cebu City, along portions of Salvador Street & Lomboy Street.",
+      "purpose_raw": "To increase the capacity of the distribution system serving Brgy. Guadalupe by facilitating upgrading of distribution transformer",
       "parse_status": "parsed",
       "source_post_url": "https://www.visayanelectric.com/post/service-interruption-november-15-21-2026",
       "source_published_at": "2026-11-12T05:42:06.000Z"
